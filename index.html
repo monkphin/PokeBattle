@@ -28,9 +28,9 @@
       <p>To begin, please enter your name below.</p>
       <!-- player name form -->
       <div class="player_data">
-        <form id="playerData">
-          <label for="playerName">please enter your name</label>
-            <input type="text" id="playerName" name="playerName">
+        <form id="name_form">
+          <label for="player_name">please enter your name</label>
+            <input type="text" id="player_name" name="player_name">
             <button type="submit" id="submit">Play Game</button>
         </form>
       </div>   
@@ -39,6 +39,13 @@
   <footer>
     <!-- footer content  -->
   </footer>
-  <script src="/assets/js/javascript.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('name_form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the form from submitting the traditional way
+        let playerName = document.getElementById('player_name').value;
+        console.log(playerName); // Logs the player's name to the console
+    });
+});</script>
 </body>
 </html>

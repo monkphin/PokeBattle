@@ -12,28 +12,56 @@
     <!-- site logo -->
   </header>
   <main>
-    <!-- Welcome Message with game instructions -->
-    <div class="header">
-      <div class="hero_image">
-        <!-- Hero Image -->
+    <!-- welcome message with player name -->
+    <div class="container">
+      <div class="welcome_message">
+
       </div>
     </div>
-    <div class="instructions">
-      <h2>Game Instructions</h2>
-      <p>Each card has 4 statistics to choose from, you will pick one of these in the hopes of it being better than the corresponding statistic on your opponents card. 
-      Depending on the statistic in question, you may be looking for higher or lower numbers. Once you have made your choice it will be compared to the same statistic
-      on your opponents card and the better score will win. If you win, your opponent loses a card and you go again. If your opponent wins you lose a card and its their
-      turn.</p>
-      <p>The game will continue until one player loses all their cards.</p>
-      <p>To begin, please enter your name below.</p>
-      <!-- player name form -->
-      <div class="player_data">
-        <form id="playerData">
-          <label for="playerName">please enter your name</label>
-            <input type="text" id="playerName" name="playerName">
-            <button type="submit" id="submit">Play Game</button>
-        </form>
-      </div>   
+    <!-- main game section -->
+    <div class="container">
+      <div class="row">
+        <!-- Player Card -->
+        <div class="col-sm-6" id="player_card">
+          Player Card 
+        </div>
+        <!-- Opponent card -->
+        <div class="col-sm-6" id="opponent_card">
+          Opponent card 
+        </div>
+      </div>
+      <div class="row">
+        <!-- remaining deck counts -->
+        <div class="col-sm-6" id="player_count">
+          <!-- player deck count -->
+           player deck size 
+        </div>
+        <div class="col-sm-6" id="opponent_count">
+          <!-- opponent deck count -->
+           Opponent deck size 
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <!-- game out put area -->
+      <div class="row">
+        <div class="col">
+          <!-- Game Output -->
+          Game output
+        </div>
+      </div>
+      <!-- win loss count area -->
+      <div class="row">
+        <div class="col-sm-6">
+          <!-- win counter -->
+           Win counter 
+        </div>
+        <div class="col-sm-6">
+          <!-- loss counter -->
+           Loss Counter 
+        </div>
+
+      </div>
     </div>
   </main>
   <footer>
