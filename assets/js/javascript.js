@@ -140,6 +140,18 @@ const shuffleCards = array => {
   return array;
 };
 
+/**
+ * Creates decks for both players from the previously generated card pool. 
+ */
+function createDecks() {
+  const allCards = cardInit();
+  const shuffledDeck = shuffleCards(allCards);
+  const playerDeck = shuffledDeck.splice(0, 20);
+  const opponentDeck = shuffledDeck.slice(0, 20);
+
+  return {playerDeck, opponentDeck};
+};
+
 //-----------------------------------------Game State
 
 
@@ -150,12 +162,15 @@ const shuffleCards = array => {
 
 
 //-----------------------------------------Testing Stuff
-//Name handling 
+//----------Name handling Test 
 // console.log(playerName);
 
-//Card object creation testing
+//----------Card object creation testing
 //  cards = cardInit()
 // console.log(cards);
-//Testing card shuffle function - needs to have cardInit() above uncommented. 
+//----------Testing card shuffle function - needs to have cardInit() above uncommented. 
 // let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
 // console.log("Shuffled cards:", shuffledCards);
+//----------Deck creation testing - should generate an array with both players decks
+// let player = createDecks()
+// console.log(player);
