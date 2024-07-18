@@ -1,6 +1,5 @@
 //----------------------------------------- Global Vars
-
-
+let cards = [];
 
 //-----------------------------------------Game Start
 /**
@@ -69,6 +68,11 @@ function displayPlayerName() {
 
 //-----------------------------------------Deck Constructor 
 
+/**
+ * Function to create card data using nested RNG objects for the stats 
+ * and pulling the name/image from the cardInit function 
+ */
+
 function buildCard(name, image) {
   return {
     name : name,
@@ -77,7 +81,7 @@ function buildCard(name, image) {
       attack : Math.floor(Math.random() * 100),
       defense : Math.floor(Math.random() * 100),
       specialAttack : Math.floor(Math.random() * 100),
-      specialDefence : Math.floor(Math.random() * 100),
+      specialDefense : Math.floor(Math.random() * 100),
       },       
   };
 }
@@ -121,8 +125,20 @@ function cardInit() {
  return cards;
 }
 
-
-
+/**
+ * Function to shuffle the deck using a Fisher-Yates algorithm 
+ * function taken from this website
+ * https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+ */
+const shuffleCards = array => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  };
+  return array;
+};
 
 //-----------------------------------------Game State
 
@@ -138,8 +154,8 @@ function cardInit() {
 // console.log(playerName);
 
 //Card object creation testing
-// cards = cardInit()
+//  cards = cardInit()
 // console.log(cards);
-
-
-
+//Testing card shuffle function - needs to have cardInit() above uncommented. 
+// let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
+// console.log("Shuffled cards:", shuffledCards);
