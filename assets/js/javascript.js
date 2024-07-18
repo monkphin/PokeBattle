@@ -51,15 +51,17 @@ function retrievePlayerName() {
 /** 
  * Throws a welcome message to the game.html page when loaded
  * this presents the players name retrieved from local storage. 
+ * This calls on the presentData function to allow for quick/easy HTML gen
+ * without the need to contain entire blocks within back-tics. 
  */
 
 function displayPlayerName() {
   let playerName = retrievePlayerName();
-  document.getElementById('welcome_message').innerHTML += 
-  `
-  <h1>Welcome to PokeBattle ${playerName}</h1>
-  <p>Good luck with your game!</p>
-  `;
+  const welcomeMessage = document.getElementById('welcome_message');
+  const welcomePlayer = presentData('h1',`Welcome to PokeBattle ${playerName}`);
+  welcomeMessage.appendChild(welcomePlayer);
+  const friendlyMessage = presentData('p', 'Good luck with your game!');
+  welcomeMessage.appendChild(friendlyMessage);
 }
 
 
@@ -89,7 +91,7 @@ function buildCard(name, image) {
  * from a pair of arrays. 
  */
 function cardInit() {
-  let cardName = [
+  const cardName = [
     'Bulbasaur', 'Charmander', 'Squirtle', 'Caterpie', 'Weedle',
     'Pidgey', 'Rattata', 'Spearow', 'Ekans', 'Pikachu',
     'Sandshrew', 'Nidoran', 'Clefairy', 'Vulpix', 'Jigglypuff',
@@ -101,7 +103,7 @@ function cardInit() {
     'Drowzee', 'Krabby', 'Voltorb', 'Exeggcute', 'Cubone',
     'Hitmonlee', 'Lickitung', 'Koffing'
   ];
-  let cardImage = [
+  const cardImage = [
     'assets/images/pokemon/bulbasaur.webp', 'assets/images/pokemon/charmander.webp', 'assets/images/pokemon/squirtle.webp', 'assets/images/pokemon/caterpie.webp', 'assets/images/pokemon/weedle.webp',
     'assets/images/pokemon/pidgey.webp', 'assets/images/pokemon/rattata.webp', 'assets/images/pokemon/spearow.webp', 'assets/images/pokemon/ekans.webp', 'assets/images/pokemon/pikachu.webp',
     'assets/images/pokemon/sandshrew.webp', 'assets/images/pokemon/nidoran-f.webp', 'assets/images/pokemon/clefairy.webp', 'assets/images/pokemon/vulpix.webp', 'assets/images/pokemon/jigglypuff.webp',
@@ -113,7 +115,7 @@ function cardInit() {
     'assets/images/pokemon/drowzee.webp', 'assets/images/pokemon/krabby.webp', 'assets/images/pokemon/voltorb.webp', 'assets/images/pokemon/exeggcute.webp', 'assets/images/pokemon/cubone.webp',
     'assets/images/pokemon/hitmonlee.webp', 'assets/images/pokemon/lickitung.webp', 'assets/images/pokemon/koffing.webp'
   ];
- let cards = [];
+
 
  //for loop to pull each name/image combo from the two arrays
  for(let i = 0; i < cardName.length; i++) {
@@ -149,7 +151,20 @@ function createDecks() {
   return {playerDeck, opponentDeck};
 };
 
-//-----------------------------------------Card Visualisation  
+//-----------------------------------------Visualisation Code
+/**
+ * Re-usable function to simplify adding JS created data to the HTML. 
+ * This can be called and have the element and content passed to it, 
+ * which it will then return as the needed HTML. 
+ * Concept taken from additional studying via a Skillshare JS course
+ */
+
+ function presentData(elementName, elementContent) {
+    const element = document.createElement(elementName);
+    const content = document.createTextNode(elementContent);
+    element.appendChild(content);
+    return element;
+ }
 
 
 //-----------------------------------------Game Loops
@@ -163,6 +178,7 @@ function createDecks() {
 
 //-----------------------------------------Testing Stuff
 //----------Name handling Test 
+// let playerName = retrievePlayerName()
 // console.log(playerName);
 
 //----------Card object creation testing
@@ -172,18 +188,15 @@ function createDecks() {
 // let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
 // console.log("Shuffled cards:", shuffledCards);
 //----------Deck creation testing - should generate an array with both players decks
-//  let player = createDecks()
-//  console.log(player);
+ let player = createDecks()
+// console.log(player);
+//----------Testing pulling a single card - can filter for properties, eg .name, .image etc
+  let singleCard = cards[0]; 
+  console.log("Single card:", singleCard.name);
+  console.log("Single card:", singleCard.image);
+  console.log("Single card:", singleCard.stats.attack);
+  console.log("Single card:", singleCard.stats.defense);
+  console.log("Single card:", singleCard.stats.specialAttack);
+  console.log("Single card:", singleCard.stats.specialDefense);
 //----------Card picker testing
-
-
- //----------Testing pulling a single card - can filter for properties, eg .name, .image etc
-//  let singleCard = cards[0]; 
-//  console.log("Single card:", singleCard.name);
-//  console.log("Single card:", singleCard.image);
-//  console.log("Single card:", singleCard.stats.attack);
-//  console.log("Single card:", singleCard.stats.defense);
-//  console.log("Single card:", singleCard.stats.specialAttack);
-//  console.log("Single card:", singleCard.stats.specialDefense);
- 
  
