@@ -9,9 +9,6 @@ let cards = [];
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-  if (document.getElementById('welcomeMessage')) {
-    titleName();
-  }
 
   const form = document.getElementById('name_form');
   if (form) {
@@ -152,7 +149,10 @@ function createDecks() {
   return {playerDeck, opponentDeck};
 };
 
-//-----------------------------------------Game State
+//-----------------------------------------Card Visualisation  
+
+
+//-----------------------------------------Game Loops
 
 
 //-----------------------------------------Messaging 
@@ -166,11 +166,24 @@ function createDecks() {
 // console.log(playerName);
 
 //----------Card object creation testing
-//  cards = cardInit()
+// cards = cardInit()
 // console.log(cards);
 //----------Testing card shuffle function - needs to have cardInit() above uncommented. 
 // let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
 // console.log("Shuffled cards:", shuffledCards);
 //----------Deck creation testing - should generate an array with both players decks
-// let player = createDecks()
-// console.log(player);
+//  let player = createDecks()
+//  console.log(player);
+//----------Card picker testing
+
+
+ //----------Testing pulling a single card - can filter for properties, eg .name, .image etc
+//  let singleCard = cards[0]; 
+//  console.log("Single card:", singleCard.name);
+//  console.log("Single card:", singleCard.image);
+//  console.log("Single card:", singleCard.stats.attack);
+//  console.log("Single card:", singleCard.stats.defense);
+//  console.log("Single card:", singleCard.stats.specialAttack);
+//  console.log("Single card:", singleCard.stats.specialDefense);
+ 
+ 
