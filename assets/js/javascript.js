@@ -179,6 +179,12 @@ function presentData(elementName, elementContent) {
   return element;
 }
 
+
+/**
+ * Present both players cards to HTML using the presenttData function 
+ * may need to split things out to hide opponent stats 
+ * until the player picks which stat to check could also help keep function smaller
+ */
 function showCard(card, player) {
   if(player === 'player') {
     console.log('players card:', card)
@@ -186,10 +192,10 @@ function showCard(card, player) {
     const playerCard = document.getElementById('player_card');
     const playerCardName = presentData('h3', card.name);
     const playerUl = document.createElement('ul');
-    const playerCardAttack = presentData('li', card.stats.attack);
-    const playerCardDefense = presentData('li', card.stats.defense);
-    const playerCardSpecialAttack = presentData('li', card.stats.specialAttack);
-    const playerCardSpecialDefense = presentData('li', card.stats.specialDefense);
+    const playerCardAttack = listCreator('Attack', card.stats.attack);
+    const playerCardDefense = listCreator('Defense', card.stats.defense);
+    const playerCardSpecialAttack = listCreator('Special Attack', card.stats.specialAttack);
+    const playerCardSpecialDefense = listCreator('Special Defense', card.stats.specialDefense);
 
     const playerCardImg = document.createElement('img');
     playerCardImg.src = card.image;
@@ -209,10 +215,10 @@ function showCard(card, player) {
     const opponentCard = document.getElementById('player_card');
     const opponentCardName = presentData('h3', card.name);
     const opponentUl = document.createElement('ul');
-    const opponentCardAttack = presentData('li', card.stats.attack);
-    const opponentCardDefense = presentData('li', card.stats.defense);
-    const opponentCardSpecialAttack = presentData('li', card.stats.specialAttack);
-    const opponentCardSpecialDefense = presentData('li', card.stats.specialDefense);
+    const opponentCardAttack = listCreator('Attack', card.stats.attack);
+    const opponentCardDefense = listCreator('Defense', card.stats.defense);
+    const opponentCardSpecialAttack = listCreator('Special Attack', card.stats.specialAttack);
+    const opponentCardSpecialDefense = listCreator('Special Defense', card.stats.specialDefense);
 
     const opponentCardImg = document.createElement('img');
     opponentCardImg.src = card.image;
@@ -227,6 +233,30 @@ function showCard(card, player) {
     opponentCard.appendChild(opponentCardImg);
   }
 }
+
+/**
+ * Adding new list creator function since I need to also show statnames alongside stat numbers, 
+ * this will take the output of showCard and utilise the createElement function rather than 
+ * have the showCard function pass directly into createElement 
+ */
+function listCreator(statName, statValue) {
+  const li = document.createElement('li');
+  li.className = 'stat-item';
+
+  const nameSpan = document.createElement('span');
+  nameSpan.className = 'stat-name';
+  nameSpan.textContent = statName + ':';
+
+  const valueSpan = document.createElement('span');
+  valueSpan.className = 'stat-value';
+  valueSpan.textContent = statValue;
+
+  li.appendChild(nameSpan);
+  li.appendChild(valueSpan);
+
+  return li;
+}
+
 
 //-----------------------------------------Game Loops
 
