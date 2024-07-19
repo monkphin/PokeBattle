@@ -276,37 +276,18 @@ function listCreator(statName, statValue) {
 function statSelection(statName, statValue) {
   playerStatName = statName;
   playerStatValue = statValue;
-  opponentStat = (activeCard.opponentDeck[0].stats[statName]);
-  console.log(opponentStat);
+  opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
+  console.log(opponentStatValue);
+  resolveRound(playerStatValue, opponentStatValue);
+}
 
-  const resultMessage = document.getElementById('message_area')
+function resolveRound (playerStatValue, opponentStatValue) {
+  const resultMessage = document.getElementById('message_area');
 
-  if(playerStatValue > opponentStat) {
-    console.log('Player Wins');
-    const playerWin = presentData('h3', 'Congratulations, you win this round');
-    resultMessage.appendChild(playerWin);
-
-    let gainedCard = activeCard.opponentDeck.shift();
-    let oldCard = activeCard.playerDeck.shift();
-
-    activeCard.playerDeck.push(oldCard, gainedCard);
-
-    const winCount = presentData('span', wins++)
-    
-    console.log(activeCard.playerDeck);
-    console.log(activeCard.opponentDeck);
-
-  } else if(playerStatValue < opponentStat)  {
-    console.log('Opponent Wins');
-    const opponentWin = presentData('h3', 'Unlucky, you lost the round');
-    resultMessage.appendChild(opponentWin);
-    let gainedCard = activeCard.playerDeck.shift();
-    let oldCard = activeCard.opponentDeck.shift();
-
-    activeCard.opponentDeck.push(oldCard, gainedCard);
-
-    console.log(activeCard.playerDeck);
-    console.log(activeCard.opponentDeck);
+  if(playerStatValue > opponentStatValue) {
+    console.log(activeCard.playerDeck, activeCard.opponentDeck, 'h3', 'Congratulations, you win this round');
+  } else if(playerStatValue < opponentStatValue)  {
+    console.log(activeCard.opponentDeck, activeCard.playerDeck, 'h3', 'Unlucky, you lost the round');
   } else {
     console.log ('Its a draw!');
     const playerDraw = presentData('h3', 'It\'s a draw!');
