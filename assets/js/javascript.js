@@ -5,7 +5,8 @@ let card;
 let wins;
 let losses;
 const resultMessage = document.getElementById('message_area');
-
+let numberOfWins = 0;
+let numberOfLosses = 0;
 
 
 //-----------------------------------------Game Start
@@ -302,8 +303,6 @@ function outcomeHandler(winnerDeck, loserDeck, winner, message) {
   let gainedCard = loserDeck.shift();
   let usedCard = winnerDeck.shift();
 
-  console.log(winnerDeck)
-
   winnerDeck.push(usedCard, gainedCard);
 
   const playerCardArea = document.getElementById('player_count');
@@ -314,6 +313,21 @@ function outcomeHandler(winnerDeck, loserDeck, winner, message) {
   opponentDeckSize = presentData('p', activeCard.opponentDeck.length);
   opponentCardArea.appendChild(opponentDeckSize);
 
+  let winCount = winner;
+
+  if (winner === 'player') {
+    console.log('Player Wins');
+    const playerWinArea = document.getElementById('win-count');
+    numberOfWins++;
+    playerWinCount = presentData('p', numberOfWins);
+    playerWinArea.appendChild(playerWinCount);
+  } else {
+    console.log('Opponent Wins');
+    const playerLossArea = document.getElementById('loss-count');
+    numberOfLosses++;
+    playerLossCount = presentData('p', numberOfLosses);
+    playerLossArea.appendChild(playerLossCount);
+  }
 
   // console.log(activeCard.playerDeck);
   // console.log(activeCard.opponentDeck);
