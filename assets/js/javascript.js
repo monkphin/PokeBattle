@@ -313,7 +313,7 @@ function outcomeHandler(winnerDeck, loserDeck, winner, message) {
   const opponentCardArea = document.getElementById('opponent_count');
   opponentDeckSize = presentData('p', activeCard.opponentDeck.length);
   opponentCardArea.appendChild(opponentDeckSize);
-  
+
 
   // console.log(activeCard.playerDeck);
   // console.log(activeCard.opponentDeck);
