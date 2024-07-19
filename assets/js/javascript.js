@@ -44,13 +44,16 @@ function handleSubmit(e) {
    * 
    * The below functions store and retrain the player name, using localstorage.
    *  https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+   * Found issues with localStorage on Github pages, this link suggests
+   * that it may also cause data to persist. Shifted to sessionStorage instead
+   * https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page
    */
 function storePlayerName(name) {
-  localStorage.setItem('playerName', name);
+  sessionStorageStorage.setItem('playerName', name);
 };
   
 function retrievePlayerName() {
-  let playerName = localStorage.getItem('playerName');
+  let playerName = sessionStorageStorage.getItem('playerName');
   return playerName;
 }
   
