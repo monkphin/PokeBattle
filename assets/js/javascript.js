@@ -63,7 +63,7 @@ function displayPlayerName() {
   const welcomeMessage = document.getElementById('welcome_message');
   const welcomePlayer = presentData('h1',`Welcome to PokeBattle ${playerName}`);
   welcomeMessage.appendChild(welcomePlayer);
-  const friendlyMessage = presentData('p', 'Good luck with your game!');
+  const friendlyMessage = presentData('h2', 'Good luck with your game!');
   welcomeMessage.appendChild(friendlyMessage);
 }
 
@@ -182,57 +182,57 @@ function presentData(elementName, elementContent) {
 
 /**
  * Present both players cards to HTML using the presenttData function 
- * may need to split things out to hide opponent stats 
- * until the player picks which stat to check could also help keep function smaller
+ * split out the rendering of the cards and stats to keep things much simpler here. 
  */
 function showCard(card, player) {
   if(player === 'player') {
     console.log('players card:', card)
-
-    const playerCard = document.getElementById('player_card');
-    const playerCardName = presentData('h3', card.name);
-    const playerUl = document.createElement('ul');
-    const playerCardAttack = listCreator('Attack', card.stats.attack);
-    const playerCardDefense = listCreator('Defense', card.stats.defense);
-    const playerCardSpecialAttack = listCreator('Special Attack', card.stats.specialAttack);
-    const playerCardSpecialDefense = listCreator('Special Defense', card.stats.specialDefense);
-
-    const playerCardImg = document.createElement('img');
-    playerCardImg.src = card.image;
-    
-    playerCard.appendChild(playerCardName);
-  
-    playerUl.appendChild(playerCardAttack);
-    playerUl.appendChild(playerCardDefense);
-    playerUl. appendChild(playerCardSpecialAttack);
-    playerUl.appendChild(playerCardSpecialDefense);
-    playerCard.appendChild(playerUl);
-    playerCard.appendChild(playerCardImg);
-    
+    cardRender('player_card', card);
   } else {
     console.log('opponents card:', card)
-
-    const opponentCard = document.getElementById('player_card');
-    const opponentCardName = presentData('h3', card.name);
-    const opponentUl = document.createElement('ul');
-    const opponentCardAttack = listCreator('Attack', card.stats.attack);
-    const opponentCardDefense = listCreator('Defense', card.stats.defense);
-    const opponentCardSpecialAttack = listCreator('Special Attack', card.stats.specialAttack);
-    const opponentCardSpecialDefense = listCreator('Special Defense', card.stats.specialDefense);
-
-    const opponentCardImg = document.createElement('img');
-    opponentCardImg.src = card.image;
-    
-    opponentCard.appendChild(opponentCardName);
-  
-    opponentUl.appendChild(opponentCardAttack);
-    opponentUl.appendChild(opponentCardDefense);
-    opponentUl. appendChild(opponentCardSpecialAttack);
-    opponentUl.appendChild(opponentCardSpecialDefense);
-    opponentCard.appendChild(opponentUl);
-    opponentCard.appendChild(opponentCardImg);
+    cardRender('opponent_card', card);
   }
 }
+
+/**
+ * cardRender function is designed to take the element ID
+ * from the webpage to show each players card in its own div
+ * this is then passed as an argument along with the card from
+ * showCard, the name and image are appended as children to the 
+ * div, with the stats being turned into an array which is then 
+ * iterated through to generate the list using listCreator
+ */
+
+function cardRender(elementId, card) {
+  const cardElement = document.getElementById(elementId);
+
+  cardElement.innerHTML = '';
+
+  const cardName = presentData('h3', card.name);
+  cardName.className = 'card-name'
+  const cardUl = document.createElement('ul');
+  cardUl.className = 'card-stats';
+
+  //use a for to clean up how we were showing stats earlier
+  const stats = ['attack', 'defense', 'specialAttack', 'specialDefense']
+  for (let i = 0; i < stats.length; i++) {
+    const stat = stats[i];
+    const listItem = listCreator((stat), card.stats[stat]);
+    cardUl.appendChild(listItem);
+  };
+
+  const cardImg = document.createElement('img');
+  cardImg.src = card.image;
+  cardImg.alt = card.name + ' Pokemon card';
+  cardImg.className = 'card-image'
+
+
+  cardElement.appendChild(cardName);
+  cardElement.appendChild(cardImg);
+  cardElement.appendChild(cardUl);
+
+};
+
 
 /**
  * Adding new list creator function since I need to also show statnames alongside stat numbers, 
