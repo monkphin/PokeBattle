@@ -4,6 +4,8 @@ let activeCard;
 let card;
 let wins;
 let losses;
+const resultMessage = document.getElementById('message_area');
+
 
 
 //-----------------------------------------Game Start
@@ -277,24 +279,46 @@ function statSelection(statName, statValue) {
   playerStatName = statName;
   playerStatValue = statValue;
   opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
-  console.log(opponentStatValue);
   resolveRound(playerStatValue, opponentStatValue);
 }
 
 function resolveRound (playerStatValue, opponentStatValue) {
-  const resultMessage = document.getElementById('message_area');
-
   if(playerStatValue > opponentStatValue) {
-    console.log(activeCard.playerDeck, activeCard.opponentDeck, 'h3', 'Congratulations, you win this round');
+    winner = 'player'; 
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, winner, 'Congratulations, you win this round');
   } else if(playerStatValue < opponentStatValue)  {
-    console.log(activeCard.opponentDeck, activeCard.playerDeck, 'h3', 'Unlucky, you lost the round');
+    winner = 'opponent'; 
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, winner, 'Unlucky, you lost the round');
   } else {
-    console.log ('Its a draw!');
     const playerDraw = presentData('h3', 'It\'s a draw!');
     resultMessage.appendChild(playerDraw);
   }
-  
 };
+
+function outcomeHandler(winnerDeck, loserDeck, winner, message) {
+  const winMessage = presentData('h3', message);
+  resultMessage.appendChild(winMessage);
+
+  let gainedCard = loserDeck.shift();
+  let usedCard = winnerDeck.shift();
+
+  console.log(winnerDeck)
+
+  winnerDeck.push(usedCard, gainedCard);
+
+  const playerCardArea = document.getElementById('player_count');
+  playerDeckSize = presentData('p', activeCard.playerDeck.length);
+  playerCardArea.appendChild(playerDeckSize);
+ 
+  const opponentCardArea = document.getElementById('opponent_count');
+  opponentDeckSize = presentData('p', activeCard.opponentDeck.length);
+  opponentCardArea.appendChild(opponentDeckSize);
+  
+
+  // console.log(activeCard.playerDeck);
+  // console.log(activeCard.opponentDeck);
+};
+
 
 //-----------------------------------------Messaging 
 
