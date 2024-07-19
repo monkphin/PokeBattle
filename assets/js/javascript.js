@@ -2,6 +2,8 @@
 let cards = [];
 let activeCard;
 let card;
+let wins;
+let losses;
 
 
 //-----------------------------------------Game Start
@@ -227,11 +229,9 @@ function cardRender(elementId, card) {
   cardImg.alt = card.name + ' Pokemon card';
   cardImg.className = 'card-image'
 
-
   cardElement.appendChild(cardName);
   cardElement.appendChild(cardImg);
   cardElement.appendChild(cardUl);
-
 };
 
 
@@ -279,25 +279,35 @@ function statSelection(statName, statValue) {
   const resultMessage = document.getElementById('message_area')
 
   if(playerStatValue > opponentStat) {
-    console.log('Player Wins')
-    const playerWin = presentData('h3', 'Congratulations, you win this round')
-    resultMessage.appendChild(playerWin)
-    let gainedCard = activeCard.opponentDeck.splice(0, 1)
-    activeCard.playerDeck.push(gainedCard)
+    console.log('Player Wins');
+    const playerWin = presentData('h3', 'Congratulations, you win this round');
+    resultMessage.appendChild(playerWin);
+
+    let gainedCard = activeCard.opponentDeck.shift();
+    let oldCard = activeCard.playerDeck.shift();
+
+    activeCard.playerDeck.push(oldCard, gainedCard);
+
+    const winCount = presentData('span', wins++)
+    
     console.log(activeCard.playerDeck);
     console.log(activeCard.opponentDeck);
+
   } else if(playerStatValue < opponentStat)  {
-    console.log('Opponent Wins')
-    const opponentWin = presentData('h3', 'Unlucky, you lost the round')
-    resultMessage.appendChild(opponentWin)
-    let gainedCard = activeCard.playerDeck.splice(0, 1)
-    activeCard.opponentDeck.push(gainedCard)
+    console.log('Opponent Wins');
+    const opponentWin = presentData('h3', 'Unlucky, you lost the round');
+    resultMessage.appendChild(opponentWin);
+    let gainedCard = activeCard.playerDeck.shift();
+    let oldCard = activeCard.opponentDeck.shift();
+
+    activeCard.opponentDeck.push(oldCard, gainedCard);
+
     console.log(activeCard.playerDeck);
     console.log(activeCard.opponentDeck);
   } else {
-    console.log ('Its a draw!')
-    const playerDraw = presentData('h3', 'Its a draw!')
-    resultMessage.appendChild(playerDraw)
+    console.log ('Its a draw!');
+    const playerDraw = presentData('h3', 'It\'s a draw!');
+    resultMessage.appendChild(playerDraw);
   }
   
 };
