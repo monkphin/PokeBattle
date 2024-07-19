@@ -303,6 +303,10 @@ function outcomeHandler(winnerDeck, loserDeck, message) {
 
   winnerDeck.push(usedCard, gainedCard);
 
+  updateDeckCount();
+};
+
+function updateDeckCount() {
   const playerCardArea = document.getElementById('player_count');
   playerDeckSize = presentData('p', activeCard.playerDeck.length);
   playerCardArea.appendChild(playerDeckSize);
