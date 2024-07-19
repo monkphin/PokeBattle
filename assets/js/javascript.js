@@ -280,7 +280,12 @@ function statSelection(statName, statValue) {
   opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
   resolveRound(playerStatValue, opponentStatValue);
 }
-
+/**
+ * Function compares selected player stat with the equivalent opponent stat then
+ * kicks a message outComeHandler to deal with displaying win/lose. Draws are 
+ * handled locally. This also kicks which player won to the winLossCounter to 
+ * allow tracking of count of wins/losses
+ */
 function resolveRound (playerStatValue, opponentStatValue) {
   if(playerStatValue > opponentStatValue) {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'Congratulations, you win this round');
@@ -293,7 +298,16 @@ function resolveRound (playerStatValue, opponentStatValue) {
     resultMessage.innerHTML = '';
     resultMessage.appendChild(playerDraw);
   }
+  showCard(activeCard.playerDeck[0], 'player')
+  showCard(activeCard.opponentDeck[0], 'opponent')
+  
 };
+
+/**
+ * Outcome handler moves the current card to either the player or opponent
+ * depending on who won, this also moves the currently active card of the winner
+ * to the back of their deck, forcing a new card to be used. 
+ */
 
 function outcomeHandler(winnerDeck, loserDeck, message) {
   const winMessage = presentData('h3', message);
@@ -330,6 +344,7 @@ function winLossCounter(winner) {
     playerWinArea.appendChild(playerWinCount);
   } else {
     const playerLossArea = document.getElementById('loss-count');
+    //playerLossArea.className = 
     playerLossArea.innerHTML = '';
     numberOfLosses++;
     playerLossCount = presentData('p', numberOfLosses);
