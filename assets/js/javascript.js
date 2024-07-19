@@ -49,11 +49,11 @@ function handleSubmit(e) {
    * https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page
    */
 function storePlayerName(name) {
-  sessionStorageStorage.setItem('playerName', name);
+  sessionStorage.setItem('playerName', name);
 };
   
 function retrievePlayerName() {
-  let playerName = sessionStorageStorage.getItem('playerName');
+  let playerName = sessionStorage.getItem('playerName');
   return playerName;
 }
   
