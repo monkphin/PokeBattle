@@ -254,12 +254,22 @@ function listCreator(statName, statValue) {
   li.appendChild(nameSpan);
   li.appendChild(valueSpan);
 
+  li.addEventListener('click', function() {
+    statSelection(statName, statValue);
+  });
+
   return li;
 }
 
 
 //-----------------------------------------Game Loops
+function statSelection(statName, statValue) {
+  playerStatName = statName;
+  playerStatValue = statValue;
+  console.log(activeCard.opponentDeck[0].stats[statName])
 
+  
+};
 
 //-----------------------------------------Messaging 
 
