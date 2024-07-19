@@ -290,12 +290,14 @@ function resolveRound (playerStatValue, opponentStatValue) {
     winLossCounter('opponent');
   } else {
     const playerDraw = presentData('h3', 'It\'s a draw!');
+    resultMessage.innerHTML = '';
     resultMessage.appendChild(playerDraw);
   }
 };
 
 function outcomeHandler(winnerDeck, loserDeck, message) {
   const winMessage = presentData('h3', message);
+  resultMessage.innerHTML = '';
   resultMessage.appendChild(winMessage);
 
   let gainedCard = loserDeck.shift();
@@ -308,10 +310,12 @@ function outcomeHandler(winnerDeck, loserDeck, message) {
 
 function updateDeckCount() {
   const playerCardArea = document.getElementById('player_count');
+  playerCardArea.innerHTML = '';
   playerDeckSize = presentData('p', activeCard.playerDeck.length);
   playerCardArea.appendChild(playerDeckSize);
  
   const opponentCardArea = document.getElementById('opponent_count');
+  opponentCardArea.innerHTML = '';
   opponentDeckSize = presentData('p', activeCard.opponentDeck.length);
   opponentCardArea.appendChild(opponentDeckSize);
 };
@@ -320,11 +324,13 @@ function winLossCounter(winner) {
   let winCount = winner;
   if (winner === 'player') {
     const playerWinArea = document.getElementById('win-count');
+    playerWinArea.innerHTML = '';
     numberOfWins++;
     playerWinCount = presentData('p', numberOfWins);
     playerWinArea.appendChild(playerWinCount);
   } else {
     const playerLossArea = document.getElementById('loss-count');
+    playerLossArea.innerHTML = '';
     numberOfLosses++;
     playerLossCount = presentData('p', numberOfLosses);
     playerLossArea.appendChild(playerLossCount);
