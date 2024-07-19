@@ -2,8 +2,6 @@
 let cards = [];
 let activeCard;
 let card;
-let wins;
-let losses;
 const resultMessage = document.getElementById('message_area');
 let numberOfWins = 0;
 let numberOfLosses = 0;
@@ -285,18 +283,18 @@ function statSelection(statName, statValue) {
 
 function resolveRound (playerStatValue, opponentStatValue) {
   if(playerStatValue > opponentStatValue) {
-    winner = 'player'; 
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, winner, 'Congratulations, you win this round');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'Congratulations, you win this round');
+    winLossCounter('player'); 
   } else if(playerStatValue < opponentStatValue)  {
-    winner = 'opponent'; 
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, winner, 'Unlucky, you lost the round');
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, 'Unlucky, you lost the round');
+    winLossCounter('opponent');
   } else {
     const playerDraw = presentData('h3', 'It\'s a draw!');
     resultMessage.appendChild(playerDraw);
   }
 };
 
-function outcomeHandler(winnerDeck, loserDeck, winner, message) {
+function outcomeHandler(winnerDeck, loserDeck, message) {
   const winMessage = presentData('h3', message);
   resultMessage.appendChild(winMessage);
 
@@ -312,26 +310,23 @@ function outcomeHandler(winnerDeck, loserDeck, winner, message) {
   const opponentCardArea = document.getElementById('opponent_count');
   opponentDeckSize = presentData('p', activeCard.opponentDeck.length);
   opponentCardArea.appendChild(opponentDeckSize);
+};
 
+function winLossCounter(winner) {
   let winCount = winner;
-
   if (winner === 'player') {
-    console.log('Player Wins');
     const playerWinArea = document.getElementById('win-count');
     numberOfWins++;
     playerWinCount = presentData('p', numberOfWins);
     playerWinArea.appendChild(playerWinCount);
   } else {
-    console.log('Opponent Wins');
     const playerLossArea = document.getElementById('loss-count');
     numberOfLosses++;
     playerLossCount = presentData('p', numberOfLosses);
     playerLossArea.appendChild(playerLossCount);
   }
-
-  // console.log(activeCard.playerDeck);
-  // console.log(activeCard.opponentDeck);
 };
+
 
 
 //-----------------------------------------Messaging 
