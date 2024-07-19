@@ -266,8 +266,16 @@ function listCreator(statName, statValue) {
 function statSelection(statName, statValue) {
   playerStatName = statName;
   playerStatValue = statValue;
-  console.log(activeCard.opponentDeck[0].stats[statName])
+  opponentStat = (activeCard.opponentDeck[0].stats[statName]);
+  console.log(opponentStat);
 
+  if(playerStatValue > opponentStat) {
+    console.log('Player Wins')
+  } else if(playerStatValue < opponentStat)  {
+    console.log('Opponent Wins')
+  } else {
+    console.log ('Its a draw!')
+  }
   
 };
 
