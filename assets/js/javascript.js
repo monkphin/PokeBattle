@@ -1,6 +1,7 @@
 //----------------------------------------- Global Vars
 let cards = [];
 let activeCard;
+let card;
 
 
 //-----------------------------------------Game Start
@@ -263,18 +264,40 @@ function listCreator(statName, statValue) {
 
 
 //-----------------------------------------Game Loops
+
+/**
+ * Initial loop to compare selected stats and kick out a message to the player
+ * This takes stats from the eventListener in listCreator and does a simple
+ * comparison providing outcomes for each possible result.  
+ */
 function statSelection(statName, statValue) {
   playerStatName = statName;
   playerStatValue = statValue;
   opponentStat = (activeCard.opponentDeck[0].stats[statName]);
   console.log(opponentStat);
 
+  const resultMessage = document.getElementById('message_area')
+
   if(playerStatValue > opponentStat) {
     console.log('Player Wins')
+    const playerWin = presentData('h3', 'Congratulations, you win this round')
+    resultMessage.appendChild(playerWin)
+    let gainedCard = activeCard.opponentDeck.splice(0, 1)
+    activeCard.playerDeck.push(gainedCard)
+    console.log(activeCard.playerDeck);
+    console.log(activeCard.opponentDeck);
   } else if(playerStatValue < opponentStat)  {
     console.log('Opponent Wins')
+    const opponentWin = presentData('h3', 'Unlucky, you lost the round')
+    resultMessage.appendChild(opponentWin)
+    let gainedCard = activeCard.playerDeck.splice(0, 1)
+    activeCard.opponentDeck.push(gainedCard)
+    console.log(activeCard.playerDeck);
+    console.log(activeCard.opponentDeck);
   } else {
     console.log ('Its a draw!')
+    const playerDraw = presentData('h3', 'Its a draw!')
+    resultMessage.appendChild(playerDraw)
   }
   
 };
@@ -297,7 +320,7 @@ function statSelection(statName, statValue) {
 // let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
 // console.log("Shuffled cards:", shuffledCards);
 //----------Deck creation testing - should generate an array with both players decks
-//  let player = createDecks(playerDeck)
+//  let player = x(playerDeck)
 //  console.log(player);
 //----------Testing pulling a single card - can filter for properties, eg .name, .image etc
   // let singleCard = cards[0]; 
