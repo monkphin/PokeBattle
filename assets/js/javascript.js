@@ -1,5 +1,7 @@
 //----------------------------------------- Global Vars
 let cards = [];
+let activeCard;
+
 
 //-----------------------------------------Game Start
 /**
@@ -15,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', handleSubmit);
   };
   displayPlayerName();
+  cardPicker()
 });
 
 //-----------------------------------------Player Information 
@@ -104,16 +107,16 @@ function cardInit() {
     'Hitmonlee', 'Lickitung', 'Koffing'
   ];
   const cardImage = [
-    'assets/images/pokemon/bulbasaur.webp', 'assets/images/pokemon/charmander.webp', 'assets/images/pokemon/squirtle.webp', 'assets/images/pokemon/caterpie.webp', 'assets/images/pokemon/weedle.webp',
-    'assets/images/pokemon/pidgey.webp', 'assets/images/pokemon/rattata.webp', 'assets/images/pokemon/spearow.webp', 'assets/images/pokemon/ekans.webp', 'assets/images/pokemon/pikachu.webp',
-    'assets/images/pokemon/sandshrew.webp', 'assets/images/pokemon/nidoran-f.webp', 'assets/images/pokemon/clefairy.webp', 'assets/images/pokemon/vulpix.webp', 'assets/images/pokemon/jigglypuff.webp',
-    'assets/images/pokemon/zubat.webp', 'assets/images/pokemon/oddish.webp', 'assets/images/pokemon/paras.webp', 'assets/images/pokemon/venonat.webp', 'assets/images/pokemon/diglett.webp',
-    'assets/images/pokemon/meowth.webp', 'assets/images/pokemon/psyduck.webp', 'assets/images/pokemon/mankey.webp', 'assets/images/pokemon/growlithe.webp', 'assets/images/pokemon/poliwag.webp',
-    'assets/images/pokemon/abra.webp', 'assets/images/pokemon/machop.webp', 'assets/images/pokemon/bellsprout.webp', 'assets/images/pokemon/tentacool.webp', 'assets/images/pokemon/geodude.webp',
-    'assets/images/pokemon/ponyta.webp', 'assets/images/pokemon/slowpoke.webp', 'assets/images/pokemon/magnemite.webp', 'assets/images/pokemon/farfetchd.webp', 'assets/images/pokemon/doduo.webp',
-    'assets/images/pokemon/seel.webp', 'assets/images/pokemon/grimer.webp', 'assets/images/pokemon/shellder.webp', 'assets/images/pokemon/gastly.webp', 'assets/images/pokemon/onix.webp',
-    'assets/images/pokemon/drowzee.webp', 'assets/images/pokemon/krabby.webp', 'assets/images/pokemon/voltorb.webp', 'assets/images/pokemon/exeggcute.webp', 'assets/images/pokemon/cubone.webp',
-    'assets/images/pokemon/hitmonlee.webp', 'assets/images/pokemon/lickitung.webp', 'assets/images/pokemon/koffing.webp'
+    'assets/images/cards/bulbasaur.webp', 'assets/images/cards/charmander.webp', 'assets/images/cards/squirtle.webp', 'assets/images/cards/caterpie.webp', 'assets/images/cards/weedle.webp',
+    'assets/images/cards/pidgey.webp', 'assets/images/cards/rattata.webp', 'assets/images/cards/spearow.webp', 'assets/images/cards/ekans.webp', 'assets/images/cards/pikachu.webp',
+    'assets/images/cards/sandshrew.webp', 'assets/images/cards/nidoran-f.webp', 'assets/images/cards/clefairy.webp', 'assets/images/cards/vulpix.webp', 'assets/images/cards/jigglypuff.webp',
+    'assets/images/cards/zubat.webp', 'assets/images/cards/oddish.webp', 'assets/images/cards/paras.webp', 'assets/images/cards/venonat.webp', 'assets/images/cards/diglett.webp',
+    'assets/images/cards/meowth.webp', 'assets/images/cards/psyduck.webp', 'assets/images/cards/mankey.webp', 'assets/images/cards/growlithe.webp', 'assets/images/cards/poliwag.webp',
+    'assets/images/cards/abra.webp', 'assets/images/cards/machop.webp', 'assets/images/cards/bellsprout.webp', 'assets/images/cards/tentacool.webp', 'assets/images/cards/geodude.webp',
+    'assets/images/cards/ponyta.webp', 'assets/images/cards/slowpoke.webp', 'assets/images/cards/magnemite.webp', 'assets/images/cards/farfetchd.webp', 'assets/images/cards/doduo.webp',
+    'assets/images/cards/seel.webp', 'assets/images/cards/grimer.webp', 'assets/images/cards/shellder.webp', 'assets/images/cards/gastly.webp', 'assets/images/cards/onix.webp',
+    'assets/images/cards/drowzee.webp', 'assets/images/cards/krabby.webp', 'assets/images/cards/voltorb.webp', 'assets/images/cards/exeggcute.webp', 'assets/images/cards/cubone.webp',
+    'assets/images/cards/hitmonlee.webp', 'assets/images/cards/lickitung.webp', 'assets/images/cards/koffing.webp'
   ];
 
 
@@ -151,21 +154,79 @@ function createDecks() {
   return {playerDeck, opponentDeck};
 };
 
-//-----------------------------------------Visualisation Code
+/**
+ *pulls the topmost card from each deck for presentation.
+ */
+function cardPicker() {
+  activeCard = createDecks();
+  showCard(activeCard.playerDeck[0], 'player');
+  showCard(activeCard.opponentDeck[0], 'opponent');
+}
+
+
+
+//-----------------------------------------Front End presentation 
 /**
  * Re-usable function to simplify adding JS created data to the HTML. 
  * This can be called and have the element and content passed to it, 
  * which it will then return as the needed HTML. 
  * Concept taken from additional studying via a Skillshare JS course
  */
+function presentData(elementName, elementContent) {
+  const element = document.createElement(elementName);
+  const content = document.createTextNode(elementContent);
+  element.appendChild(content);
+  return element;
+}
 
- function presentData(elementName, elementContent) {
-    const element = document.createElement(elementName);
-    const content = document.createTextNode(elementContent);
-    element.appendChild(content);
-    return element;
- }
+function showCard(card, player) {
+  if(player === 'player') {
+    console.log('players card:', card)
 
+    const playerCard = document.getElementById('player_card');
+    const playerCardName = presentData('h3', card.name);
+    const playerUl = document.createElement('ul');
+    const playerCardAttack = presentData('li', card.stats.attack);
+    const playerCardDefense = presentData('li', card.stats.defense);
+    const playerCardSpecialAttack = presentData('li', card.stats.specialAttack);
+    const playerCardSpecialDefense = presentData('li', card.stats.specialDefense);
+
+    const playerCardImg = document.createElement('img');
+    playerCardImg.src = card.image;
+    
+    playerCard.appendChild(playerCardName);
+  
+    playerUl.appendChild(playerCardAttack);
+    playerUl.appendChild(playerCardDefense);
+    playerUl. appendChild(playerCardSpecialAttack);
+    playerUl.appendChild(playerCardSpecialDefense);
+    playerCard.appendChild(playerUl);
+    playerCard.appendChild(playerCardImg);
+    
+  } else {
+    console.log('opponents card:', card)
+
+    const opponentCard = document.getElementById('player_card');
+    const opponentCardName = presentData('h3', card.name);
+    const opponentUl = document.createElement('ul');
+    const opponentCardAttack = presentData('li', card.stats.attack);
+    const opponentCardDefense = presentData('li', card.stats.defense);
+    const opponentCardSpecialAttack = presentData('li', card.stats.specialAttack);
+    const opponentCardSpecialDefense = presentData('li', card.stats.specialDefense);
+
+    const opponentCardImg = document.createElement('img');
+    opponentCardImg.src = card.image;
+    
+    opponentCard.appendChild(opponentCardName);
+  
+    opponentUl.appendChild(opponentCardAttack);
+    opponentUl.appendChild(opponentCardDefense);
+    opponentUl. appendChild(opponentCardSpecialAttack);
+    opponentUl.appendChild(opponentCardSpecialDefense);
+    opponentCard.appendChild(opponentUl);
+    opponentCard.appendChild(opponentCardImg);
+  }
+}
 
 //-----------------------------------------Game Loops
 
@@ -188,15 +249,17 @@ function createDecks() {
 // let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
 // console.log("Shuffled cards:", shuffledCards);
 //----------Deck creation testing - should generate an array with both players decks
- let player = createDecks()
-// console.log(player);
+//  let player = createDecks(playerDeck)
+//  console.log(player);
 //----------Testing pulling a single card - can filter for properties, eg .name, .image etc
-  let singleCard = cards[0]; 
-  console.log("Single card:", singleCard.name);
-  console.log("Single card:", singleCard.image);
-  console.log("Single card:", singleCard.stats.attack);
-  console.log("Single card:", singleCard.stats.defense);
-  console.log("Single card:", singleCard.stats.specialAttack);
-  console.log("Single card:", singleCard.stats.specialDefense);
+  // let singleCard = cards[0]; 
+  // console.log("Single card:", singleCard.name);
+  // console.log("Single card:", singleCard.image);
+  // console.log("Single card:", singleCard.stats.attack);
+  // console.log("Single card:", singleCard.stats.defense);
+  // console.log("Single card:", singleCard.stats.specialAttack);
+  // console.log("Single card:", singleCard.stats.specialDefense);
 //----------Card picker testing
- 
+// activeCard = createDecks();
+// console.log(activeCard.playerDeck[0]);
+
