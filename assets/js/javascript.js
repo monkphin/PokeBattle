@@ -149,10 +149,10 @@ function buildCard(name, image) {
     name : name,
     image : image,
     stats : {
-      attack : Math.floor(Math.random() * 10),
-      defense : Math.floor(Math.random() * 10),
-      specialAttack : Math.floor(Math.random() * 10),
-      specialDefense : Math.floor(Math.random() * 10),
+      attack : Math.ceil(Math.random() * 10),
+      defense : Math.ceil(Math.random() * 10),
+      specialAttack : Math.ceil(Math.random() * 10),
+      specialDefense : Math.ceil(Math.random() * 10),
       },       
   };
 }
