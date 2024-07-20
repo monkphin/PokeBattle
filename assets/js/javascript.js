@@ -250,15 +250,15 @@ function presentData(elementName, elementContent) {
 
 
 /**
- * Present both players cards to HTML using the presenttData function 
+ * Present both players cards to HTML using the presentData function 
  * split out the rendering of the cards and stats to keep things much simpler here. 
  */
 function showCard(card, player) {
   if(player === 'player') {
-    console.log('players card:', card)
+    //console.log('players card:', card)
     cardRender('player_card', card);
   } else {
-    console.log('opponents card:', card)
+    //console.log('opponents card:', card)
     cardRender('opponent_card', card);
   }
 }
@@ -280,13 +280,14 @@ function cardRender(elementId, card) {
   const cardName = presentData('h3', card.name);
   cardName.className = 'card-name'
   const cardUl = document.createElement('ul');
+  console.log(elementId);
   cardUl.className = 'card-stats';
+  if (elementId === 'opponent_card') {cardUl.classList.add('hidden')}
 
-  //use a for to clean up how we were showing stats earlier
   const stats = ['attack', 'defense', 'specialAttack', 'specialDefense']
   for (let i = 0; i < stats.length; i++) {
     const stat = stats[i];
-    const listItem = listCreator((stat), card.stats[stat]);
+    const listItem = listCreator(stat, card.stats[stat], elementId);
     cardUl.appendChild(listItem);
   };
 
@@ -306,10 +307,10 @@ function cardRender(elementId, card) {
  * this will take the output of showCard and utilise the createElement function rather than 
  * have the showCard function pass directly into createElement 
  */
-function listCreator(statName, statValue) {
+function listCreator(statName, statValue, elementId) {
   const li = document.createElement('li');
   li.className = 'stat-item';
-
+  
   const nameSpan = document.createElement('span');
   nameSpan.className = 'stat-name';
   nameSpan.textContent = statName + ':';
@@ -322,8 +323,14 @@ function listCreator(statName, statValue) {
   li.appendChild(valueSpan);
 
   li.addEventListener('click', function() {
-    statSelection(statName, statValue);
+    setTimeout(statSelection(statName, statValue), 1000);
+
+    const showStats = document.querySelector('#opponent_card')
+    if (showStats) {
+      showStats.classList.remove('hidden');
+    }
   });
+
 
   return li;
 }
@@ -355,6 +362,8 @@ function resolveRound (playerStatValue, opponentStatValue) {
   } else if(playerStatValue < opponentStatValue)  {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, 'Unlucky, you lost the round');
     winLossCounter('opponent');
+    //To use for the Computer players turn. 
+    //console.log(activeCard.opponentDeck[0].stats);
   } else {
     const playerDraw = presentData('h3', 'It\'s a draw!');
     resultMessage.innerHTML = '';
@@ -364,6 +373,11 @@ function resolveRound (playerStatValue, opponentStatValue) {
   showCard(activeCard.opponentDeck[0], 'opponent')
   
 };
+/**
+ * https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
+ */
+
+  
 
 /**
  * Outcome handler moves the current card to either the player or opponent
