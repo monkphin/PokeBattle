@@ -1,10 +1,3 @@
-//----------------------------------------- Global Vars
-let cards = [];
-let activeCard;
-let card;
-const resultMessage = document.getElementById('message_area');
-let numberOfWins = 0;
-let numberOfLosses = 0;
 
 
 //-----------------------------------------Game Start
@@ -22,16 +15,85 @@ document.addEventListener('DOMContentLoaded', function() {
   };
   displayPlayerName();
   cardPicker()
+  setPermElements();
 });
+
+/**
+ * Several variables that are called in multiple functions - grouping these
+ * for clarity
+ */
+
+let cards = [];
+let numberOfWins = 0;
+let numberOfLosses = 0;
+const resultMessage = document.getElementById('message_area');
+
+
+
+
+/**
+ * Single function to render all default none card text content, which is
+ * present at the start of the game
+ */
+
+function setPermElements() {
+  const winLossArea = document.getElementById('win-loss-area')
+  winLossArea.innerHTML = '';
+
+  const winsTitle = presentData('div', 'Number of rounds won: ');
+  winsTitle.className = 'col-sm-3'
+  winLossArea.appendChild(winsTitle);
+  const winCount = document.createElement('div');
+  winCount.id = 'win-count';
+  winCount.className = 'col-sm-3'
+  winLossArea.appendChild(winCount);
+
+  const lossTitle = presentData('div', 'Number of round lost: ');
+  lossTitle.className = 'col-sm-3'
+  winLossArea.appendChild(lossTitle);
+  const lossCount = document.createElement('div');
+  lossCount.id = 'loss-count';
+  lossCount.className = 'col-sm-3'
+  winLossArea.appendChild(lossCount);
+
+  const deckSizeArea = document.getElementById('deck-size-area')
+  deckSizeArea.innerHTML = '';
+
+  const playerCardCount = presentData('div', 'Player deck size: ');
+  playerCardCount.className = 'col-sm-3'
+  deckSizeArea.appendChild(playerCardCount);
+  const playerDeckSize = document.createElement('div');
+  playerDeckSize.id = 'player-deck-size';
+  playerDeckSize.className = 'col-sm-3'
+  deckSizeArea.appendChild(playerDeckSize) 
+
+  const opponentCardCount = presentData('div', 'Opponent deck size: ');
+  opponentCardCount.className = 'col-sm-3'
+  deckSizeArea.appendChild(opponentCardCount);
+  const opponentDeckSize = document.createElement('div');
+  opponentDeckSize.id = 'opponent-deck-size';
+  opponentDeckSize.className = 'col-sm-3'
+  deckSizeArea.appendChild(opponentDeckSize) 
+}
+
+
+
+
 
 //-----------------------------------------Player Information 
 
+/**
+ * This function is used to collect the player name from the index page
+ * and pass to the storePlayerName function - once entered it will load
+ * the game.html page. 
+ * If the player does not enter their name, it kicks an alert requesting this. 
+ */
 
 
 function handleSubmit(e) {
   e.preventDefault();
   let name = document.getElementById('player_name').value;
-  
+  const winsTitle = presentData('h4', 'Number of rounds won: ');
   //check to ensure name has been entered
   if(name) {
     storePlayerName(name);
@@ -306,7 +368,8 @@ function resolveRound (playerStatValue, opponentStatValue) {
 /**
  * Outcome handler moves the current card to either the player or opponent
  * depending on who won, this also moves the currently active card of the winner
- * to the back of their deck, forcing a new card to be used. 
+ * to the back of their deck, forcing a new card to be used. This then calls 
+ * updateDeckCount to show how big each players deck is 
  */
 
 function outcomeHandler(winnerDeck, loserDeck, message) {
@@ -322,43 +385,45 @@ function outcomeHandler(winnerDeck, loserDeck, message) {
   updateDeckCount();
 };
 
+/**
+ * updateDeckCount simply takes a count of each players deck and throws it
+ * to the webpage allowing the player to know what the current state of 
+ * play is regarding the deck sizes. 
+ */
+
 function updateDeckCount() {
-  const playerCardArea = document.getElementById('player_count');
-  playerCardArea.innerHTML = '';
-  playerDeckSize = presentData('p', activeCard.playerDeck.length);
-  playerCardArea.appendChild(playerDeckSize);
- 
-  const opponentCardArea = document.getElementById('opponent_count');
-  opponentCardArea.innerHTML = '';
-  opponentDeckSize = presentData('p', activeCard.opponentDeck.length);
-  opponentCardArea.appendChild(opponentDeckSize);
+  const playerDeckSizeElement = document.getElementById('player-deck-size');
+  const opponentDeckSizeElement = document.getElementById('opponent-deck-size');
+
+  playerDeckSizeElement.textContent = activeCard.playerDeck.length;
+  opponentDeckSizeElement.textContent = activeCard.opponentDeck.length;
 };
 
+/**
+ *  winLossCounter takes the outcome of resolve round, this then checks
+ * if the winner was the player or the opponent and increments the score 
+ * on the webpage. 
+ */
+
 function winLossCounter(winner) {
-  let winCount = winner;
   if (winner === 'player') {
     const playerWinArea = document.getElementById('win-count');
-    playerWinArea.innerHTML = '';
     numberOfWins++;
-    playerWinCount = presentData('p', numberOfWins);
-    playerWinArea.appendChild(playerWinCount);
+    playerWinArea.textContent = numberOfWins;
   } else {
     const playerLossArea = document.getElementById('loss-count');
-    //playerLossArea.className = 
-    playerLossArea.innerHTML = '';
     numberOfLosses++;
-    playerLossCount = presentData('p', numberOfLosses);
-    playerLossArea.appendChild(playerLossCount);
+    playerLossArea.textContent = numberOfLosses;
   }
 };
 
-
-
-//-----------------------------------------Messaging 
-
-
-//-----------------------------------------Stats
-
+/**
+ * -----------------------------------------------------------------------------------TO DO 
+ * Computer Turn
+ * Game Over
+ * Add CSS Classes to any Elements that lack them
+ * mouse over interactions for stat selection
+ */
 
 //-----------------------------------------Testing Stuff
 //----------Name handling Test 
