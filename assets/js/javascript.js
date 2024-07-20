@@ -323,9 +323,9 @@ function listCreator(statName, statValue, elementId) {
   li.appendChild(valueSpan);
 
   li.addEventListener('click', function() {
-    setTimeout(statSelection(statName, statValue), 1000);
+    statSelection(statName, statValue);
 
-    const showStats = document.querySelector('#opponent_card')
+    const showStats = document.querySelector('#opponent_card .card-stats')
     if (showStats) {
       showStats.classList.remove('hidden');
     }
@@ -354,6 +354,8 @@ function statSelection(statName, statValue) {
  * kicks a message outComeHandler to deal with displaying win/lose. Draws are 
  * handled locally. This also kicks which player won to the winLossCounter to 
  * allow tracking of count of wins/losses
+ * added delay timer when calling show card
+ *  using https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
  */
 function resolveRound (playerStatValue, opponentStatValue) {
   if(playerStatValue > opponentStatValue) {
@@ -369,9 +371,10 @@ function resolveRound (playerStatValue, opponentStatValue) {
     resultMessage.innerHTML = '';
     resultMessage.appendChild(playerDraw);
   }
+  setTimeout(function() {
   showCard(activeCard.playerDeck[0], 'player')
   showCard(activeCard.opponentDeck[0], 'opponent')
-  
+  }, 2000);
 };
 /**
  * https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
