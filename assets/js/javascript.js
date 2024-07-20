@@ -250,15 +250,15 @@ function presentData(elementName, elementContent) {
 
 
 /**
- * Present both players cards to HTML using the presentData function 
- * split out the rendering of the cards and stats to keep things much simpler here. 
+ * Present both players cards to HTML using the cardRender function 
+ * to keep things much simpler here. This effectively determines 
+ * which deck is the players - Should merge this with 
+ * the cardRender function, since this feels superflous. 
  */
 function showCard(card, player) {
   if(player === 'player') {
-    //console.log('players card:', card)
     cardRender('player_card', card);
   } else {
-    //console.log('opponents card:', card)
     cardRender('opponent_card', card);
   }
 }
@@ -280,9 +280,8 @@ function cardRender(elementId, card) {
   const cardName = presentData('h3', card.name);
   cardName.className = 'card-name'
   const cardUl = document.createElement('ul');
-  console.log(elementId);
   cardUl.className = 'card-stats';
-  if (elementId === 'opponent_card') {cardUl.classList.add('hidden')}
+  //if (elementId === 'opponent_card') {cardUl.classList.add('hidden')}
 
   const stats = ['attack', 'defense', 'specialAttack', 'specialDefense']
   for (let i = 0; i < stats.length; i++) {
@@ -330,8 +329,6 @@ function listCreator(statName, statValue, elementId) {
       showStats.classList.remove('hidden');
     }
   });
-
-
   return li;
 }
 
@@ -365,7 +362,7 @@ function resolveRound (playerStatValue, opponentStatValue) {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
     winLossCounter('opponent');
     //To use for the Computer players turn. 
-    //console.log(activeCard.opponentDeck[0].stats);
+    opponentTurn(activeCard.opponentDeck[0].stats);
   } else {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!');
     winLossCounter('draw')
@@ -379,7 +376,19 @@ function resolveRound (playerStatValue, opponentStatValue) {
  * https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
  */
 
-  
+/**
+ * Struggled with this, but realised I may be able to reuse some code used in cardRender
+ * function to help - had issues breaking out stat names and stats. 
+ */
+function opponentTurn(statOptions) {
+  const statNames = ['attack', 'defense', 'specialAttack', 'specialDefense']
+  for (let i = 0; i < stats.length; i++) {
+    const pickedName = statNames[i];
+    const pickedStat = Object.value(statOptions = statOptions[i]);
+    console.log(pickedName)
+    console.log(pickedStat)
+  };
+}
 
 /**
  * Outcome handler moves the current card to either the player or opponent
@@ -402,7 +411,6 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
   } else {
     winnerDeck.push(usedCard, gainedCard);
   }
-
   updateDeckCount();
 };
 
