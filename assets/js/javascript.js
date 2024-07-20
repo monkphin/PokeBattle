@@ -362,7 +362,7 @@ function resolveRound (playerStatValue, opponentStatValue) {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
     winLossCounter('opponent');
     //To use for the Computer players turn. 
-    opponentTurn(activeCard.opponentDeck[0].stats);
+    opponentTurn();
   } else {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!');
     winLossCounter('draw')
@@ -377,18 +377,20 @@ function resolveRound (playerStatValue, opponentStatValue) {
  */
 
 /**
- * Struggled with this, but realised I may be able to reuse some code used in cardRender
- * function to help - had issues breaking out stat names and stats. 
+ * Struggled with this, but realised I may be able to use a similar approach to 
+ * that  used in cardRender function to help - had issues breaking out stat names and stats. 
  */
-function opponentTurn(statOptions) {
+function opponentTurn() {
   const statNames = ['attack', 'defense', 'specialAttack', 'specialDefense']
-  for (let i = 0; i < stats.length; i++) {
-    const pickedName = statNames[i];
-    const pickedStat = Object.value(statOptions = statOptions[i]);
-    console.log(pickedName)
-    console.log(pickedStat)
+  const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
+  const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
+  console.log(`computer picked ${randomStat}, which has the value ${pickedStatValue}`)
+  const selectionMessage = presentData('h3', `Your Opponent picked ${randomStat}, which has the value ${pickedStatValue}`);
+  resultMessage.innerHTML = '';
+  resultMessage.appendChild(selectionMessage);
+  
   };
-}
+
 
 /**
  * Outcome handler moves the current card to either the player or opponent
