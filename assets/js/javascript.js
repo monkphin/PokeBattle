@@ -263,7 +263,7 @@ function cardRender(elementId, card) {
   cardName.className = 'card-name';
   const cardUl = document.createElement('ul');
   cardUl.className = 'card-stats';
-  if (elementId === 'opponent_card') {cardUl.classList.add('hidden')};
+  //if (elementId === 'opponent_card') {cardUl.classList.add('hidden')};
   
   const stats = ['attack', 'defense', 'specialAttack', 'specialDefense']
   for (let i = 0; i < stats.length; i++) {
@@ -303,7 +303,7 @@ function listCreator(statName, statValue, elementId) {
   li.appendChild(valueSpan);
 
   li.addEventListener('click', function() {
-    statSelection(statName, statValue);
+    statSelection(statName, statValue, elementId);
 
     const showStats = document.querySelector('#opponent_card .card-stats')
     if (showStats) {
@@ -320,11 +320,11 @@ function listCreator(statName, statValue, elementId) {
 * This takes stats from the eventListener in listCreator and does a simple
 * comparison providing outcomes for each possible result.  
 */
-function statSelection(statName, statValue) {
+function statSelection(statName, statValue, elementId) {
   playerStatName = statName;
   playerStatValue = statValue;
   opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
-  resolveRound(playerStatValue, opponentStatValue);
+  resolveRound(playerStatValue, opponentStatValue, elementId);
 };
 
 /**
@@ -335,7 +335,7 @@ function statSelection(statName, statValue) {
 * added delay timer when calling show card
 *  using https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
 */
-function resolveRound (playerStatValue, opponentStatValue) {
+function resolveRound (playerStatValue, opponentStatValue, elementId) {
   if(playerStatValue > opponentStatValue) {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round');
     winLossCounter('player'); 
@@ -344,9 +344,14 @@ function resolveRound (playerStatValue, opponentStatValue) {
     winLossCounter('opponent');
     setTimeout(function() {
       opponentTurn()}, 3500);
-  } else {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!');
+  } else if(playerStatValue === opponentStatValue && elementId === 'player_card') {
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!, take another turn');
     winLossCounter('draw')
+  } else {
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, your opponent gets another go');
+    winLossCounter('draw')
+    setTimeout(function() {
+        opponentTurn()}, 3500);
   };
   setTimeout(function() {
   showCard(activeCard.playerDeck[0], 'player')
@@ -367,6 +372,10 @@ function opponentTurn() {
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
   console.log(`computer picked ${randomStat}, which has the value ${pickedStatValue}. The player stat value is ${activeCard.playerDeck[0].stats[randomStat]}`)
+  const showStats = document.querySelector('#opponent_card .card-stats')
+  if (showStats) {
+    showStats.classList.remove('hidden');
+  };
   const selectionMessage = presentData('h3', `Your Opponent picked ${randomStat}, which has the value ${pickedStatValue}`);
   resultMessage.innerHTML = '';
   resultMessage.appendChild(selectionMessage);
