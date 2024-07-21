@@ -29,10 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
 * for clarity
 */
 let playerTurn = true;
+let endOfGame = false;
 let cards = [];
 let numberOfWins = 0;
 let numberOfLosses = 0;
 let numberOfDraws = 0;
+let turnTimer;
+let opponentTimer
 const outputMessage = document.getElementById('message_area');
 const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
@@ -217,8 +220,8 @@ const shuffleCards = array => {
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
-  const playerDeck = shuffledDeck.splice(0, 2);
-  const opponentDeck = shuffledDeck.slice(0, 2);
+  const playerDeck = shuffledDeck.splice(0, 10);
+  const opponentDeck = shuffledDeck.slice(0, 10);
   
   return {playerDeck, opponentDeck};
 };
@@ -272,6 +275,8 @@ function showCard(card, player) {
 */
   
 function cardRender(elementId, card) {
+  if (endOfGame) return;
+
   const cardElement = document.getElementById(elementId);
   
   cardElement.innerHTML = '';
@@ -358,27 +363,28 @@ function statSelection(statName, statValue, elementId) {
 */
 function resolveRound (playerStatValue, opponentStatValue, elementId) {
   if(playerStatValue > opponentStatValue) {
+    if (endOfGame) return;
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round');
     winLossCounter('player'); 
-    playerTurn = True;
+    playerTurn = true;
   } else if(playerStatValue < opponentStatValue)  {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
     winLossCounter('opponent');
     playerTurn = false;
-    setTimeout(function() {
+    let opponentTimer = setTimeout(function() {
       opponentTurn()}, 3500);
   } else if(playerStatValue === opponentStatValue && elementId === 'player_card') {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!');
     winLossCounter('draw')
     playerTurn = true;
   } else {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, your opponent gets another go');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, the Enemy Trainer gets another go');
     winLossCounter('draw')
     playerTurn = false;
-    setTimeout(function() {
+    let opponentTimer = setTimeout(function() {
         opponentTurn()}, 3500);
   };
-  setTimeout(function() {
+  let turnTimer = setTimeout(function() {
   showCard(activeCard.playerDeck[0], 'player')
   showCard(activeCard.opponentDeck[0], 'opponent')
   outputMessage.innerHTML = '';
@@ -395,6 +401,7 @@ function checkEndGame() {
 };
   
 function endGame(winner) {
+  endOfGame = true;
   let playerName = retrievePlayerName();
   let newGameButton = document.createElement('button')
   newGameButton.textContent = 'Play again!';
@@ -412,9 +419,9 @@ function endGame(winner) {
   outputMessage.innerHTML = '';
   winLossArea.innerHTML = '';
   deckSizeArea.innerHTML = '';
+  let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
   if (winner === 'Player') {
     const winTitle = presentData('h3', `Congratulations ${playerName}`);
-    let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
     const winMessage = presentData('p', `You won the game in ${totalRounds}. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
     outputMessage.appendChild(winTitle);
@@ -428,6 +435,7 @@ function endGame(winner) {
     outputMessage.appendChild(lossMessage);
   };
   outputMessage.appendChild(newGameButton);
+  clearTimeout(turnTimer, opponentTimer);
 };
   
 /**
@@ -438,6 +446,7 @@ function endGame(winner) {
 * https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object 
 */
 function opponentTurn() {
+  if (endOfGame) return;
   const statNames = ['attack', 'defense', 'specialAttack', 'specialDefense']
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
@@ -445,11 +454,11 @@ function opponentTurn() {
   if (showStats) {
     showStats.classList.remove('hidden');
   };
-  const selectionMessage = presentData('h3', `Your Opponent picked ${randomStat}, which has the value ${pickedStatValue}`);
+  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue}, it's super effective!`);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(selectionMessage);
 
-  setTimeout(function()  {
+  let turnTimer = setTimeout(function()  {
     resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
     playerTurn = true;
   }, 3500);
