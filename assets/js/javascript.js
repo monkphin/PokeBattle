@@ -23,6 +23,8 @@ let numberOfWins = 0;
 let numberOfLosses = 0;
 let numberOfDraws = 0;
 const resultMessage = document.getElementById('message_area');
+const winLossArea = document.getElementById('win-loss-area');
+const deckSizeArea = document.getElementById('deck-size-area');
   
 /**
 * Single function to render all default none card text content, which is
@@ -30,8 +32,6 @@ const resultMessage = document.getElementById('message_area');
 */
 
 function setPermElements() {
-  const winLossArea = document.getElementById('win-loss-area');
-  winLossArea.innerHTML = '';
   
   const winsTitle = presentData('div', 'Number of rounds won: ');
   winsTitle.className = 'col-sm-3';
@@ -47,11 +47,8 @@ function setPermElements() {
   const lossCount = document.createElement('div');
   lossCount.id = 'loss-count';
   lossCount.className = 'col-sm-3';
-  winLossArea.appendChild(lossCount);
+  winLossArea.appendChild(lossCount); 
  
-  const deckSizeArea = document.getElementById('deck-size-area');
-  deckSizeArea.innerHTML = '';
-  
   const playerCardCount = presentData('div', 'Player deck size: ');
   playerCardCount.className = 'col-sm-3';
   deckSizeArea.appendChild(playerCardCount);
@@ -80,7 +77,6 @@ function setPermElements() {
 function handleSubmit(e) {
   e.preventDefault();
   let name = document.getElementById('player_name').value;
-  const winsTitle = presentData('h4', 'Number of rounds won: ');
   //check to ensure name has been entered
   if(name) {
     storePlayerName(name);
@@ -114,11 +110,10 @@ function retrievePlayerName() {
 */
 function displayPlayerName() {
   let playerName = retrievePlayerName();
-  const welcomeMessage = document.getElementById('welcome_message');
   const welcomePlayer = presentData('h1',`Welcome to PokeBattle ${playerName}`);
-  welcomeMessage.appendChild(welcomePlayer);
+  resultMessage.appendChild(welcomePlayer);
   const friendlyMessage = presentData('h2', 'Good luck with your game!');
-  welcomeMessage.appendChild(friendlyMessage);
+  resultMessage.appendChild(friendlyMessage);
 };
   
   
@@ -263,7 +258,7 @@ function cardRender(elementId, card) {
   cardName.className = 'card-name';
   const cardUl = document.createElement('ul');
   cardUl.className = 'card-stats';
-  //if (elementId === 'opponent_card') {cardUl.classList.add('hidden')};
+  if (elementId === 'opponent_card') {cardUl.classList.add('hidden')};
   
   const stats = ['attack', 'defense', 'specialAttack', 'specialDefense']
   for (let i = 0; i < stats.length; i++) {
@@ -345,7 +340,7 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
     setTimeout(function() {
       opponentTurn()}, 3500);
   } else if(playerStatValue === opponentStatValue && elementId === 'player_card') {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!, take another turn');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!');
     winLossCounter('draw')
   } else {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, your opponent gets another go');
@@ -358,6 +353,39 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
   showCard(activeCard.opponentDeck[0], 'opponent')
   resultMessage.innerHTML = '';
   }, 2000);
+  checkEndGame()
+};
+
+function checkEndGame() {
+  if (activeCard.playerDeck.length === 0) {
+    endGame('Opponent');
+  } else if (activeCard.opponentDeck.length === 0) {
+    endGame('Player');
+  }
+};
+  
+function endGame(winner) {
+  let playerName = retrievePlayerName();
+  resultMessage.innerHTML = '';
+  winLossArea.innerHTML = '';
+  deckSizeArea.innerHTML = '';
+  if (winner === 'Player') {
+    const winTitle = presentData('h3', `Congratulations ${playerName}`);
+    let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
+    const winMessage = presentData('p', `You won the game in ${totalRounds}. 
+    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
+    //Add button element to play again. 
+    resultMessage.appendChild(winTitle);
+    resultMessage.appendChild(winMessage);
+  } else {
+    const lossTitle = presentData('h3', `Commiserations ${playerName}`)
+    const lossMessage = presentData('p', `You lost the game in ${totalRounds}. 
+    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
+    //Add button element to play again. 
+    resultMessage.appendChild(lossTitle);
+    resultMessage.appendChild(lossMessage);
+  }
+  console.log(`the winner is ${winner}`);  
 };
   
 /**
@@ -371,7 +399,6 @@ function opponentTurn() {
   const statNames = ['attack', 'defense', 'specialAttack', 'specialDefense']
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
-  console.log(`computer picked ${randomStat}, which has the value ${pickedStatValue}. The player stat value is ${activeCard.playerDeck[0].stats[randomStat]}`)
   const showStats = document.querySelector('#opponent_card .card-stats')
   if (showStats) {
     showStats.classList.remove('hidden');
@@ -379,7 +406,7 @@ function opponentTurn() {
   const selectionMessage = presentData('h3', `Your Opponent picked ${randomStat}, which has the value ${pickedStatValue}`);
   resultMessage.innerHTML = '';
   resultMessage.appendChild(selectionMessage);
-  console.log
+
   setTimeout(function()  {
     resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
   }, 3500);
@@ -404,9 +431,11 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
     loserDeck.push(gainedCard);
   } else {
     winnerDeck.push(usedCard, gainedCard);
-  }
+  };
   updateDeckCount();
 };
+
+
 
   /**
    * updateDeckCount simply takes a count of each players deck and throws it
@@ -419,6 +448,7 @@ function updateDeckCount() {
   
   playerDeckSizeElement.textContent = activeCard.playerDeck.length;
   opponentDeckSizeElement.textContent = activeCard.opponentDeck.length;
+
 };
   
   /**
