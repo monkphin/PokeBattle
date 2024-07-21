@@ -365,8 +365,8 @@ function resolveRound (playerStatValue, opponentStatValue) {
   } else if(playerStatValue < opponentStatValue)  {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
     winLossCounter('opponent');
-    //To use for the Computer players turn. 
-    opponentTurn();
+    setTimeout(function() {
+      opponentTurn()}, 3500);
   } else {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!');
     winLossCounter('draw')
@@ -374,6 +374,7 @@ function resolveRound (playerStatValue, opponentStatValue) {
   setTimeout(function() {
   showCard(activeCard.playerDeck[0], 'player')
   showCard(activeCard.opponentDeck[0], 'opponent')
+  resultMessage.innerHTML = '';
   }, 2000);
 };
 /**
