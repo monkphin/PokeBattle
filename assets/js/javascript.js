@@ -1,7 +1,8 @@
 //-----------------------------------------Game Start
 /**
  * Check to ensure the DOM is loaded.
- * This will ensure the form is initialised to listen for events
+ * This will ensure the form is initialised to listen for events. 
+ * Also checks for the name_form element on the index page and sets up for submission
  * various functions required for the app are also being triggered here. 
  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -13,7 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
   cardPicker();
   setPermElements();
 });
-  
+
+
+/**
+ * Several variables that are called in multiple functions - grouping these for ease of finding them
+ * playerTurn is a bool to ensure that the player cannot interact with the game when its not their turn
+ * cards is the array of cards that makes up the game deck. 
+ * numberOfWins, numberOfLosses and numberOfDraws track the count of win, lose and draw
+ * the three const's to track specific HTML elements that messages are sent to. 
+ */
+
 /**
 * Several variables that are called in multiple functions - grouping these
 * for clarity
@@ -23,13 +33,13 @@ let cards = [];
 let numberOfWins = 0;
 let numberOfLosses = 0;
 let numberOfDraws = 0;
-const resultMessage = document.getElementById('message_area');
+const outputMessage = document.getElementById('message_area');
 const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
-  
+
 /**
 * Single function to render all default none card text content, which is
-* present at the start of the game
+* present at the start of the game - could look into cleaning this up in the future. 
 */
 
 function setPermElements() {
@@ -73,7 +83,8 @@ function setPermElements() {
 * This function is used to collect the player name from the index page
 * and pass to the storePlayerName function - once entered it will load
 * the game.html page. 
-* If the player does not enter their name, it kicks an alert requesting this. 
+* If the player does not enter their name, it kicks an alert requesting this
+and preventing the player continuing. 
 */
 function handleSubmit(e) {
   e.preventDefault();
@@ -112,9 +123,9 @@ function retrievePlayerName() {
 function displayPlayerName() {
   let playerName = retrievePlayerName();
   const welcomePlayer = presentData('h1',`Welcome to PokeBattle ${playerName}`);
-  resultMessage.appendChild(welcomePlayer);
+  outputMessage.appendChild(welcomePlayer);
   const friendlyMessage = presentData('h2', 'Good luck with your game!');
-  resultMessage.appendChild(friendlyMessage);
+  outputMessage.appendChild(friendlyMessage);
 };
   
   
@@ -169,9 +180,13 @@ function cardInit() {
   ];
   
 //for loop to pull each name/image combo from the two arrays
-  for(let i = 0; i < cardName.length; i++) {
-    cards.push(buildCard(cardName[i], cardImage[i]));
-    };
+  if(cardName.length === cardImage.length) { 
+    for(let i = 0; i < cardName.length; i++) {
+      cards.push(buildCard(cardName[i], cardImage[i]));
+      };
+  } else {
+    console.log('The cardInit Arrays are not an equal length.')
+  }
   return cards;
 };
   
@@ -358,7 +373,7 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
   setTimeout(function() {
   showCard(activeCard.playerDeck[0], 'player')
   showCard(activeCard.opponentDeck[0], 'opponent')
-  resultMessage.innerHTML = '';
+  outputMessage.innerHTML = '';
   }, 2000);
   checkEndGame()
 };
@@ -376,7 +391,7 @@ function endGame(winner) {
   let newGameButton = document.createElement('button')
   newGameButton.textContent = 'Play again!';
   newGameButton.addEventListener('click', function() {
-    resultMessage.innerHTML = '';
+    outputMessage.innerHTML = '';
     winLossArea.innerHTML = '';
     deckSizeArea.innerHTML = '';
     numberOfWins = 0;
@@ -386,7 +401,7 @@ function endGame(winner) {
     cardPicker();
   });
 
-  resultMessage.innerHTML = '';
+  outputMessage.innerHTML = '';
   winLossArea.innerHTML = '';
   deckSizeArea.innerHTML = '';
   if (winner === 'Player') {
@@ -394,17 +409,17 @@ function endGame(winner) {
     let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
     const winMessage = presentData('p', `You won the game in ${totalRounds}. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
-    resultMessage.appendChild(winTitle);
-    resultMessage.appendChild(winMessage);
+    outputMessage.appendChild(winTitle);
+    outputMessage.appendChild(winMessage);
   } else {
     const lossTitle = presentData('h3', `Commiserations ${playerName}`)
     const lossMessage = presentData('p', `You lost the game in ${totalRounds}. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
     //Add button element to play again. 
-    resultMessage.appendChild(lossTitle);
-    resultMessage.appendChild(lossMessage);
+    outputMessage.appendChild(lossTitle);
+    outputMessage.appendChild(lossMessage);
   };
-  resultMessage.appendChild(newGameButton);
+  outputMessage.appendChild(newGameButton);
 };
   
 /**
@@ -423,8 +438,8 @@ function opponentTurn() {
     showStats.classList.remove('hidden');
   };
   const selectionMessage = presentData('h3', `Your Opponent picked ${randomStat}, which has the value ${pickedStatValue}`);
-  resultMessage.innerHTML = '';
-  resultMessage.appendChild(selectionMessage);
+  outputMessage.innerHTML = '';
+  outputMessage.appendChild(selectionMessage);
 
   setTimeout(function()  {
     resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
@@ -440,8 +455,8 @@ function opponentTurn() {
 */
 function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
   const winMessage = presentData('h3', message);
-  resultMessage.innerHTML = '';
-  resultMessage.appendChild(winMessage);
+  outputMessage.innerHTML = '';
+  outputMessage.appendChild(winMessage);
 
   let gainedCard = loserDeck.shift();
   let usedCard = winnerDeck.shift();
@@ -457,11 +472,11 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
 
 
 
-  /**
-   * updateDeckCount simply takes a count of each players deck and throws it
-   * to the webpage allowing the player to know what the current state of 
-   * play is regarding the deck sizes. 
-   */
+/**
+* updateDeckCount simply takes a count of each players deck and throws it
+* to the webpage allowing the player to know what the current state of 
+* play is regarding the deck sizes. 
+*/
 function updateDeckCount() {
   const playerDeckSizeElement = document.getElementById('player-deck-size');
   const opponentDeckSizeElement = document.getElementById('opponent-deck-size');
