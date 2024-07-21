@@ -195,8 +195,8 @@ const shuffleCards = array => {
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
-  const playerDeck = shuffledDeck.splice(0, 20);
-  const opponentDeck = shuffledDeck.slice(0, 20);
+  const playerDeck = shuffledDeck.splice(0, 2);
+  const opponentDeck = shuffledDeck.slice(0, 2);
   
   return {playerDeck, opponentDeck};
 };
@@ -368,7 +368,17 @@ function endGame(winner) {
   let playerName = retrievePlayerName();
   let newGameButton = document.createElement('button')
   newGameButton.textContent = 'Play again!';
-  newGameButton.addEventListener('click', cardPicker() )
+  newGameButton.addEventListener('click', function() {
+    resultMessage.innerHTML = '';
+    winLossArea.innerHTML = '';
+    deckSizeArea.innerHTML = '';
+    numberOfWins = 0;
+    numberOfLosses = 0;
+    numberOfDraws = 0;
+    setPermElements();
+    cardPicker();
+  });
+
   resultMessage.innerHTML = '';
   winLossArea.innerHTML = '';
   deckSizeArea.innerHTML = '';
@@ -379,7 +389,6 @@ function endGame(winner) {
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
     resultMessage.appendChild(winTitle);
     resultMessage.appendChild(winMessage);
-    resultMessage.appendChild(newGameButton);
   } else {
     const lossTitle = presentData('h3', `Commiserations ${playerName}`)
     const lossMessage = presentData('p', `You lost the game in ${totalRounds}. 
@@ -387,8 +396,8 @@ function endGame(winner) {
     //Add button element to play again. 
     resultMessage.appendChild(lossTitle);
     resultMessage.appendChild(lossMessage);
-    resultMessage.appendChild(newGameButton);
-  }
+  };
+  resultMessage.appendChild(newGameButton);
 };
   
 /**
