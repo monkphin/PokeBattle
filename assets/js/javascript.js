@@ -220,8 +220,8 @@ const shuffleCards = array => {
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
-  const playerDeck = shuffledDeck.splice(0, 10);
-  const opponentDeck = shuffledDeck.slice(0, 10);
+  const playerDeck = shuffledDeck.splice(0, 20);
+  const opponentDeck = shuffledDeck.slice(0, 20);
   
   return {playerDeck, opponentDeck};
 };
@@ -385,9 +385,11 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
         opponentTurn()}, 3500);
   };
   let turnTimer = setTimeout(function() {
-  showCard(activeCard.playerDeck[0], 'player')
-  showCard(activeCard.opponentDeck[0], 'opponent')
-  outputMessage.innerHTML = '';
+    if (!endOfGame) {
+      showCard(activeCard.playerDeck[0], 'player')
+      showCard(activeCard.opponentDeck[0], 'opponent')
+      outputMessage.innerHTML = '';
+    }
   }, 2000);
   checkEndGame()
 };
@@ -414,6 +416,7 @@ function endGame(winner) {
     numberOfDraws = 0;
     setPermElements();
     cardPicker();
+    endOfGame = false;
   });
 
   outputMessage.innerHTML = '';
@@ -435,7 +438,9 @@ function endGame(winner) {
     outputMessage.appendChild(lossMessage);
   };
   outputMessage.appendChild(newGameButton);
-  clearTimeout(turnTimer, opponentTimer);
+  // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave ideas to clear timers due to functions continuing after game end
+  clearTimeout(turnTimer);
+    clearTimeout(opponentTimer);
 };
   
 /**
@@ -454,7 +459,7 @@ function opponentTurn() {
   if (showStats) {
     showStats.classList.remove('hidden');
   };
-  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue}, it's super effective!`);
+  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue}`);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(selectionMessage);
 
