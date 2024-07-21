@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 * Several variables that are called in multiple functions - grouping these
 * for clarity
 */
+let playerTurn = true;
 let cards = [];
 let numberOfWins = 0;
 let numberOfLosses = 0;
@@ -298,11 +299,13 @@ function listCreator(statName, statValue, elementId) {
   li.appendChild(valueSpan);
 
   li.addEventListener('click', function() {
-    statSelection(statName, statValue, elementId);
+    if (playerTurn) {
+      statSelection(statName, statValue, elementId);
 
-    const showStats = document.querySelector('#opponent_card .card-stats')
-    if (showStats) {
-      showStats.classList.remove('hidden');
+      const showStats = document.querySelector('#opponent_card .card-stats')
+      if (showStats) {
+        showStats.classList.remove('hidden');
+      };
     };
   });  
   return li;
@@ -334,17 +337,21 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
   if(playerStatValue > opponentStatValue) {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round');
     winLossCounter('player'); 
+    playerTurn = True;
   } else if(playerStatValue < opponentStatValue)  {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
     winLossCounter('opponent');
+    playerTurn = false;
     setTimeout(function() {
       opponentTurn()}, 3500);
   } else if(playerStatValue === opponentStatValue && elementId === 'player_card') {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!');
     winLossCounter('draw')
+    playerTurn = true;
   } else {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, your opponent gets another go');
     winLossCounter('draw')
+    playerTurn = false;
     setTimeout(function() {
         opponentTurn()}, 3500);
   };
@@ -421,6 +428,7 @@ function opponentTurn() {
 
   setTimeout(function()  {
     resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
+    playerTurn = true;
   }, 3500);
 };
   
