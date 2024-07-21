@@ -36,7 +36,13 @@ let numberOfDraws = 0;
 const outputMessage = document.getElementById('message_area');
 const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
-
+const statNamesMapping = {
+    attack: 'Attack Power',
+    defense: 'Defense Ability',
+    specialAttack: 'Special Attack Power',
+    specialDefense: 'Special Defense Ability'
+  };
+  
 /**
 * Single function to render all default none card text content, which is
 * present at the start of the game - could look into cleaning this up in the future. 
@@ -301,10 +307,12 @@ function cardRender(elementId, card) {
 function listCreator(statName, statValue, elementId) {
   const li = document.createElement('li');
   li.className = 'stat-item';
+
+  const descriptiveName = statNamesMapping[statName];
     
   const nameSpan = document.createElement('span');
   nameSpan.className = 'stat-name';
-  nameSpan.textContent = statName + ':';
+  nameSpan.textContent = descriptiveName + ':';
   
   const valueSpan = document.createElement('span');
   valueSpan.className = 'stat-value';
