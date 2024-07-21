@@ -366,6 +366,9 @@ function checkEndGame() {
   
 function endGame(winner) {
   let playerName = retrievePlayerName();
+  let newGameButton = document.createElement('button')
+  newGameButton.textContent = 'Play again!';
+  newGameButton.addEventListener('click', cardPicker() )
   resultMessage.innerHTML = '';
   winLossArea.innerHTML = '';
   deckSizeArea.innerHTML = '';
@@ -374,9 +377,9 @@ function endGame(winner) {
     let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
     const winMessage = presentData('p', `You won the game in ${totalRounds}. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
-    //Add button element to play again. 
     resultMessage.appendChild(winTitle);
     resultMessage.appendChild(winMessage);
+    resultMessage.appendChild(newGameButton);
   } else {
     const lossTitle = presentData('h3', `Commiserations ${playerName}`)
     const lossMessage = presentData('p', `You lost the game in ${totalRounds}. 
@@ -384,8 +387,8 @@ function endGame(winner) {
     //Add button element to play again. 
     resultMessage.appendChild(lossTitle);
     resultMessage.appendChild(lossMessage);
+    resultMessage.appendChild(newGameButton);
   }
-  console.log(`the winner is ${winner}`);  
 };
   
 /**
