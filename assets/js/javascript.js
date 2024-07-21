@@ -319,7 +319,6 @@ function listCreator(statName, statValue, elementId) {
   valueSpan.className = 'stat-value';
   valueSpan.textContent = statValue;
 
-  li.appendChild(nameSpan);
   li.appendChild(valueSpan);
 
   li.addEventListener('click', function() {
