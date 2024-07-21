@@ -149,10 +149,10 @@ function buildCard(name, image) {
     name : name,
     image : image,
     stats : {
-      attack : Math.floor(Math.random() * 100),
-      defense : Math.floor(Math.random() * 100),
-      specialAttack : Math.floor(Math.random() * 100),
-      specialDefense : Math.floor(Math.random() * 100),
+      attack : Math.ceil(Math.random() * 10),
+      defense : Math.ceil(Math.random() * 10),
+      specialAttack : Math.ceil(Math.random() * 10),
+      specialDefense : Math.ceil(Math.random() * 10),
       },       
   };
 }
@@ -249,16 +249,18 @@ function presentData(elementName, elementContent) {
 }
 
 
-/**
- * Present both players cards to HTML using the presentData function 
- * split out the rendering of the cards and stats to keep things much simpler here. 
+/** 
+ * Present both players cards to HTML using the cardRender function 
+ * to keep things much simpler here. This effectively determines 
+ * which deck is the players - Should merge this with 
+ * the cardRender function, since this feels superflous. 
  */
 function showCard(card, player) {
   if(player === 'player') {
-    //console.log('players card:', card)
+  
     cardRender('player_card', card);
   } else {
-    //console.log('opponents card:', card)
+  
     cardRender('opponent_card', card);
   }
 }
@@ -280,9 +282,8 @@ function cardRender(elementId, card) {
   const cardName = presentData('h3', card.name);
   cardName.className = 'card-name'
   const cardUl = document.createElement('ul');
-  console.log(elementId);
   cardUl.className = 'card-stats';
-  if (elementId === 'opponent_card') {cardUl.classList.add('hidden')}
+  //if (elementId === 'opponent_card') {cardUl.classList.add('hidden')}
 
   const stats = ['attack', 'defense', 'specialAttack', 'specialDefense']
   for (let i = 0; i < stats.length; i++) {
@@ -319,6 +320,7 @@ function listCreator(statName, statValue, elementId) {
   valueSpan.className = 'stat-value';
   valueSpan.textContent = statValue;
 
+  li.appendChild(nameSpan);
   li.appendChild(valueSpan);
 
   li.addEventListener('click', function() {
@@ -350,25 +352,24 @@ function statSelection(statName, statValue) {
 }
 /**
  * Function compares selected player stat with the equivalent opponent stat then
- * kicks a message outComeHandler to deal with displaying win/lose. Draws are 
- * handled locally. This also kicks which player won to the winLossCounter to 
+ * kicks a message outComeHandler to deal with displaying win/lose/draw 
+ * This also kicks which player won to the winLossCounter to 
  * allow tracking of count of wins/losses
  * added delay timer when calling show card
  *  using https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
  */
 function resolveRound (playerStatValue, opponentStatValue) {
   if(playerStatValue > opponentStatValue) {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'Congratulations, you win this round');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round');
     winLossCounter('player'); 
   } else if(playerStatValue < opponentStatValue)  {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, 'Unlucky, you lost the round');
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
     winLossCounter('opponent');
     //To use for the Computer players turn. 
-    //console.log(activeCard.opponentDeck[0].stats);
+    opponentTurn();
   } else {
-    const playerDraw = presentData('h3', 'It\'s a draw!');
-    resultMessage.innerHTML = '';
-    resultMessage.appendChild(playerDraw);
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!');
+    winLossCounter('draw')
   }
   setTimeout(function() {
   showCard(activeCard.playerDeck[0], 'player')
@@ -379,7 +380,21 @@ function resolveRound (playerStatValue, opponentStatValue) {
  * https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object
  */
 
+/**
+ * Struggled with this, but realised I may be able to use a similar approach to 
+ * that  used in cardRender function to help - had issues breaking out stat names and stats. 
+ */
+function opponentTurn() {
+  const statNames = ['attack', 'defense', 'specialAttack', 'specialDefense']
+  const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
+  const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
+  console.log(`computer picked ${randomStat}, which has the value ${pickedStatValue}`)
+  const selectionMessage = presentData('h3', `Your Opponent picked ${randomStat}, which has the value ${pickedStatValue}`);
+  resultMessage.innerHTML = '';
+  resultMessage.appendChild(selectionMessage);
   
+  };
+
 
 /**
  * Outcome handler moves the current card to either the player or opponent
@@ -388,7 +403,7 @@ function resolveRound (playerStatValue, opponentStatValue) {
  * updateDeckCount to show how big each players deck is 
  */
 
-function outcomeHandler(winnerDeck, loserDeck, message) {
+function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
   const winMessage = presentData('h3', message);
   resultMessage.innerHTML = '';
   resultMessage.appendChild(winMessage);
@@ -396,10 +411,16 @@ function outcomeHandler(winnerDeck, loserDeck, message) {
   let gainedCard = loserDeck.shift();
   let usedCard = winnerDeck.shift();
 
-  winnerDeck.push(usedCard, gainedCard);
-
+  if (outcome === 'draw') {
+    winnerDeck.push(gainedCard);
+    loserDeck.push(gainedCard);
+  } else {
+    winnerDeck.push(usedCard, gainedCard);
+  }
   updateDeckCount();
 };
+
+
 
 /**
  * updateDeckCount simply takes a count of each players deck and throws it
@@ -426,7 +447,7 @@ function winLossCounter(winner) {
     const playerWinArea = document.getElementById('win-count');
     numberOfWins++;
     playerWinArea.textContent = numberOfWins;
-  } else {
+  } else if (winner === 'opponent') {
     const playerLossArea = document.getElementById('loss-count');
     numberOfLosses++;
     playerLossArea.textContent = numberOfLosses;
@@ -453,7 +474,7 @@ function winLossCounter(winner) {
 // let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
 // console.log("Shuffled cards:", shuffledCards);
 //----------Deck creation testing - should generate an array with both players decks
-//  let player = x(playerDeck)
+//  let player = playerDeck)
 //  console.log(player);
 //----------Testing pulling a single card - can filter for properties, eg .name, .image etc
   // let singleCard = cards[0]; 
