@@ -45,7 +45,32 @@ const statNamesMapping = {
     specialAttack: 'Special Attack Power',
     specialDefense: 'Special Defense Ability'
   };
+
+  const largeScreenImages = [
+    'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/squirtle.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/weedle.webp',
+    'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/rattata.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/pikachu.webp',
+    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/nidoran-f.webp', 'assets/images/large_cards/clefairy.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/jigglypuff.webp',
+    'assets/images/large_cards/zubat.webp', 'assets/images/large_cards/oddish.webp', 'assets/images/large_cards/paras.webp', 'assets/images/large_cards/venonat.webp', 'assets/images/large_cards/diglett.webp',
+    'assets/images/large_cards/meowth.webp', 'assets/images/large_cards/psyduck.webp', 'assets/images/large_cards/mankey.webp', 'assets/images/large_cards/growlithe.webp', 'assets/images/large_cards/poliwag.webp',
+    'assets/images/large_cards/abra.webp', 'assets/images/large_cards/machop.webp', 'assets/images/large_cards/bellsprout.webp', 'assets/images/large_cards/tentacool.webp', 'assets/images/large_cards/geodude.webp',
+    'assets/images/large_cards/ponyta.webp', 'assets/images/large_cards/slowpoke.webp', 'assets/images/large_cards/magnemite.webp', 'assets/images/large_cards/farfetchd.webp', 'assets/images/large_cards/doduo.webp',
+    'assets/images/large_cards/seel.webp', 'assets/images/large_cards/grimer.webp', 'assets/images/large_cards/shellder.webp', 'assets/images/large_cards/gastly.webp', 'assets/images/large_cards/onix.webp',
+    'assets/images/large_cards/drowzee.webp', 'assets/images/large_cards/krabby.webp', 'assets/images/large_cards/voltorb.webp', 'assets/images/large_cards/exeggcute.webp', 'assets/images/large_cards/cubone.webp',
+    'assets/images/large_cards/hitmonlee.webp', 'assets/images/large_cards/lickitung.webp', 'assets/images/large_cards/koffing.webp',
+  ];  
   
+  const smallScreenImages = [
+    'assets/images/small_cards/bulbasaur.avif', 'assets/images/small_cards/charmander.avif', 'assets/images/small_cards/squirtle.avif', 'assets/images/small_cards/caterpie.avif', 'assets/images/small_cards/weedle.avif', 
+    'assets/images/small_cards/pidgey.avif', 'assets/images/small_cards/rattata.avif', 'assets/images/small_cards/spearow.avif', 'assets/images/small_cards/ekans.avif', 'assets/images/small_cards/pikachu.avif',
+    'assets/images/small_cards/sandshrew.avif', 'assets/images/small_cards/nidoran-f.avif', 'assets/images/small_cards/clefairy.avif', 'assets/images/small_cards/vulpix.avif', 'assets/images/small_cards/jigglypuff.avif',
+    'assets/images/small_cards/zubat.avif', 'assets/images/small_cards/oddish.avif', 'assets/images/small_cards/paras.avif', 'assets/images/small_cards/venonat.avif', 'assets/images/small_cards/diglett.avif',
+    'assets/images/small_cards/meowth.avif', 'assets/images/small_cards/psyduck.avif', 'assets/images/small_cards/mankey.avif', 'assets/images/small_cards/growlithe.avif', 'assets/images/small_cards/poliwag.avif',
+    'assets/images/small_cards/abra.avif', 'assets/images/small_cards/machop.avif', 'assets/images/small_cards/bellsprout.avif', 'assets/images/small_cards/tentacool.avif', 'assets/images/small_cards/geodude.avf',
+    'assets/images/small_cards/ponyta.avif', 'assets/images/small_cards/slowpoke.avif', 'assets/images/small_cards/magnemite.avif', 'assets/images/small_cards/farfetchd.avif', 'assets/images/small_cards/doduo.avif',
+    'assets/images/small_cards/seel.avif', 'assets/images/small_cards/grimer.avif', 'assets/images/small_cards/shellder.avif', 'assets/images/small_cards/gastly.avif', 'assets/images/small_cards/onix.avif',
+    'assets/images/small_cards/drowzee.avif', 'assets/images/small_cards/krabby.avif', 'assets/images/small_cards/voltorb.avif', 'assets/images/small_cards/exeggcute.avif', 'assets/images/small_cards/cubone.avif',
+    'assets/images/small_cards/hitmonlee.avif', 'assets/images/small_cards/lickitung.avif', 'assets/images/small_cards/koffing.avif',   
+  ];
 /**
 * Single function to render all default none card text content, which is
 * present at the start of the game - could look into cleaning this up in the future. 
@@ -123,6 +148,7 @@ function retrievePlayerName() {
   return playerName;
 };
     
+
 /** 
 * Throws a welcome message to the game.html page when loaded
 * this presents the players name retrieved from local storage. 
@@ -157,6 +183,14 @@ function buildCard(name, image) {
   };
 };
   
+function cardImageSize() {
+  if (window.innerWidth < 576) {
+    return smallScreenImages;
+  } else {
+    return largeScreenImages;
+  };
+};
+
 /**
 * Each card will feature a name, a card image and 4 stats. 
 * The function below will be responsible for providing the Name/image
@@ -175,18 +209,8 @@ function cardInit() {
     'Drowzee', 'Krabby', 'Voltorb', 'Exeggcute', 'Cubone',
     'Hitmonlee', 'Lickitung', 'Koffing',
   ];
-  const cardImage = [
-    'assets/images/cards/bulbasaur.webp', 'assets/images/cards/charmander.webp', 'assets/images/cards/squirtle.webp', 'assets/images/cards/caterpie.webp', 'assets/images/cards/weedle.webp',
-    'assets/images/cards/pidgey.webp', 'assets/images/cards/rattata.webp', 'assets/images/cards/spearow.webp', 'assets/images/cards/ekans.webp', 'assets/images/cards/pikachu.webp',
-    'assets/images/cards/sandshrew.webp', 'assets/images/cards/nidoran-f.webp', 'assets/images/cards/clefairy.webp', 'assets/images/cards/vulpix.webp', 'assets/images/cards/jigglypuff.webp',
-    'assets/images/cards/zubat.webp', 'assets/images/cards/oddish.webp', 'assets/images/cards/paras.webp', 'assets/images/cards/venonat.webp', 'assets/images/cards/diglett.webp',
-    'assets/images/cards/meowth.webp', 'assets/images/cards/psyduck.webp', 'assets/images/cards/mankey.webp', 'assets/images/cards/growlithe.webp', 'assets/images/cards/poliwag.webp',
-    'assets/images/cards/abra.webp', 'assets/images/cards/machop.webp', 'assets/images/cards/bellsprout.webp', 'assets/images/cards/tentacool.webp', 'assets/images/cards/geodude.webp',
-    'assets/images/cards/ponyta.webp', 'assets/images/cards/slowpoke.webp', 'assets/images/cards/magnemite.webp', 'assets/images/cards/farfetchd.webp', 'assets/images/cards/doduo.webp',
-    'assets/images/cards/seel.webp', 'assets/images/cards/grimer.webp', 'assets/images/cards/shellder.webp', 'assets/images/cards/gastly.webp', 'assets/images/cards/onix.webp',
-    'assets/images/cards/drowzee.webp', 'assets/images/cards/krabby.webp', 'assets/images/cards/voltorb.webp', 'assets/images/cards/exeggcute.webp', 'assets/images/cards/cubone.webp',
-    'assets/images/cards/hitmonlee.webp', 'assets/images/cards/lickitung.webp', 'assets/images/cards/koffing.webp',
-  ];
+
+const cardImage = cardImageSize();
   
 //for loop to pull each name/image combo from the two arrays
   if(cardName.length === cardImage.length) { 
@@ -283,17 +307,20 @@ function cardRender(elementId, card) {
   
   const cardName = presentData('h3', card.name);
   cardName.className = 'card-name';
-  const cardUl = document.createElement('ul');
-  cardUl.className = 'card-stats';
-  if (elementId === 'opponent_card') {cardUl.classList.add('hidden')};
-  
-  const stats = ['attack', 'defense', 'specialAttack', 'specialDefense']
+
+  const statsContainer = document.createElement('div');
+  statsContainer.className = 'card-stats';
+  if (elementId === 'opponent_card') {
+    statsContainer.classList.add('hidden');
+  }
+
+  const stats = ['attack', 'defense', 'specialAttack', 'specialDefense'];
   for (let i = 0; i < stats.length; i++) {
     const stat = stats[i];
     const listItem = listCreator(stat, card.stats[stat], elementId);
-    cardUl.appendChild(listItem);
-  };
-  
+    statsContainer.appendChild(listItem);
+  }
+
   const cardImg = document.createElement('img');
   cardImg.src = card.image;
   cardImg.alt = card.name + ' Pokemon card';
@@ -301,8 +328,10 @@ function cardRender(elementId, card) {
   
   cardElement.appendChild(cardName);
   cardElement.appendChild(cardImg);
-  cardElement.appendChild(cardUl);
-};
+  cardElement.appendChild(statsContainer);
+}
+
+
   
 /**
 * Adding new list creator function since I need to also show statNames alongside stat numbers, 
@@ -310,34 +339,36 @@ function cardRender(elementId, card) {
 * have the showCard function pass directly into createElement 
 */
 function listCreator(statName, statValue, elementId) {
-  const li = document.createElement('li');
-  li.className = 'stat-item';
+  const cardListWrapper = document.createElement('div');
+  cardListWrapper.className = 'row stat-item';
 
   const descriptiveName = statNamesMapping[statName];
     
-  const nameSpan = document.createElement('span');
-  nameSpan.className = 'stat-name';
+  const nameSpan = document.createElement('div');
+  nameSpan.className = 'col-sm-6 stat-name';
   nameSpan.textContent = descriptiveName + ':';
   
-  const valueSpan = document.createElement('span');
-  valueSpan.className = 'stat-value';
+  const valueSpan = document.createElement('div');
+  valueSpan.className = 'col-sm-6 stat-value';
   valueSpan.textContent = statValue;
   
-  li.appendChild(nameSpan);
-  li.appendChild(valueSpan);
+  cardListWrapper.appendChild(nameSpan);
+  cardListWrapper.appendChild(valueSpan);
 
-  li.addEventListener('click', function() {
+  cardListWrapper.addEventListener('click', function() {
     if (playerTurn) {
       statSelection(statName, statValue, elementId);
 
-      const showStats = document.querySelector('#opponent_card .card-stats')
+      const showStats = document.querySelector('#opponent_card .card-stats');
       if (showStats) {
         showStats.classList.remove('hidden');
-      };
-    };
+      }
+    }
   });  
-  return li;
-};
+  return cardListWrapper;
+}
+
+
   
 //-----------------------------------------Game Loops
   
@@ -527,6 +558,16 @@ function winLossCounter(winner) {
   };    
  return numberOfWins, numberOfLosses, numberOfDraws;
 };
+
+function displayMessage(message) {
+    const messageArea = document.getElementById('message_area');
+    messageArea.textContent = message;
+    messageArea.style.display = 'block';
+    
+    setTimeout(() => {
+        messageArea.style.display = 'none';
+    }, 2000); // Clear the message after 2 seconds
+}
   
 /**
 * -----------------------------------------------------------------------------------TO DO 
