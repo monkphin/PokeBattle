@@ -60,16 +60,16 @@ const statNamesMapping = {
   ];  
   
   const smallScreenImages = [
-    'assets/images/small_cards/bulbasaur.avif', 'assets/images/small_cards/charmander.avif', 'assets/images/small_cards/squirtle.avif', 'assets/images/small_cards/caterpie.avif', 'assets/images/small_cards/weedle.avif', 
-    'assets/images/small_cards/pidgey.avif', 'assets/images/small_cards/rattata.avif', 'assets/images/small_cards/spearow.avif', 'assets/images/small_cards/ekans.avif', 'assets/images/small_cards/pikachu.avif',
-    'assets/images/small_cards/sandshrew.avif', 'assets/images/small_cards/nidoran-f.avif', 'assets/images/small_cards/clefairy.avif', 'assets/images/small_cards/vulpix.avif', 'assets/images/small_cards/jigglypuff.avif',
-    'assets/images/small_cards/zubat.avif', 'assets/images/small_cards/oddish.avif', 'assets/images/small_cards/paras.avif', 'assets/images/small_cards/venonat.avif', 'assets/images/small_cards/diglett.avif',
-    'assets/images/small_cards/meowth.avif', 'assets/images/small_cards/psyduck.avif', 'assets/images/small_cards/mankey.avif', 'assets/images/small_cards/growlithe.avif', 'assets/images/small_cards/poliwag.avif',
-    'assets/images/small_cards/abra.avif', 'assets/images/small_cards/machop.avif', 'assets/images/small_cards/bellsprout.avif', 'assets/images/small_cards/tentacool.avif', 'assets/images/small_cards/geodude.avf',
-    'assets/images/small_cards/ponyta.avif', 'assets/images/small_cards/slowpoke.avif', 'assets/images/small_cards/magnemite.avif', 'assets/images/small_cards/farfetchd.avif', 'assets/images/small_cards/doduo.avif',
-    'assets/images/small_cards/seel.avif', 'assets/images/small_cards/grimer.avif', 'assets/images/small_cards/shellder.avif', 'assets/images/small_cards/gastly.avif', 'assets/images/small_cards/onix.avif',
-    'assets/images/small_cards/drowzee.avif', 'assets/images/small_cards/krabby.avif', 'assets/images/small_cards/voltorb.avif', 'assets/images/small_cards/exeggcute.avif', 'assets/images/small_cards/cubone.avif',
-    'assets/images/small_cards/hitmonlee.avif', 'assets/images/small_cards/lickitung.avif', 'assets/images/small_cards/koffing.avif',   
+    'assets/images/small_cards/bulbasaur.webp', 'assets/images/small_cards/charmander.webp', 'assets/images/small_cards/squirtle.webp', 'assets/images/small_cards/caterpie.webp', 'assets/images/small_cards/weedle.webp', 
+    'assets/images/small_cards/pidgey.webp', 'assets/images/small_cards/rattata.webp', 'assets/images/small_cards/spearow.webp', 'assets/images/small_cards/ekans.webp', 'assets/images/small_cards/pikachu.webp',
+    'assets/images/small_cards/sandshrew.webp', 'assets/images/small_cards/nidoran-f.webp', 'assets/images/small_cards/clefairy.webp', 'assets/images/small_cards/vulpix.webp', 'assets/images/small_cards/jigglypuff.webp',
+    'assets/images/small_cards/zubat.webp', 'assets/images/small_cards/oddish.webp', 'assets/images/small_cards/paras.webp', 'assets/images/small_cards/venonat.webp', 'assets/images/small_cards/diglett.webp',
+    'assets/images/small_cards/meowth.webp', 'assets/images/small_cards/psyduck.webp', 'assets/images/small_cards/mankey.webp', 'assets/images/small_cards/growlithe.webp', 'assets/images/small_cards/poliwag.webp',
+    'assets/images/small_cards/abra.webp', 'assets/images/small_cards/machop.webp', 'assets/images/small_cards/bellsprout.webp', 'assets/images/small_cards/tentacool.webp', 'assets/images/small_cards/geodude.avf',
+    'assets/images/small_cards/ponyta.webp', 'assets/images/small_cards/slowpoke.webp', 'assets/images/small_cards/magnemite.webp', 'assets/images/small_cards/farfetchd.webp', 'assets/images/small_cards/doduo.webp',
+    'assets/images/small_cards/seel.webp', 'assets/images/small_cards/grimer.webp', 'assets/images/small_cards/shellder.webp', 'assets/images/small_cards/gastly.webp', 'assets/images/small_cards/onix.webp',
+    'assets/images/small_cards/drowzee.webp', 'assets/images/small_cards/krabby.webp', 'assets/images/small_cards/voltorb.webp', 'assets/images/small_cards/exeggcute.webp', 'assets/images/small_cards/cubone.webp',
+    'assets/images/small_cards/hitmonlee.webp', 'assets/images/small_cards/lickitung.webp', 'assets/images/small_cards/koffing.webp',   
   ];
 /**
 * Single function to render all default none card text content, which is
