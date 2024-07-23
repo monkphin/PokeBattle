@@ -37,15 +37,12 @@
 }
 
 .card-stats {
-    position: absolute;
+    top: 15%;
+    position: relative;
     list-style-type: none;
-    top: 30%;
-    left: 54%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 60%;
     color: black;
     padding: 0;
+    margin: 0;
 }
 
 .stat-item {
@@ -71,7 +68,8 @@
 }
 
 /* Adjustments for larger screens */
-@media (min-width: 768px) {
+@media (min-width: 576px) {
+
     .card-image {
         height: 90%;
         width: 90%;
@@ -91,15 +89,27 @@
     }
 
     .card-stats {
-        top: 50%;
-        left: 50%;
-        width: 50%;
-        height: auto;
+        position: absolute;
+        list-style-type: none;
+        top: 30%;
+        left: 54%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 60%;
+        color: black;
+        padding: 0;
     }
 
     .stat-item {
-        font-size: 1em;   
-        margin-bottom: 0.5em;
+        font-size: 0.9em;   
+        border: 1px solid black;   
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 0.25em;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.25em;
+        margin-bottom: 0.15em;
+        width: 100%;
     }
 
     .stat-name, .stat-value {

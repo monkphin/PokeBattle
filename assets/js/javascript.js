@@ -49,7 +49,7 @@ const statNamesMapping = {
   const largeScreenImages = [
     'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/squirtle.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/weedle.webp',
     'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/rattata.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/pikachu.webp',
-    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/nidoran-f.webp', 'assets/images/large_cards/clefairy.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/jigglypuff.webp',
+    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/nidoran.webp', 'assets/images/large_cards/clefairy.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/jigglypuff.webp',
     'assets/images/large_cards/zubat.webp', 'assets/images/large_cards/oddish.webp', 'assets/images/large_cards/paras.webp', 'assets/images/large_cards/venonat.webp', 'assets/images/large_cards/diglett.webp',
     'assets/images/large_cards/meowth.webp', 'assets/images/large_cards/psyduck.webp', 'assets/images/large_cards/mankey.webp', 'assets/images/large_cards/growlithe.webp', 'assets/images/large_cards/poliwag.webp',
     'assets/images/large_cards/abra.webp', 'assets/images/large_cards/machop.webp', 'assets/images/large_cards/bellsprout.webp', 'assets/images/large_cards/tentacool.webp', 'assets/images/large_cards/geodude.webp',
@@ -62,7 +62,7 @@ const statNamesMapping = {
   const smallScreenImages = [
     'assets/images/small_cards/bulbasaur.webp', 'assets/images/small_cards/charmander.webp', 'assets/images/small_cards/squirtle.webp', 'assets/images/small_cards/caterpie.webp', 'assets/images/small_cards/weedle.webp', 
     'assets/images/small_cards/pidgey.webp', 'assets/images/small_cards/rattata.webp', 'assets/images/small_cards/spearow.webp', 'assets/images/small_cards/ekans.webp', 'assets/images/small_cards/pikachu.webp',
-    'assets/images/small_cards/sandshrew.webp', 'assets/images/small_cards/nidoran-f.webp', 'assets/images/small_cards/clefairy.webp', 'assets/images/small_cards/vulpix.webp', 'assets/images/small_cards/jigglypuff.webp',
+    'assets/images/small_cards/sandshrew.webp', 'assets/images/small_cards/nidoran.webp', 'assets/images/small_cards/clefairy.webp', 'assets/images/small_cards/vulpix.webp', 'assets/images/small_cards/jigglypuff.webp',
     'assets/images/small_cards/zubat.webp', 'assets/images/small_cards/oddish.webp', 'assets/images/small_cards/paras.webp', 'assets/images/small_cards/venonat.webp', 'assets/images/small_cards/diglett.webp',
     'assets/images/small_cards/meowth.webp', 'assets/images/small_cards/psyduck.webp', 'assets/images/small_cards/mankey.webp', 'assets/images/small_cards/growlithe.webp', 'assets/images/small_cards/poliwag.webp',
     'assets/images/small_cards/abra.webp', 'assets/images/small_cards/machop.webp', 'assets/images/small_cards/bellsprout.webp', 'assets/images/small_cards/tentacool.webp', 'assets/images/small_cards/geodude.avf',
@@ -286,35 +286,34 @@ function cardRender(elementId, card) {
   if (endOfGame) return;
 
   const cardElement = document.getElementById(elementId);
-  
+
   cardElement.innerHTML = '';
-  
+
   const cardName = presentData('h3', card.name);
   cardName.className = 'card-name';
 
   const statsContainer = document.createElement('div');
-  statsContainer.className = 'card-stats';
+  statsContainer.className = 'card-stats row';
   if (elementId === 'opponent_card') {
-    statsContainer.classList.add('hidden');
+      statsContainer.classList.add('hidden');
   }
 
   const stats = ['attack', 'defense', 'specialAttack', 'specialDefense'];
   for (let i = 0; i < stats.length; i++) {
-    const stat = stats[i];
-    const listItem = listCreator(stat, card.stats[stat], elementId);
-    statsContainer.appendChild(listItem);
+      const stat = stats[i];
+      const listItem = listCreator(stat, card.stats[stat], elementId);
+      statsContainer.appendChild(listItem);
   }
 
   const cardImg = document.createElement('img');
   cardImg.src = card.image;
   cardImg.alt = card.name + ' Pokemon card';
   cardImg.className = 'card-image';
-  
+
   cardElement.appendChild(cardName);
   cardElement.appendChild(cardImg);
   cardElement.appendChild(statsContainer);
 }
-
 
   
 /**
@@ -327,32 +326,35 @@ function listCreator(statName, statValue, elementId) {
   cardListWrapper.className = 'row stat-item';
 
   const descriptiveName = statNamesMapping[statName];
-    
+
   const nameSpan = document.createElement('div');
   nameSpan.className = 'stat-name';
   nameSpan.textContent = descriptiveName + ':';
-  
+
   const valueSpan = document.createElement('div');
   valueSpan.className = 'stat-value';
   valueSpan.textContent = statValue;
-  
+
   cardListWrapper.appendChild(nameSpan);
   cardListWrapper.appendChild(valueSpan);
 
+  const statWrapper = document.createElement('div');
+  statWrapper.className = 'col-6 col-lg-12 stat-wrapper';
+  statWrapper.appendChild(cardListWrapper);
+
   cardListWrapper.addEventListener('click', function() {
-    if (playerTurn) {
-      statSelection(statName, statValue, elementId);
+      if (playerTurn) {
+          statSelection(statName, statValue, elementId);
 
-      const showStats = document.querySelector('#opponent_card .card-stats');
-      if (showStats) {
-        showStats.classList.remove('hidden');
+          const showStats = document.querySelector('#opponent_card .card-stats');
+          if (showStats) {
+              showStats.classList.remove('hidden');
+          }
       }
-    }
-  });  
-  return cardListWrapper;
+  });
+
+  return statWrapper;
 }
-
-
   
 //-----------------------------------------Game Loops
   
