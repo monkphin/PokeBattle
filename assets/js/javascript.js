@@ -329,11 +329,11 @@ function listCreator(statName, statValue, elementId) {
   const descriptiveName = statNamesMapping[statName];
     
   const nameSpan = document.createElement('div');
-  nameSpan.className = 'col-sm-6 stat-name';
+  nameSpan.className = 'stat-name';
   nameSpan.textContent = descriptiveName + ':';
   
   const valueSpan = document.createElement('div');
-  valueSpan.className = 'col-sm-6 stat-value';
+  valueSpan.className = 'stat-value';
   valueSpan.textContent = statValue;
   
   cardListWrapper.appendChild(nameSpan);

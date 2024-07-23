@@ -1,6 +1,6 @@
 .card-image {
-    height: auto;
-    width: 80%;
+    height: 90%;
+    width: 90%;
     display: block;
     margin: 0 auto;
 }
@@ -71,25 +71,38 @@
 
 /* Adjustments for smaller screens */
 @media (max-width: 576px) {
-    img {
-        height: 50%!important;
-        width: auto!important;
+    
+    #player_card {
+        width: 50%;
+        height: 300px;
+        margin: 0;
+        border: 1px solid black ;
+    }
+    
+    #opponent_card {
+        width: 50%;
+        height: 300px;
+        margin: 0;
+        border: 1px solid black ;
+
     }
 
     .card-image {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
+        width: 40%;
+        height: auto;
+
     }
 
     .card-name {
+        top: 30%;
         font-size: 0.9em;
-    }
+    }px
 
     .card-stats {
+        height: 60%;
         width: 60%;
         left: 54%;
-        top: 52%;
+        top: 30%;
     }
 
     .stat-item {
@@ -101,14 +114,12 @@
         width: 100%;
     }
     
-
     .stat-name {
         width: 90%;
         font-size: 0.9em;
         padding: 0.1em;
         margin-bottom: 0.05em;
     }
-
 
     .stat-value {
         width: 10%;
