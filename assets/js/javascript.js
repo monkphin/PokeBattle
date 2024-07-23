@@ -77,22 +77,6 @@ const statNamesMapping = {
 */
 
 function setPermElements() {
-  
-  const winsTitle = presentData('div', 'Number of rounds won: ');
-  winsTitle.className = 'col-sm-3';
-  winLossArea.appendChild(winsTitle);
-  const winCount = document.createElement('div');
-  winCount.id = 'win-count';
-  winCount.className = 'col-sm-3';
-  winLossArea.appendChild(winCount);
-  
-  const lossTitle = presentData('div', 'Number of round lost: ');
-  lossTitle.className = 'col-sm-3';
-  winLossArea.appendChild(lossTitle);
-  const lossCount = document.createElement('div');
-  lossCount.id = 'loss-count';
-  lossCount.className = 'col-sm-3';
-  winLossArea.appendChild(lossCount); 
  
   const playerCardCount = presentData('div', 'Player deck size: ');
   playerCardCount.className = 'col-sm-3';
@@ -546,13 +530,9 @@ function updateDeckCount() {
    */
 function winLossCounter(winner) {
   if (winner === 'player') {
-    const playerWinArea = document.getElementById('win-count');
     numberOfWins++;
-    playerWinArea.textContent = numberOfWins;
   } else if (winner === 'opponent') {
-    const playerLossArea = document.getElementById('loss-count');
     numberOfLosses++;
-    playerLossArea.textContent = numberOfLosses;
   } else {
     numberOfDraws++
   };    
