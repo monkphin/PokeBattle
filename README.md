@@ -31,14 +31,9 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
   - [Header](#header)
   - [Footer](#footer)
-  - [Modal](#modal)
   - [Home Page](#home-page)
-  - [Club Page](#club-page)
-  - [Contact Page](#contact-page)
-  - [Response Page](#response-page)
+  - [Game Page](#game-page)
   - [404 Page](#404-page)
-  - [Sticky Nav](#sticky-nav)
-  - [Carousel](#carousel)
   - [Future Features](#future-features)
 
 - [Bugs and Issues](#bugs-and-issues)
@@ -54,6 +49,7 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
   - [HTML Validation](#html-validation)
   - [CSS Validation](#css-validation)
+  - [Javascript Validation](#javascript-validation)
   - [Accessibility](#accessibility)
   - [User Testing](#user-testing)
   - [User Stories](#user-story-testing)
@@ -75,4 +71,4 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 # User Experience
 
-PokeBattle is an online toptrumps like game created to allow fans of the Pokemon series and TopTrumps games to have a single player game that can be played online. 
+PokeBattle is an online toptrumps like game created to allow fans of the Pokemon series and TopTrumps games to have a single player game that can be played online. Due to the nature of the game and the IP, the site needs to be relatively simplistic in its display as well as using a bright, simple colour pallette. 
