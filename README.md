@@ -72,3 +72,10 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 # User Experience
 
 PokeBattle is an online toptrumps like game created to allow fans of the Pokemon series and TopTrumps games to have a single player game that can be played online. Due to the nature of the game and the IP, the site needs to be relatively simplistic in its display as well as using a bright, simple colour pallette. 
+
+
+# Credits 
+PokeBattler Logo taken from https://www.pokebattler.com/
+POkemon images taken from https://pokemondb.net/pokedex/national
+card backgrounds taken from https://pokecardmaker.net/creator
+Sad Pikachu taken from https://www.deviantart.com/jujumays/art/A-Very-Sad-Pikachu-929558432
