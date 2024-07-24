@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * cards - Array that makes up the game deck.
  * numberOfWins, numberOfLosses, numberOfDraws - these track the count of wins, losses, and draws.
  * turnTimer, opponentTimer, messageTimer: Timers for allowing timers to be called and cleared at the end of the game to prevent reloading. 
- * outputMessage, winLossArea, deckSizeArea: HTML elements for rendering messages, win/loss area, and deck size area.
+ * outputMessage, deckSizeArea: HTML elements for rendering messages, win/loss area, and deck size area.
  */
 
 let playerTurn = true;
@@ -36,7 +36,6 @@ let turnTimer;
 let opponentTimer;
 let messageTimer;
 const outputMessage = document.getElementById('message-area');
-const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
 
 
@@ -232,8 +231,8 @@ const shuffleCards = array => {
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
-  const playerDeck = shuffledDeck.splice(0, 3);
-  const opponentDeck = shuffledDeck.slice(0, 3);
+  const playerDeck = shuffledDeck.splice(0, 20);
+  const opponentDeck = shuffledDeck.slice(0, 20);
   
   return {playerDeck, opponentDeck};
 };
@@ -442,7 +441,6 @@ function endGame(winner) {
   newGameButton.textContent = 'Play again!';
   newGameButton.addEventListener('click', function() {
     outputMessage.innerHTML = '';
-    winLossArea.innerHTML = '';
     deckSizeArea.innerHTML = '';
     numberOfWins = 0;
     numberOfLosses = 0;
@@ -473,7 +471,7 @@ function endGame(winner) {
   // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave ideas to clear timers due to functions continuing after game end
   clearTimeout(turnTimer);
   clearTimeout(opponentTimer);
-  clearTimeout(messageTimer);
+  clearTimeout(opponentTimer);
 };
   
 /**
@@ -564,8 +562,9 @@ function displayMessage(message) {
     
     let messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 2000);
+    }, 2000); // Clear the message after 2 seconds
 }
+
   
 /**
 * -----------------------------------------------------------------------------------TO DO 
