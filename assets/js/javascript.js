@@ -36,7 +36,7 @@ let numberOfLosses = 0;
 let numberOfDraws = 0;
 let turnTimer;
 let opponentTimer
-const outputMessage = document.getElementById('message_area');
+const outputMessage = document.getElementById('message-area');
 const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
 
@@ -59,7 +59,7 @@ const smallScreenImages = [
     'assets/images/small_cards/sandshrew.webp', 'assets/images/small_cards/nidoran.webp', 'assets/images/small_cards/clefairy.webp', 'assets/images/small_cards/vulpix.webp', 'assets/images/small_cards/jigglypuff.webp',
     'assets/images/small_cards/zubat.webp', 'assets/images/small_cards/oddish.webp', 'assets/images/small_cards/paras.webp', 'assets/images/small_cards/venonat.webp', 'assets/images/small_cards/diglett.webp',
     'assets/images/small_cards/meowth.webp', 'assets/images/small_cards/psyduck.webp', 'assets/images/small_cards/mankey.webp', 'assets/images/small_cards/growlithe.webp', 'assets/images/small_cards/poliwag.webp',
-    'assets/images/small_cards/abra.webp', 'assets/images/small_cards/machop.webp', 'assets/images/small_cards/bellsprout.webp', 'assets/images/small_cards/tentacool.webp', 'assets/images/small_cards/geodude.avf',
+    'assets/images/small_cards/abra.webp', 'assets/images/small_cards/machop.webp', 'assets/images/small_cards/bellsprout.webp', 'assets/images/small_cards/tentacool.webp', 'assets/images/small_cards/geodude.webp',
     'assets/images/small_cards/ponyta.webp', 'assets/images/small_cards/slowpoke.webp', 'assets/images/small_cards/magnemite.webp', 'assets/images/small_cards/farfetchd.webp', 'assets/images/small_cards/doduo.webp',
     'assets/images/small_cards/seel.webp', 'assets/images/small_cards/grimer.webp', 'assets/images/small_cards/shellder.webp', 'assets/images/small_cards/ghastly.webp', 'assets/images/small_cards/onix.webp',
     'assets/images/small_cards/drowzee.webp', 'assets/images/small_cards/krabby.webp', 'assets/images/small_cards/voltorb.webp', 'assets/images/small_cards/exeggcute.webp', 'assets/images/small_cards/cubone.webp',
@@ -73,19 +73,19 @@ const smallScreenImages = [
 
 function setPermElements() {
   const playerCardCount = presentData('div', 'Player deck size: ');
-  playerCardCount.className = 'col-sm-3';
+  playerCardCount.className = 'col-sm-3 player-deck-text';
   deckSizeArea.appendChild(playerCardCount);
   const playerDeckSize = document.createElement('div');
   playerDeckSize.id = 'player-deck-size';
-  playerDeckSize.className = 'col-sm-3';
+  playerDeckSize.className = 'col-sm-3 player-deck-num';
   deckSizeArea.appendChild(playerDeckSize);
   
   const opponentCardCount = presentData('div', 'Opponent deck size: ');
-  opponentCardCount.className = 'col-sm-3';
+  opponentCardCount.className = 'col-sm-3 opponent-deck-text';
   deckSizeArea.appendChild(opponentCardCount);
   const opponentDeckSize = document.createElement('div');
   opponentDeckSize.id = 'opponent-deck-size';
-  opponentDeckSize.className = 'col-sm-3';
+  opponentDeckSize.className = 'col-sm-3 opponent-deck-num';
   deckSizeArea.appendChild(opponentDeckSize);
 };
 
@@ -543,7 +543,7 @@ function winLossCounter(winner) {
 };
 
 function displayMessage(message) {
-    const messageArea = document.getElementById('message_area');
+    const messageArea = document.getElementById('message-area');
     messageArea.textContent = message;
     messageArea.style.display = 'block';
     

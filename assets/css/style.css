@@ -1,13 +1,11 @@
+/* Global CSS */
+
 body {
     background-image: linear-gradient(rgb(17, 29, 141), white);
     height: 100vh;
 }
 
-.hidden {
-    display: none;
-}
-
-/* Default styles for small screens */
+/* Default styles for smallest screens */
 .trainers_image {
     width: 100%;
     height: auto;
@@ -19,29 +17,27 @@ body {
     justify-content: space-between;
 }
 
-#player-card {
+#player-card, #opponent-card {
     width: 50%;
 }
-
-#opponent-card {
-    width: 50%;
-}
-
 
 .card-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: auto;
 }
 
 .card {
     width: 100%;
+    background: transparent;
 }
 
 .card-name {
     position: absolute;
-    top: 7%;
+    top: 0.5em;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.9em;
@@ -56,13 +52,15 @@ body {
     height: auto;
     border: 1px solid black;
     border-radius: 5%;
+    filter: drop-shadow(black 1rem 1rem 10px);
 }
 
 .card-stats {
-    width: 90%;
     position: absolute;
+    width: 90%;
+    top: 7em;
     bottom: 10px;
-    left: 60%;
+    left: 62%;
     transform: translateX(-50%);
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -74,14 +72,13 @@ body {
 }
 
 .stat-item {
-    font-size: 0.9em;   
-    border: 1px solid black;   
+    font-size: 0.9em;
+    border: 1px solid black;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 0.25em;
     display: flex;
-    justify-content: space-between;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     text-align: center;
 }
 
@@ -94,15 +91,41 @@ body {
     display: none;
 }
 
+#deck-size-area {
+    margin-top: 5%;
+}
+
+.player-deck-text, .opponent-deck-text {
+    width: 30%;
+    padding-left: 1em;
+}
+
+
+.player-deck-num, .opponent-deck-num {
+    width: 20%;
+    padding: 1em;
+    padding-left: 2em;
+}
+
+
 /* Adjustments for larger screens */
+@media (min-width: 375px) {
+    .card-stats {
+        top: 8em;
+    }
+}
+
 @media (min-width: 576px) {
+    #player-card, #opponent-card {
+        width: 48%; 
+    }
     .card-container {
-        width: 48%;
+        width: 100%;
         height: auto;
     }
 
     .card {
-        width: 100%;
+        width: 90%;
     }
 
     .card-name {
