@@ -9,10 +9,10 @@
 </head>
 <body>
   <div class="d-flex flex-column min-vh-100">
-    <header>    
+    <header class="header">    
       <img src="assets/images/pokebattler-logo.webp" alt="PokeBattler Logo">
     </header>
-    <main>
+    <main class="flex-grow-1">
       <!-- Welcome Message with game instructions -->
       <div class="header">
         <div class="hero_image">
@@ -22,23 +22,22 @@
       </div>
       <div class="instructions">
         <h2>Game Instructions</h2>
-        <p>Each card has 4 statistics to choose from, you will pick one of these in the hopes of it being better than the corresponding statistic on your opponents card. 
-        Depending on the statistic in question, you may be looking for higher or lower numbers. Once you have made your choice it will be compared to the same statistic
-        on your opponents card and the better score will win. If you win, your opponent loses a card and you go again. If your opponent wins you lose a card and its their
-        turn.</p>
+        <p>Each card has 4 statistics to choose from, you need to pick one of these in the hopes of it being better than the corresponding statistic on your opponents card. 
+        You want your statistic to be the higher number. Once you have made your choice it will be compared to the same statistic on your opponents card and the better score will win. 
+        If you win, your opponent loses a card and you go again. If your opponent wins you lose a card and its their turn. If its a draw the current player goes again.</p>
         <p>The game will continue until one player loses all their cards.</p>
         <p>To begin, please enter your name below.</p>
         <!-- player name form -->
         <div class="player_data">
           <form id="name_form">
-            <label for="player_name">Playername: </label>
+            <label for="player_name">Player Name: </label>
               <input type="text" id="player_name" name="player_name">
               <button type="submit" id="submit">Play Game</button>
           </form>
         </div>   
       </div>
     </main>
-    <footer>
+    <footer class="d-flex flex-column footer">
       <!-- footer content  -->
       <p>Find me on Github
         <a href="https://github.com/monkphin" target="_blank" rel="noopener" aria-label="Github (Opens in a new Tab)"><i class="fab fa-github"></i></a> 
