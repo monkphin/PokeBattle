@@ -1,7 +1,7 @@
 //-----------------------------------------Game Start
 /**
  * Check to ensure the DOM is loaded.
- * This will ensure the form is initialised to listen for events. 
+ * This will ensure that the index.html and game.html are fully initialised. 
  * Also checks for the name_form element on the index page and sets up for submission
  * various functions required for the app are also being triggered here. 
  */
@@ -17,17 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /**
- * Several variables that are called in multiple functions - grouping these for ease of finding them
- * playerTurn is a bool to ensure that the player cannot interact with the game when its not their turn
- * cards is the array of cards that makes up the game deck. 
- * numberOfWins, numberOfLosses and numberOfDraws track the count of win, lose and draw
- * the three const's to track specific HTML elements that messages are sent to. 
+ * Global variables used across multiple functions.
+ * playerTurn - Bool to make sure that the player can't interact with the game when it's the opponent turn. 
+ * endOfGame - Bool to signal the end of the game.
+ * cards - Array that makes up the game deck.
+ * numberOfWins, numberOfLosses, numberOfDraws - these track the count of wins, losses, and draws.
+ * turnTimer, opponentTimer: Timers for managing messaging.
+ * outputMessage, winLossArea, deckSizeArea: HTML elements for rendering messages, win/loss area, and deck size area.
  */
 
-/**
-* Several variables that are called in multiple functions - grouping these
-* for clarity
-*/
 let playerTurn = true;
 let endOfGame = false;
 let cards = [];
@@ -39,6 +37,11 @@ let opponentTimer
 const outputMessage = document.getElementById('message-area');
 const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
+
+
+/**
+ * Arrays of images for large or small screens. 
+ */
 
 const largeScreenImages = [
     'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/squirtle.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/weedle.webp',
@@ -67,8 +70,7 @@ const smallScreenImages = [
 ];
 
 /**
-* Single function to render all default none card text content, which is
-* present at the start of the game - could look into cleaning this up in the future. 
+ * Renders default none-card text content, which is present at the start of the game
 */
 
 function setPermElements() {
@@ -92,12 +94,11 @@ function setPermElements() {
 //-----------------------------------------Player Information 
   
 /**
-* This function is used to collect the player name from the index page
-* and pass to the storePlayerName function - once entered it will load
-* the game.html page. 
-* If the player does not enter their name, it kicks an alert requesting this
-and preventing the player continuing. 
-*/
+ * Handles form submission for index.html, storing the players name via the 
+ * storePlayerName function before redirecting to the game page. 
+ * This pops an alert if the player fails to enter their name. 
+ *  @param {Event} e - The form submit event.
+ */
 function handleSubmit(e) {
   e.preventDefault();
   let name = document.getElementById('player_name').value;
@@ -111,16 +112,18 @@ function handleSubmit(e) {
 };
     
 /**
-* The below functions store and retrain the player name, using localStorage.
-*  https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-* Found issues with localStorage on Github pages, this link suggests
-* that it may also cause data to persist. Shifted to sessionStorage instead
-* https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page
-*/
+ * Stores the players name using sessionStorage  
+ * Found issues with localStorage when using Github pages. So moved to sessionStorage
+ * https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page
+ */
 function storePlayerName(name) {
   sessionStorage.setItem('playerName', name);
 };
     
+/**
+ * Retrieves players name from sessionStorage.
+ * @returns {string} - Player name. 
+ */
 function retrievePlayerName() {
   let playerName = sessionStorage.getItem('playerName');
   return playerName;
@@ -128,11 +131,8 @@ function retrievePlayerName() {
     
 
 /** 
-* Throws a welcome message to the game.html page when loaded
-* this presents the players name retrieved from local storage. 
-* This calls on the presentData function to allow for quick/easy HTML gen
-* without the need to contain entire blocks within back-tics. 
-*/
+ * Throws a welcome message to game.html page when loaded
+ */
 function displayPlayerName() {
   let playerName = retrievePlayerName();
   const welcomePlayer = presentData('h1',`Welcome to PokeBattle ${playerName}`);
@@ -145,9 +145,11 @@ function displayPlayerName() {
 //-----------------------------------------Deck Constructor 
   
 /**
-* Function to create card data using nested RNG objects for the stats 
-* and pulling the name/image from the cardInit function 
-*/
+ * Creates card data as an object with a  name, image, and randomised stats.  
+ * @param {string} name - card name 
+ * @param {string} image - the image for the card.  
+ * @returns {Object} - the cards object. 
+ */
 function buildCard(name, image) {
   return {
     name: name,
@@ -161,6 +163,11 @@ function buildCard(name, image) {
   };
 };
 
+/**
+ * Provides the relevant image array dependant on screen size. 
+ * @returns {Array} - array of image paths. 
+ */
+
 function cardImageSize() {
   if (window.innerWidth < 576) {
     return smallScreenImages;
@@ -170,10 +177,9 @@ function cardImageSize() {
 };
 
 /**
-* Each card will feature a name, a card image and 4 stats. 
-* The function below will be responsible for providing the Name/image
-* from a pair of arrays. 
-*/
+ * Initialises the card deck with names and images
+ * @returns {Array} - array of cards. 
+ */
 function cardInit() {
   const cardName = [
     'Bulbasaur', 'Charmander', 'Squirtle', 'Caterpie', 'Weedle',
@@ -202,10 +208,12 @@ function cardInit() {
 };
   
 /**
-* Function to shuffle the deck using a Fisher-Yates algorithm 
-* function taken from this website
-* https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-*/
+ * Shuffles the deck using a Fisher-Yates algorithm 
+ * function taken from this website
+ * https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+ * @param {Array} array - the array to shuffle.
+ * @returns {Array} - the shuffled deck
+ */
 const shuffleCards = array => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -217,8 +225,9 @@ const shuffleCards = array => {
 };
   
 /**
-* Creates decks for both players from the previously generated card pool. 
-*/
+ * Creates decks for both players from the previously generated card pool. 
+ * @returns {Object} - Object containing the playerDeck and OpponentDeck
+ */
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
@@ -238,12 +247,13 @@ function cardPicker() {
 };
   
 //-----------------------------------------Front End presentation 
+
 /**
-* Re-usable function to simplify adding JS created data to the HTML. 
-* This can be called and have the element and content passed to it, 
-* which it will then return as the needed HTML. 
-* Concept taken from additional studying via a skillshare JS course
-*/
+ * Reusable function to return a HTML element with content. 
+ * @param {string} elementName - the type of HTML element.  
+ * @param {string} elementContent - the content of the element.  
+ * @returns {HTMLElement} - the created element. 
+ */
 function presentData(elementName, elementContent) {
   const element = document.createElement(elementName);
   const content = document.createTextNode(elementContent);
@@ -252,11 +262,10 @@ function presentData(elementName, elementContent) {
 };
   
 /** 
-* Present both players cards to HTML using the cardRender function 
-* to keep things much simpler here. This effectively determines 
-* which deck is the players - Should merge this with 
-* the cardRender function, since this feels superfluous. 
-*/
+ * Present both players cards to HTML using the cardRender function 
+ * @param {Object} card - the card to display
+ * @param {string} player - which player the card is for. 
+ */
 function showCard(card, player) {
   if(player === 'player') {
     cardRender('player-card', card);
@@ -266,14 +275,10 @@ function showCard(card, player) {
 };
   
 /**
-* cardRender function is designed to take the element ID
-* from the webpage to show each players card in its own div
-* this is then passed as an argument along with the card from
-* showCard, the name and image are appended as children to the 
-* div, with the stats being turned into an array which is then 
-* iterated through to generate the list using listCreator
-*/
-  
+ * Renders the cards image, name and stats. 
+ * @param {string} elementId - the ID of the element we want to render the card in. 
+ * @param {Object} card - the card to render. 
+ */
 function cardRender(elementId, card) {
   if (endOfGame) return;
 
@@ -316,16 +321,14 @@ function cardRender(elementId, card) {
 
   cardElement.appendChild(cardContainer);
 }
-
-
-
-
   
 /**
-* Adding new list creator function since I need to also show statNames alongside stat numbers, 
-* this will take the output of showCard and utilise the createElement function rather than 
-* have the showCard function pass directly into createElement 
-*/
+ * Creates a bootstrap grid which serves to list the cardstats. ALso attaches an event listener for user interaction.
+ * @param {string} statName - the name of hte stat. 
+ * @param {number} statValue - the value of the stat. 
+ * @param {string} elementId - the ID of the element
+ * @returns {HTMLElement} - the created stat item. 
+ */
 function listCreator(statName, statValue, elementId) {
   const cardListWrapper = document.createElement('div');
   cardListWrapper.className = 'row stat-item';
@@ -362,10 +365,11 @@ function listCreator(statName, statValue, elementId) {
 //-----------------------------------------Game Loops
   
 /**
-* Initial loop to compare selected stats and kick out a message to the player
-* This takes stats from the eventListener in listCreator and does a simple
-* comparison providing outcomes for each possible result.  
-*/
+ * Handles the selection of the stat and sends to resolveRound to handle round resolution. 
+ * @param {string} statName - The name of the selected stat.  
+ * @param {null} statValue - the value of the selected stat. 
+ * @param {string} elementId - the ID of the element. 
+ */
 function statSelection(statName, statValue, elementId) {
   playerStatName = statName;
   playerStatValue = statValue;
@@ -374,13 +378,14 @@ function statSelection(statName, statValue, elementId) {
 };
 
 /**
-* Function compares selected player stat with the equivalent opponent stat then
-* kicks a message outComeHandler to deal with displaying win/lose/draw 
-* This also kicks which player won to the winLossCounter to 
-* allow tracking of count of wins/losses
-* added delay timer when calling show card
-*  using https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
-*/
+ * Resolves the round - this compares the player and opponent stats
+ * updates the win/loss/draw counter and displays the outcome of the round. 
+ * Added a delay to show the opponent card to make things look more organic
+ *  using https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
+ * @param {number} playerStatValue - the players selected stat value
+ * @param {number} opponentStatValue - the comparable opponent stat value
+ * @param {string} elementId - the ID of the element. 
+ */
 function resolveRound (playerStatValue, opponentStatValue, elementId) {
   if(playerStatValue > opponentStatValue) {
     if (endOfGame) return;
@@ -414,6 +419,9 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
   checkEndGame()
 };
 
+/**
+ * Checks if the game has ended by checking if either deck is 0.
+ */
 function checkEndGame() {
   if (activeCard.playerDeck.length === 0) {
     endGame('Opponent');
@@ -422,6 +430,10 @@ function checkEndGame() {
   }
 };
   
+/**
+ * Ends the game and shows the final result. Along with number of turns won/lost/drawn
+ * @param {string} winner - the winner of the game. 
+ */
 function endGame(winner) {
   endOfGame = true;
   let playerName = retrievePlayerName();
@@ -464,12 +476,10 @@ function endGame(winner) {
 };
   
 /**
-* Struggled with this, but realised I may be able to use a similar approach to 
-* that  used in cardRender function to help - had issues breaking out stat names and stats. 
-* before hand - found this stack overflow page which helped with random picking, realised I could 
-* use the results of this to check against the stats in activeCard.opponentDeck.stats
-* https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object 
-*/
+ * Handles the opponents turn by randomly picking a stat to resolve via resolveRound used the below
+ * for guidance on this. 
+ * https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object 
+ */
 function opponentTurn() {
   if (endOfGame) return;
   const statNames = ['attack', 'defense', 'special', 'speed']
@@ -488,13 +498,14 @@ function opponentTurn() {
     playerTurn = true;
   }, 3500);
 };
-  
+
 /**
-* Outcome handler moves the current card to either the player or opponent
-* depending on who won, this also moves the currently active card of the winner
-* to the back of their deck, forcing a new card to be used. This then calls 
-* updateDeckCount to show how big each players deck is 
-*/
+ * Hands the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
+ * @param {Array} winnerDeck - the winning players deck
+ * @param {Array} loserDeck - the losing players deck. 
+ * @param {string} outcome - the outcome of the round 
+ * @param {string} message - the message to show the player based on the outcome. 
+ */
 function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
   const winMessage = presentData('h3', message);
   outputMessage.innerHTML = '';
@@ -513,10 +524,8 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
 };
 
 /**
-* updateDeckCount simply takes a count of each players deck and throws it
-* to the webpage allowing the player to know what the current state of 
-* play is regarding the deck sizes. 
-*/
+ * updates the dusplayed deck counts for each player
+ */
 function updateDeckCount() {
   const playerDeckSizeElement = document.getElementById('player-deck-size');
   const opponentDeckSizeElement = document.getElementById('opponent-deck-size');
@@ -527,9 +536,9 @@ function updateDeckCount() {
 };
   
 /**
- *  winLossCounter takes the outcome of resolve round, this then checks
- * if the winner was the player or the opponent and increments the score 
- * on the webpage. 
+ * Updates the win/loss/draw counters to reflect round outcome. 
+ * @param {string} winner - the rounds winner.  
+ * @returns {number, number, number} nunmberOfWins, numberOfLosses, numberOFDraws - the number of wins/losses/draws. 
  */
 function winLossCounter(winner) {
   if (winner === 'player') {
@@ -542,6 +551,11 @@ function winLossCounter(winner) {
  return numberOfWins, numberOfLosses, numberOfDraws;
 };
 
+
+/**
+ * Breifly displays a message to the player to show outcomes. 
+ * @param {string} message - they message to display. 
+ */
 function displayMessage(message) {
     const messageArea = document.getElementById('message-area');
     messageArea.textContent = message;
@@ -554,8 +568,6 @@ function displayMessage(message) {
   
 /**
 * -----------------------------------------------------------------------------------TO DO 
-* Game Over
-* Add CSS Classes to any Elements that lack them
 * mouse over interactions for stat selection
 */
   
