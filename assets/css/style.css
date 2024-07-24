@@ -104,14 +104,19 @@ body {
 }
 
 #deck-size-area {
-    margin-top: 5%;
+    background: rgba(255, 255, 255, 0.8);
+    filter: drop-shadow(black 1rem 1rem 10px);
+    width: 100%;
+    border: 2px solid #000;
+    border-radius: 10px;
+    margin-top: 10%;
+    margin-left: 0.15em;
 }
 
 .player-deck-text, .opponent-deck-text {
     width: 30%;
     padding-left: 1em;
 }
-
 
 .player-deck-num, .opponent-deck-num {
     width: 20%;
@@ -120,18 +125,17 @@ body {
 }
 
 #message-area {
-    background-color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.8);
+    filter: drop-shadow(black 1rem 1rem 10px);
+    width: 80%;
     border: 2px solid #000;
     border-radius: 10px;
-    padding: 1em;
-    font-size: 1.2em;
     font-weight: bold;
     text-align: center;
     position: fixed;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
 }
 
 
