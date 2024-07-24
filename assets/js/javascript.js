@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * endOfGame - Bool to signal the end of the game.
  * cards - Array that makes up the game deck.
  * numberOfWins, numberOfLosses, numberOfDraws - these track the count of wins, losses, and draws.
- * turnTimer, opponentTimer: Timers for managing messaging.
+ * turnTimer, opponentTimer, messageTimer: Timers for allowing timers to be called and cleared at the end of the game to prevent reloading. 
  * outputMessage, winLossArea, deckSizeArea: HTML elements for rendering messages, win/loss area, and deck size area.
  */
 
@@ -33,7 +33,8 @@ let numberOfWins = 0;
 let numberOfLosses = 0;
 let numberOfDraws = 0;
 let turnTimer;
-let opponentTimer
+let opponentTimer;
+let messageTimer;
 const outputMessage = document.getElementById('message-area');
 const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
@@ -231,8 +232,8 @@ const shuffleCards = array => {
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
-  const playerDeck = shuffledDeck.splice(0, 20);
-  const opponentDeck = shuffledDeck.slice(0, 20);
+  const playerDeck = shuffledDeck.splice(0, 3);
+  const opponentDeck = shuffledDeck.slice(0, 3);
   
   return {playerDeck, opponentDeck};
 };
@@ -473,6 +474,7 @@ function endGame(winner) {
   // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave ideas to clear timers due to functions continuing after game end
   clearTimeout(turnTimer);
   clearTimeout(opponentTimer);
+  clearTimeout(messageTimer);
 };
   
 /**
@@ -554,16 +556,16 @@ function winLossCounter(winner) {
 
 /**
  * Breifly displays a message to the player to show outcomes. 
- * @param {string} message - they message to display. 
+ * @param {string} message - the message to display. 
  */
 function displayMessage(message) {
     const messageArea = document.getElementById('message-area');
     messageArea.textContent = message;
     messageArea.style.display = 'block';
     
-    setTimeout(() => {
+    let messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 2000); // Clear the message after 2 seconds
+    }, 2000);
 }
   
 /**
