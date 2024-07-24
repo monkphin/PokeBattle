@@ -1,3 +1,12 @@
+body {
+    background-image: linear-gradient(rgb(17, 29, 141), white);
+    height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
 /* Default styles for small screens */
 .trainers_image {
     width: 100%;
@@ -74,11 +83,11 @@
 }
 
 .stat-name {
-font-size: 0.5em;
+font-size: 0.8em;
 }
 
 .stat-value {
-    font-size: 0.7em;
+    font-size: 0.8em;
 }
 
 .hidden {
