@@ -54,16 +54,16 @@ const largeScreenImages = [
 ];  
   
 const smallScreenImages = [
-    'assets/images/small_pokemon/bulbasaur.webp', 'assets/images/small_pokemon/charmander.webp', 'assets/images/small_pokemon/squirtle.webp', 'assets/images/small_pokemon/caterpie.webp', 'assets/images/small_pokemon/weedle.webp', 
-    'assets/images/small_pokemon/pidgey.webp', 'assets/images/small_pokemon/rattata.webp', 'assets/images/small_pokemon/spearow.webp', 'assets/images/small_pokemon/ekans.webp', 'assets/images/small_pokemon/pikachu.webp',
-    'assets/images/small_pokemon/sandshrew.webp', 'assets/images/small_pokemon/nidoran.webp', 'assets/images/small_pokemon/clefairy.webp', 'assets/images/small_pokemon/vulpix.webp', 'assets/images/small_pokemon/jigglypuff.webp',
-    'assets/images/small_pokemon/zubat.webp', 'assets/images/small_pokemon/oddish.webp', 'assets/images/small_pokemon/paras.webp', 'assets/images/small_pokemon/venonat.webp', 'assets/images/small_pokemon/diglett.webp',
-    'assets/images/small_pokemon/meowth.webp', 'assets/images/small_pokemon/psyduck.webp', 'assets/images/small_pokemon/mankey.webp', 'assets/images/small_pokemon/growlithe.webp', 'assets/images/small_pokemon/poliwag.webp',
-    'assets/images/small_pokemon/abra.webp', 'assets/images/small_pokemon/machop.webp', 'assets/images/small_pokemon/bellsprout.webp', 'assets/images/small_pokemon/tentacool.webp', 'assets/images/small_pokemon/geodude.avf',
-    'assets/images/small_pokemon/ponyta.webp', 'assets/images/small_pokemon/slowpoke.webp', 'assets/images/small_pokemon/magnemite.webp', 'assets/images/small_pokemon/farfetchd.webp', 'assets/images/small_pokemon/doduo.webp',
-    'assets/images/small_pokemon/seel.webp', 'assets/images/small_pokemon/grimer.webp', 'assets/images/small_pokemon/shellder.webp', 'assets/images/small_pokemon/ghastly.webp', 'assets/images/small_pokemon/onix.webp',
-    'assets/images/small_pokemon/drowzee.webp', 'assets/images/small_pokemon/krabby.webp', 'assets/images/small_pokemon/voltorb.webp', 'assets/images/small_pokemon/exeggcute.webp', 'assets/images/small_pokemon/cubone.webp',
-    'assets/images/small_pokemon/hitmonlee.webp', 'assets/images/small_pokemon/lickitung.webp', 'assets/images/small_pokemon/koffing.webp',   
+    'assets/images/small_cards/bulbasaur.webp', 'assets/images/small_cards/charmander.webp', 'assets/images/small_cards/squirtle.webp', 'assets/images/small_cards/caterpie.webp', 'assets/images/small_cards/weedle.webp', 
+    'assets/images/small_cards/pidgey.webp', 'assets/images/small_cards/rattata.webp', 'assets/images/small_cards/spearow.webp', 'assets/images/small_cards/ekans.webp', 'assets/images/small_cards/pikachu.webp',
+    'assets/images/small_cards/sandshrew.webp', 'assets/images/small_cards/nidoran.webp', 'assets/images/small_cards/clefairy.webp', 'assets/images/small_cards/vulpix.webp', 'assets/images/small_cards/jigglypuff.webp',
+    'assets/images/small_cards/zubat.webp', 'assets/images/small_cards/oddish.webp', 'assets/images/small_cards/paras.webp', 'assets/images/small_cards/venonat.webp', 'assets/images/small_cards/diglett.webp',
+    'assets/images/small_cards/meowth.webp', 'assets/images/small_cards/psyduck.webp', 'assets/images/small_cards/mankey.webp', 'assets/images/small_cards/growlithe.webp', 'assets/images/small_cards/poliwag.webp',
+    'assets/images/small_cards/abra.webp', 'assets/images/small_cards/machop.webp', 'assets/images/small_cards/bellsprout.webp', 'assets/images/small_cards/tentacool.webp', 'assets/images/small_cards/geodude.avf',
+    'assets/images/small_cards/ponyta.webp', 'assets/images/small_cards/slowpoke.webp', 'assets/images/small_cards/magnemite.webp', 'assets/images/small_cards/farfetchd.webp', 'assets/images/small_cards/doduo.webp',
+    'assets/images/small_cards/seel.webp', 'assets/images/small_cards/grimer.webp', 'assets/images/small_cards/shellder.webp', 'assets/images/small_cards/ghastly.webp', 'assets/images/small_cards/onix.webp',
+    'assets/images/small_cards/drowzee.webp', 'assets/images/small_cards/krabby.webp', 'assets/images/small_cards/voltorb.webp', 'assets/images/small_cards/exeggcute.webp', 'assets/images/small_cards/cubone.webp',
+    'assets/images/small_cards/hitmonlee.webp', 'assets/images/small_cards/lickitung.webp', 'assets/images/small_cards/koffing.webp',   
 ];
 
 /**
