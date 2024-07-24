@@ -297,7 +297,7 @@ function cardRender(elementId, card) {
 
   const statsContainer = document.createElement('div');
   statsContainer.className = 'card-stats';
-  if (elementId === 'opponent_card') {
+  if (elementId === 'opponent-card') {
     statsContainer.classList.add('hidden');
   }
 
