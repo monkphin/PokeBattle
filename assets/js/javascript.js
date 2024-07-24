@@ -39,14 +39,8 @@ let opponentTimer
 const outputMessage = document.getElementById('message_area');
 const winLossArea = document.getElementById('win-loss-area');
 const deckSizeArea = document.getElementById('deck-size-area');
-const statNamesMapping = {
-    attack: 'Attack Power',
-    defense: 'Defense Ability',
-    specialAttack: 'Special Attack Power',
-    specialDefense: 'Special Defense Ability'
-  };
 
-  const largeScreenImages = [
+const largeScreenImages = [
     'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/squirtle.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/weedle.webp',
     'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/rattata.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/pikachu.webp',
     'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/nidoran.webp', 'assets/images/large_cards/clefairy.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/jigglypuff.webp',
@@ -57,9 +51,9 @@ const statNamesMapping = {
     'assets/images/large_cards/seel.webp', 'assets/images/large_cards/grimer.webp', 'assets/images/large_cards/shellder.webp', 'assets/images/large_cards/ghastly.webp', 'assets/images/large_cards/onix.webp',
     'assets/images/large_cards/drowzee.webp', 'assets/images/large_cards/krabby.webp', 'assets/images/large_cards/voltorb.webp', 'assets/images/large_cards/exeggcute.webp', 'assets/images/large_cards/cubone.webp',
     'assets/images/large_cards/hitmonlee.webp', 'assets/images/large_cards/lickitung.webp', 'assets/images/large_cards/koffing.webp',
-  ];  
+];  
   
-  const smallScreenImages = [
+const smallScreenImages = [
     'assets/images/small_pokemon/bulbasaur.webp', 'assets/images/small_pokemon/charmander.webp', 'assets/images/small_pokemon/squirtle.webp', 'assets/images/small_pokemon/caterpie.webp', 'assets/images/small_pokemon/weedle.webp', 
     'assets/images/small_pokemon/pidgey.webp', 'assets/images/small_pokemon/rattata.webp', 'assets/images/small_pokemon/spearow.webp', 'assets/images/small_pokemon/ekans.webp', 'assets/images/small_pokemon/pikachu.webp',
     'assets/images/small_pokemon/sandshrew.webp', 'assets/images/small_pokemon/nidoran.webp', 'assets/images/small_pokemon/clefairy.webp', 'assets/images/small_pokemon/vulpix.webp', 'assets/images/small_pokemon/jigglypuff.webp',
@@ -70,14 +64,14 @@ const statNamesMapping = {
     'assets/images/small_pokemon/seel.webp', 'assets/images/small_pokemon/grimer.webp', 'assets/images/small_pokemon/shellder.webp', 'assets/images/small_pokemon/ghastly.webp', 'assets/images/small_pokemon/onix.webp',
     'assets/images/small_pokemon/drowzee.webp', 'assets/images/small_pokemon/krabby.webp', 'assets/images/small_pokemon/voltorb.webp', 'assets/images/small_pokemon/exeggcute.webp', 'assets/images/small_pokemon/cubone.webp',
     'assets/images/small_pokemon/hitmonlee.webp', 'assets/images/small_pokemon/lickitung.webp', 'assets/images/small_pokemon/koffing.webp',   
-  ];
+];
+
 /**
 * Single function to render all default none card text content, which is
 * present at the start of the game - could look into cleaning this up in the future. 
 */
 
 function setPermElements() {
- 
   const playerCardCount = presentData('div', 'Player deck size: ');
   playerCardCount.className = 'col-sm-3';
   deckSizeArea.appendChild(playerCardCount);
@@ -156,17 +150,17 @@ function displayPlayerName() {
 */
 function buildCard(name, image) {
   return {
-    name : name,
-    image : image,
-    stats : {
-      attack : Math.ceil(Math.random() * 10),
-      defense : Math.ceil(Math.random() * 10),
-      specialAttack : Math.ceil(Math.random() * 10),
-      specialDefense : Math.ceil(Math.random() * 10),
-    },       
+    name: name,
+    image: image,
+    stats: {
+      attack: Math.ceil(Math.random() * 10),
+      defense: Math.ceil(Math.random() * 10),
+      special: Math.ceil(Math.random() * 10),
+      speed: Math.ceil(Math.random() * 10),
+    },
   };
 };
-  
+
 function cardImageSize() {
   if (window.innerWidth < 576) {
     return smallScreenImages;
@@ -194,13 +188,13 @@ function cardInit() {
     'Hitmonlee', 'Lickitung', 'Koffing',
   ];
 
-const cardImage = cardImageSize();
+  const cardImage = cardImageSize();
   
-//for loop to pull each name/image combo from the two arrays
+  //for loop to pull each name/image combo from the two arrays
   if(cardName.length === cardImage.length) { 
     for(let i = 0; i < cardName.length; i++) {
       cards.push(buildCard(cardName[i], cardImage[i]));
-      };
+    };
   } else {
     console.log('The cardInit Arrays are not an equal length.')
   }
@@ -265,11 +259,9 @@ function presentData(elementName, elementContent) {
 */
 function showCard(card, player) {
   if(player === 'player') {
-    
-    cardRender('player_card', card);
+    cardRender('player-card', card);
   } else {
-    
-    cardRender('opponent_card', card);
+    cardRender('opponent-card', card);
   };
 };
   
@@ -289,31 +281,44 @@ function cardRender(elementId, card) {
 
   cardElement.innerHTML = '';
 
+  const cardContainer = document.createElement('div');
+  cardContainer.className = 'card-container';
+
+  const cardContent = document.createElement('div');
+  cardContent.className = 'card';
+
   const cardName = presentData('h3', card.name);
   cardName.className = 'card-name';
-
-  const statsContainer = document.createElement('div');
-  statsContainer.className = 'card-stats row';
-  if (elementId === 'opponent_card') {
-      statsContainer.classList.add('hidden');
-  }
-
-  const stats = ['attack', 'defense', 'specialAttack', 'specialDefense'];
-  for (let i = 0; i < stats.length; i++) {
-      const stat = stats[i];
-      const listItem = listCreator(stat, card.stats[stat], elementId);
-      statsContainer.appendChild(listItem);
-  }
 
   const cardImg = document.createElement('img');
   cardImg.src = card.image;
   cardImg.alt = card.name + ' Pokemon card';
   cardImg.className = 'card-image';
 
-  cardElement.appendChild(cardName);
-  cardElement.appendChild(cardImg);
-  cardElement.appendChild(statsContainer);
+  const statsContainer = document.createElement('div');
+  statsContainer.className = 'card-stats';
+  if (elementId === 'opponent_card') {
+    statsContainer.classList.add('hidden');
+  }
+
+  const stats = ['attack', 'defense', 'special', 'speed'];
+  for (let i = 0; i < stats.length; i++) {
+    const stat = stats[i];
+    const listItem = listCreator(stat, card.stats[stat], elementId);
+    statsContainer.appendChild(listItem);
+  }
+
+  cardContent.appendChild(cardImg);
+  cardContent.appendChild(statsContainer);
+
+  cardContainer.appendChild(cardName);
+  cardContainer.appendChild(cardContent);
+
+  cardElement.appendChild(cardContainer);
 }
+
+
+
 
   
 /**
@@ -325,11 +330,9 @@ function listCreator(statName, statValue, elementId) {
   const cardListWrapper = document.createElement('div');
   cardListWrapper.className = 'row stat-item';
 
-  const descriptiveName = statNamesMapping[statName];
-
   const nameSpan = document.createElement('div');
   nameSpan.className = 'stat-name';
-  nameSpan.textContent = descriptiveName + ':';
+  nameSpan.textContent = statName.charAt(0).toUpperCase() + statName.slice(1) + ':';
 
   const valueSpan = document.createElement('div');
   valueSpan.className = 'stat-value';
@@ -346,7 +349,7 @@ function listCreator(statName, statValue, elementId) {
       if (playerTurn) {
           statSelection(statName, statValue, elementId);
 
-          const showStats = document.querySelector('#opponent_card .card-stats');
+          const showStats = document.querySelector('#opponent-card .card-stats');
           if (showStats) {
               showStats.classList.remove('hidden');
           }
@@ -390,7 +393,7 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
       opponentTurn()}, 3500);
-  } else if(playerStatValue === opponentStatValue && elementId === 'player_card') {
+  } else if(playerStatValue === opponentStatValue && elementId === 'player-card') {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!');
     winLossCounter('draw')
     playerTurn = true;
@@ -457,7 +460,7 @@ function endGame(winner) {
   outputMessage.appendChild(newGameButton);
   // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave ideas to clear timers due to functions continuing after game end
   clearTimeout(turnTimer);
-    clearTimeout(opponentTimer);
+  clearTimeout(opponentTimer);
 };
   
 /**
@@ -469,10 +472,10 @@ function endGame(winner) {
 */
 function opponentTurn() {
   if (endOfGame) return;
-  const statNames = ['attack', 'defense', 'specialAttack', 'specialDefense']
+  const statNames = ['attack', 'defense', 'special', 'speed']
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
-  const showStats = document.querySelector('#opponent_card .card-stats')
+  const showStats = document.querySelector('#opponentcard .card-stats')
   if (showStats) {
     showStats.classList.remove('hidden');
   };
@@ -509,8 +512,6 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
   updateDeckCount();
 };
 
-
-
 /**
 * updateDeckCount simply takes a count of each players deck and throws it
 * to the webpage allowing the player to know what the current state of 
@@ -525,18 +526,18 @@ function updateDeckCount() {
 
 };
   
-  /**
-   *  winLossCounter takes the outcome of resolve round, this then checks
-   * if the winner was the player or the opponent and increments the score 
-   * on the webpage. 
-   */
+/**
+ *  winLossCounter takes the outcome of resolve round, this then checks
+ * if the winner was the player or the opponent and increments the score 
+ * on the webpage. 
+ */
 function winLossCounter(winner) {
   if (winner === 'player') {
     numberOfWins++;
   } else if (winner === 'opponent') {
     numberOfLosses++;
   } else {
-    numberOfDraws++
+    numberOfDraws++;
   };    
  return numberOfWins, numberOfLosses, numberOfDraws;
 };
@@ -570,16 +571,16 @@ function displayMessage(message) {
 // let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
 // console.log("Shuffled cards:", shuffledCards);
 //----------Deck creation testing - should generate an array with both players decks
-//  let player = playerDeck)
-//  console.log(player);
+// let player = playerDeck)
+// console.log(player);
 //----------Testing pulling a single card - can filter for properties, eg .name, .image etc
 // let singleCard = cards[0]; 
 // console.log("Single card:", singleCard.name);
 // console.log("Single card:", singleCard.image);
 // console.log("Single card:", singleCard.stats.attack);
 // console.log("Single card:", singleCard.stats.defense);
-// console.log("Single card:", singleCard.stats.specialAttack);
-// console.log("Single card:", singleCard.stats.specialDefense);
+// console.log("Single card:", singleCard.stats.special);
+// console.log("Single card:", singleCard.stats.speed);
 //----------Card picker testing
 // activeCard = createDecks();
 // console.log(activeCard.playerDeck[0]);
