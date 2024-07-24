@@ -1,23 +1,25 @@
 /* Global CSS */
 
+body {
+    background-image: linear-gradient(rgb(17, 29, 141), white);
+    min-height: 100vh;
+    margin: 0;
+}
+
 .header {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-body {
-    background-image: linear-gradient(rgb(17, 29, 141), white);
-    height: 100vh;
-    margin: 0;
-}
-
 .footer {
-    position: relative;
+    position: fixed;
+    bottom: 0;
     font-size: 1.2em;
     font-weight: bold;
     text-align: center;
     width: 100%;
+    margin-top: -200px;
 }
 
 /* Default styles for smallest screens */
@@ -27,9 +29,10 @@ body {
     position: absolute;
     background: rgba(255, 255, 255, 0.8);
     filter: drop-shadow(black 1rem 1rem 10px);
-    left: 10%;
-    top: 34%;
-    width: 80%;
+    font-size: 0.75em;
+    left: 5%;
+    top: 40%;
+    width: 90%;
     border: 2px solid #000;
     border-radius: 10px;
     font-weight: bold;
@@ -92,9 +95,10 @@ body {
     position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    top: 55%;
     width: 90%;
     bottom: 5px;
-    left: 1.8em;
+    left: 17%;
 }
 
 .stat-item {
@@ -106,17 +110,17 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: background-color 0.3s, color 0.3s; /* Add transition for smooth color change */
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 .stat-item:hover {
-    background-color: rgba(0, 123, 255, 0.8); /* Change background color on hover */
-    color: white; /* Change text color on hover */
+    background-color: rgba(0, 123, 255, 0.8);
+    color: white; 
 }
 
 .stat-item:active {
-    background-color: rgba(0, 86, 179, 0.8); /* Change background color on click */
-    color: white; /* Ensure text color remains white when clicked */
+    background-color: rgba(0, 86, 179, 0.8);
+    color: white; 
 }
 
 .stat-name, .stat-value {
