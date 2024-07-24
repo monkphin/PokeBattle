@@ -453,7 +453,6 @@ function endGame(winner) {
   });
 
   outputMessage.innerHTML = '';
-  winLossArea.innerHTML = '';
   deckSizeArea.innerHTML = '';
   let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
   if (winner === 'Player') {
