@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', handleSubmit);
   };
   displayPlayerName();
-  cardPicker();
   setPermElements();
+  cardPicker();
 });
 
 
@@ -244,6 +244,7 @@ function cardPicker() {
   activeCard = createDecks();
   showCard(activeCard.playerDeck[0], 'player');
   showCard(activeCard.opponentDeck[0], 'opponent');
+  updateDeckCount();
 };
   
 //-----------------------------------------Front End presentation 
@@ -283,7 +284,6 @@ function cardRender(elementId, card) {
   if (endOfGame) return;
 
   const cardElement = document.getElementById(elementId);
-
   cardElement.innerHTML = '';
 
   const cardContainer = document.createElement('div');
@@ -321,7 +321,7 @@ function cardRender(elementId, card) {
 
   cardElement.appendChild(cardContainer);
 }
-  
+
 /**
  * Creates a bootstrap grid which serves to list the cardstats. ALso attaches an event listener for user interaction.
  * @param {string} statName - the name of hte stat. 
@@ -481,22 +481,23 @@ function endGame(winner) {
  */
 function opponentTurn() {
   if (endOfGame) return;
-  const statNames = ['attack', 'defense', 'special', 'speed']
+  const statNames = ['attack', 'defense', 'special', 'speed'];
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
-  const showStats = document.querySelector('#opponentcard .card-stats')
+  const showStats = document.querySelector('#opponent-card .card-stats');
   if (showStats) {
     showStats.classList.remove('hidden');
-  };
+  }
   const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue}`);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(selectionMessage);
 
-  let turnTimer = setTimeout(function()  {
+  let turnTimer = setTimeout(function() {
     resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
     playerTurn = true;
   }, 3500);
-};
+}
+
 
 /**
  * Hands the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
@@ -531,8 +532,8 @@ function updateDeckCount() {
   
   playerDeckSizeElement.textContent = activeCard.playerDeck.length;
   opponentDeckSizeElement.textContent = activeCard.opponentDeck.length;
+}
 
-};
   
 /**
  * Updates the win/loss/draw counters to reflect round outcome. 
