@@ -392,7 +392,7 @@ function statSelection(statName, statValue, elementId) {
   playerStatValue = statValue;
   opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
   resolveRound(playerStatValue, opponentStatValue, elementId);
-};
+}
 
 /**
  * Resolves the round - this compares the player and opponent stats
@@ -403,24 +403,26 @@ function statSelection(statName, statValue, elementId) {
  * @param {number} opponentStatValue - the comparable opponent stat value
  * @param {string} elementId - the ID of the element. 
  */
-function resolveRound (playerStatValue, opponentStatValue, elementId) {
-  if(playerStatValue > opponentStatValue) {
+function resolveRound(playerStatValue, opponentStatValue, elementId) {
+  const statName = playerStatName; // Assuming playerStatName is globally set
+
+  if (playerStatValue > opponentStatValue) {
     if (endOfGame) return;
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round', statName, playerStatValue, opponentStatValue);
     winLossCounter('player'); 
     playerTurn = true;
-  } else if(playerStatValue < opponentStatValue)  {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
+  } else if (playerStatValue < opponentStatValue)  {
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round', statName, playerStatValue, opponentStatValue);
     winLossCounter('opponent');
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
       opponentTurn()}, 3500);
-  } else if(playerStatValue === opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!');
+  } else if (playerStatValue === opponentStatValue && elementId === 'player-card') {
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!', statName, playerStatValue, opponentStatValue);
     winLossCounter('draw')
     playerTurn = true;
   } else {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, the Enemy Trainer gets another go');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, the Enemy Trainer gets another go', statName, playerStatValue, opponentStatValue);
     winLossCounter('draw')
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
@@ -434,7 +436,7 @@ function resolveRound (playerStatValue, opponentStatValue, elementId) {
     }
   }, 2000);
   checkEndGame()
-};
+}
 
 /**
  * Checks if the game has ended by checking if either deck is 0.
@@ -485,7 +487,7 @@ function endGame(winner) {
     outputMessage.appendChild(lossMessage);
   };
   outputMessage.appendChild(newGameButton);
-  // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave ideas to clear timers due to functions continuing after game end
+  // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave the idea to clear timers due to functions continuing after game end
   clearTimeout(turnTimer);
   clearTimeout(opponentTimer);
   clearTimeout(opponentTimer);
@@ -496,6 +498,7 @@ function endGame(winner) {
  * for guidance on this. 
  * https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object 
  */
+
 function opponentTurn() {
   if (endOfGame) return;
   const statNames = ['attack', 'defense', 'special', 'speed'];
@@ -510,11 +513,10 @@ function opponentTurn() {
   outputMessage.appendChild(selectionMessage);
 
   let turnTimer = setTimeout(function() {
-    resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
+    resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue, 'opponent-card');
     playerTurn = true;
   }, 3500);
 }
-
 
 /**
  * Hands the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
@@ -522,11 +524,21 @@ function opponentTurn() {
  * @param {Array} loserDeck - the losing players deck. 
  * @param {string} outcome - the outcome of the round 
  * @param {string} message - the message to show the player based on the outcome. 
+ * @param {string} statName - the name of the selected stat.
+ * @param {number} playerStatValue - the value of the selected stat for the player.
+ * @param {number} opponentStatValue - the value of the selected stat for the opponent.
+
  */
-function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
+function outcomeHandler(winnerDeck, loserDeck, outcome, message, statName, playerStatValue, opponentStatValue) {
   const winMessage = presentData('h3', message);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(winMessage);
+
+  if (playerTurn) {
+    const selectedStatMessage = presentData('p', `You selected ${statName} with the value ${playerStatValue}, vs the enemy trainers ${statName} which has the value ${opponentStatValue}`);
+    selectedStatMessage.id = 'stat-message';
+    outputMessage.appendChild(selectedStatMessage);
+  }
 
   let gainedCard = loserDeck.shift();
   let usedCard = winnerDeck.shift();
@@ -538,7 +550,7 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
     winnerDeck.push(usedCard, gainedCard);
   };
   updateDeckCount();
-};
+}
 
 /**
  * updates the dusplayed deck counts for each player

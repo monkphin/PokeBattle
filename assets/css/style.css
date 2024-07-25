@@ -167,6 +167,12 @@ body {
     padding: 0.5em;
 }
 
+#stat-message {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
 /* Adjustments for larger screens */
 @media (min-width: 375px) {
     .card-stats {
