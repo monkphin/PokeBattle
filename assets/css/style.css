@@ -81,6 +81,7 @@ button:active {
 
 /* Index page CSS */
 .instructions {
+    font-family: "Montserrat", sans-serif;
     background: rgba(255, 255, 255, 0.8);
     font-size: 0.75em;
     width: 90%;
@@ -92,18 +93,19 @@ button:active {
 }
 
 .name-request {
+    font-family: "Montserrat", sans-serif;
     align-items: center;
     text-align: center;
 }
 
 .name-form {
+    font-family: "Montserrat", sans-serif;
     align-items: center;
     text-align: center;
 }
 
 .name-form label,
-.name-form input,
-.name-form button {
+.name-form input {
     margin: 5px;
     margin-bottom: 10px;
 }
@@ -127,6 +129,8 @@ button:active {
 }
 
 .card-container {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
     position: relative;
     display: flex;
     justify-content: center;
@@ -141,6 +145,7 @@ button:active {
 }
 
 .card-name {
+    font-family: "Montserrat", sans-serif;
     position: absolute;
     top: 0.5em;
     left: 50%;
@@ -201,6 +206,8 @@ button:active {
 }
 
 #deck-size-area {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8em;
     background: rgba(255, 255, 255, 0.8);
     width: 100%;
     border: 2px solid #000;
@@ -211,7 +218,7 @@ button:active {
 
 .player-deck-text, .opponent-deck-text {
     width: 30%;
-    padding-left: 1em;
+    padding: 1em;
 }
 
 .player-deck-num, .opponent-deck-num {
@@ -221,6 +228,7 @@ button:active {
 }
 
 #message-area {
+    font-family: "Montserrat", sans-serif;
     background: rgba(255, 255, 255, 0.8);
     top: 110%;
     border: 2px solid #000;
