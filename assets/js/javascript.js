@@ -3,16 +3,19 @@
  * Check to ensure the DOM is loaded.
  * This will ensure that the index.html and game.html are fully initialised. 
  * Also checks for the name_form element on the index page and sets up for submission
- * various functions required for the app are also being triggered here. 
+ * Function checks for the URL of the page and will only trigger functions if we're on
+ * the game.html page.
  */
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('name_form');
   if (form) {
     form.addEventListener('submit', handleSubmit);
   };
-  displayPlayerName();
-  setPermElements();
-  cardPicker();
+  if(window.location.href === 'monkphin.github.io/PokeBattle/game.html') {
+    displayPlayerName();
+    setPermElements();
+    cardPicker();
+  }
 });
 
 
