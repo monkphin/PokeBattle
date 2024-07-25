@@ -578,13 +578,12 @@ function opponentTurn() {
 function outcomeHandler(winnerDeck, loserDeck, outcome, message, statName, playerStatValue, opponentStatValue) {
   const winMessage = presentData('h3', message);
   outputMessage.innerHTML = '';
-  outputMessage.appendChild(winMessage);
-
   if (playerTurn) {
     const selectedStatMessage = presentData('p', `You selected ${statName} with the value ${playerStatValue}, vs the enemy trainers ${statName} which has the value ${opponentStatValue}`);
     selectedStatMessage.id = 'stat-message';
     outputMessage.appendChild(selectedStatMessage);
-  }
+  } 
+  outputMessage.appendChild(winMessage);
 
   let gainedCard = loserDeck.shift();
   let usedCard = winnerDeck.shift();

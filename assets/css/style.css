@@ -115,6 +115,10 @@ button:active {
 
 /* 404 Page */
 
+.lost-img {
+    width: 100%;
+    height: auto;
+}
 /* Game page CSS */
 .trainers_image {
     width: 100%;
