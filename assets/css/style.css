@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 /* Global CSS */
 html, body {
     height: 100%;
@@ -18,6 +21,22 @@ body {
     height: 100%;
     background-image: linear-gradient(rgb(17, 29, 141), white);
     z-index: -1; 
+}
+
+button {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1 solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+button:active {
+    background-color: rgba(0, 86, 179, 0.8);
 }
 
 .header {
@@ -43,6 +62,23 @@ body {
     flex-shrink: 0;
 }
 
+.footer-links {
+    font-size: 1.5em;
+}
+
+.footer-links .fa-logo {
+    color: #000;
+}
+
+.fa-logo:hover {
+    color: rgba(0, 123, 255, 0.8);
+}
+
+.fa-logo:active {
+    color: rgba(0, 86, 179, 0.8);
+}
+
+
 /* Index page CSS */
 .instructions {
     background: rgba(255, 255, 255, 0.8);
@@ -53,6 +89,23 @@ body {
     font-weight: bold;
     padding: 0.25em;
     margin: 1em 0;
+}
+
+.name-request {
+    align-items: center;
+    text-align: center;
+}
+
+.name-form {
+    align-items: center;
+    text-align: center;
+}
+
+.name-form label,
+.name-form input,
+.name-form button {
+    margin: 5px;
+    margin-bottom: 10px;
 }
 
 /* 404 Page */
@@ -244,6 +297,11 @@ body {
 }
 
 @media (min-width: 768px) {
+    .instructions {
+        font-size: 1em;
+        width: 750px;
+    }
+
     .card-stats {
         top: 13em;
         grid-template-columns: 1fr;
@@ -300,5 +358,4 @@ body {
         width: 50%;
         padding: 0.5em;
     }
-}
 }
