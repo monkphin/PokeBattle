@@ -547,7 +547,7 @@ function opponentTurn() {
   }
   
   let turnTimer = setTimeout(function() {
-    resolveRound(randomStat, playerStatValue, pickedStatValue, elementId);
+    resolveRound(randomStat, playerStatValue, pickedStatValue);
     playerTurn = true;
   }, 3500);
 }
