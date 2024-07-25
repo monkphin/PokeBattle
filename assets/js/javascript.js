@@ -320,6 +320,12 @@ function cardRender(elementId, card) {
   cardContainer.appendChild(cardContent);
 
   cardElement.appendChild(cardContainer);
+
+  // Remove hover/pressed classes from stat items
+  const statItems = document.querySelectorAll('.stat-item');
+  statItems.forEach(item => {
+    item.classList.remove('stat-item-hover', 'stat-item-active');
+  });
 }
 
 /**
@@ -349,14 +355,25 @@ function listCreator(statName, statValue, elementId) {
   statWrapper.appendChild(cardListWrapper);
 
   cardListWrapper.addEventListener('click', function() {
-      if (playerTurn) {
-          statSelection(statName, statValue, elementId);
+    if (playerTurn) {
+      // Add active class
+      cardListWrapper.classList.add('stat-item-active');
+      statSelection(statName, statValue, elementId);
 
-          const showStats = document.querySelector('#opponent-card .card-stats');
-          if (showStats) {
-              showStats.classList.remove('hidden');
-          }
+      const showStats = document.querySelector('#opponent-card .card-stats');
+      if (showStats) {
+        showStats.classList.remove('hidden');
       }
+    }
+  });
+
+  // Add hover effect
+  cardListWrapper.addEventListener('mouseenter', function() {
+    cardListWrapper.classList.add('stat-item-hover');
+  });
+
+  cardListWrapper.addEventListener('mouseleave', function() {
+    cardListWrapper.classList.remove('stat-item-hover');
   });
 
   return statWrapper;
