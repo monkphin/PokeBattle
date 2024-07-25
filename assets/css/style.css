@@ -145,6 +145,7 @@ button:active {
 .card {
     width: 100%;
     background: transparent;
+    border: none;
 }
 
 .card-name {

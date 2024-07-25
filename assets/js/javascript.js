@@ -32,6 +32,7 @@ function isSmallScreen() {
 
 /**
  * Logo size is set by screen width, so that it will always look correct irrespective of screen size. 
+ * This also wraps the logo in A tags to ensure it is clickable to send the player back to the home page. 
  */
 function renderLogo() {
   const logoHeader = document.getElementById('logo-header');
@@ -448,7 +449,7 @@ function statSelection(statName, statValue, elementId) {
  * @param {string} elementId - the ID of the element. 
  */
 function resolveRound(playerStatValue, opponentStatValue, elementId) {
-  const statName = playerStatName; // Assuming playerStatName is globally set
+  const statName = playerStatName;
 
   if (playerStatValue > opponentStatValue) {
     if (endOfGame) return;
@@ -478,7 +479,7 @@ function resolveRound(playerStatValue, opponentStatValue, elementId) {
       showCard(activeCard.opponentDeck[0], 'opponent')
       outputMessage.innerHTML = '';
     }
-  }, 2000);
+  }, 3500);
   checkEndGame()
 }
 
@@ -564,7 +565,7 @@ function opponentTurn() {
 }
 
 /**
- * Hands the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
+ * Handles the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
  * @param {Array} winnerDeck - the winning players deck
  * @param {Array} loserDeck - the losing players deck. 
  * @param {string} outcome - the outcome of the round 
@@ -637,5 +638,5 @@ function displayMessage(message) {
     
     let messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 2000); // Clear the message after 2 seconds
+    }, 3500); // Clear the message after 2 seconds
 }
