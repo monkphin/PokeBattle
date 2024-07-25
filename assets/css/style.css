@@ -1,9 +1,27 @@
 /* Global CSS */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
 
 body {
-    background-image: linear-gradient(rgb(17, 29, 141), white);
+    position: relative;
     min-height: 100vh;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgb(17, 29, 141), white);
+
 }
 
 .header {
@@ -12,31 +30,33 @@ body {
     align-items: center;
 }
 
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .footer {
-    position: fixed;
-    bottom: 0;
     font-size: 1.2em;
     font-weight: bold;
     text-align: center;
     width: 100%;
-    margin-top: -200px;
+    padding: 1em 0; 
+    flex-shrink: 0; 
 }
-
-/* Default styles for smallest screens */
 
 /* Index page CSS */
 .instructions {
-    position: absolute;
     background: rgba(255, 255, 255, 0.8);
-    /* filter: drop-shadow(black 1rem 1rem 10px); */
     font-size: 0.75em;
-    left: 5%;
-    top: 40%;
     width: 90%;
     border: 2px solid #000;
     border-radius: 10px;
     font-weight: bold;
     padding: 0.25em;
+    margin: 1em 0;
 }
 
 /* 404 Page */
@@ -88,14 +108,13 @@ body {
     height: auto;
     border: 1px solid black;
     border-radius: 5%;
-    /* filter: drop-shadow(black 1rem 1rem 10px); */
 }
 
 .card-stats {
     position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    top: 55%;
+    top: 7em;
     width: 90%;
     bottom: 5px;
     left: 17%;
@@ -134,7 +153,6 @@ body {
 
 #deck-size-area {
     background: rgba(255, 255, 255, 0.8);
-    /* filter: drop-shadow(black 1rem 1rem 10px); */
     width: 100%;
     border: 2px solid #000;
     border-radius: 10px;
@@ -154,9 +172,7 @@ body {
 }
 
 #message-area {
-    position: absolute;
     background: rgba(255, 255, 255, 0.8);
-    /* filter: drop-shadow(black 1rem 1rem 10px); */
     top: 110%;
     left: 10%;
     width: 80%;
@@ -165,6 +181,7 @@ body {
     font-weight: bold;
     text-align: center;
     padding: 0.5em;
+    margin: 1em 0;
 }
 
 #stat-message {
@@ -174,13 +191,26 @@ body {
 }
 
 /* Adjustments for larger screens */
+
 @media (min-width: 375px) {
+    .card-stats {
+        top: 7.5em;
+    }
+}
+
+@media (min-width: 390px) {
     .card-stats {
         top: 8em;
     }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 400px) {
+    .card-stats {
+        top: 8.5em;
+    }
+}
+
+@media (min-width: 540px) {
     #player-card, #opponent-card {
         width: 48%;
     }
@@ -198,9 +228,15 @@ body {
     }
 
     .card-stats {
+        top: 9.5em;
         grid-template-columns: 1fr;
-        bottom: 20px;
-        width: 70%;
+        bottom: 15px;
+        width: 90%;
+    }
+
+    .stat-wrapper {
+        width: 75%;
+        left: 5%;
     }
 
     .stat-item {
@@ -209,5 +245,34 @@ body {
 
     .stat-name, .stat-value {
         font-size: 1em;
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-stats {
+        top: 13em;
+        grid-template-columns: 1fr;
+        bottom: 15px;
+        width: 90%;
+    }
+    .stat-name, .stat-value {
+        font-size: 1em;
+        width: 50%;
+        padding: 0.5em;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-stats {
+        top: 18em;
+        grid-template-columns: 1fr;
+        bottom: 15px;
+        width: 90%;
+    }
+    .stat-name, .stat-value {
+        font-size: 1em;
+        width: 50%;
+        padding: 0.5em;
     }
 }
