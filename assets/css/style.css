@@ -222,12 +222,18 @@ button:active {
 .player-deck-text, .opponent-deck-text {
     width: 30%;
     padding: 1em;
+    font-weight: bold;
+}
+
+.opponent-deck-text {
+    padding-left: %;
 }
 
 .player-deck-num, .opponent-deck-num {
     width: 20%;
-    padding: 1em;
-    padding-left: 2em;
+    font-size: 1.5em;
+    padding-top: 1em;
+    font-weight: bold;
 }
 
 #message-area {
@@ -310,6 +316,12 @@ button:active {
         font-size: 1em;
         width: 50%;
     }
+    .player-deck-num, .opponent-deck-num {
+        width: 20%;
+        font-size: 1.5em;
+        padding-top: 1em;
+        font-weight: bold;
+    }
 }
 
 @media (min-width: 768px) {
@@ -331,6 +343,12 @@ button:active {
         width: 50%;
         padding: 0.5em;
     }
+    .player-deck-num, .opponent-deck-num {
+        width: 20%;
+        font-size: 1.5em;
+        padding-top: 0.5em;
+        font-weight: bold;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -351,6 +369,12 @@ button:active {
     }
     #deck-size-area {
         margin-top: 2%;
+        width: 90%;
+        margin-left: 5%;
+    }
+    #message-area {
+        width: 90%;
+        margin-left: 5%;
     }
 }
 

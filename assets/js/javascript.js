@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+/**
+ * Single function to determine if the screen size is small.
+ * @returns {boolean} - True if screen size is small, false otherwise.
+ */
+function isSmallScreen() {
+  return window.innerWidth < 576;
+}
 
 /**
  * Logo size is set by screen width, so that it will always look correct irrespective of screen size. 
@@ -36,8 +43,8 @@ function renderLogo() {
   const logoImg = document.createElement('img');
   logoImg.alt = 'PokeBattler Logo';
 
-  if (window.innerWidth < 576) {
-    console.log('setting small logo')
+  if (isSmallScreen()) {
+    console.log('setting small logo');
     logoImg.src = 'assets/images/pokebattler-logo.webp';
   } else {
     console.log('setting large logo');
@@ -202,7 +209,7 @@ function buildCard(name, image) {
  */
 
 function cardImageSize() {
-  if (window.innerWidth < 576) {
+  if (isSmallScreen()) {
     return smallScreenImages;
   } else {
     return largeScreenImages;
