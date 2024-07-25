@@ -40,6 +40,10 @@ function renderLogo() {
   const logoHeader = document.getElementById('logo-header');
   if (!logoHeader) return;
 
+  const logoURL = document.createElement('a');  
+  logoURL.href = 'index.html';
+  logoURL.rel = 'nooperner';
+
   const logoImg = document.createElement('img');
   logoImg.alt = 'PokeBattler Logo';
 
@@ -53,7 +57,8 @@ function renderLogo() {
 
   // Clear any existing logos and add the new one
   logoHeader.innerHTML = '';
-  logoHeader.appendChild(logoImg);
+  logoURL.appendChild(logoImg)
+  logoHeader.appendChild(logoURL);
 }
 
 /**
