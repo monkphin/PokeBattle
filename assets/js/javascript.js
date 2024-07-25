@@ -16,13 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const currentURL = window.location.href;
     if (currentURL.includes('game.html')) {
-        console.log('Game page detected, initializing game functions.');
         displayPlayerName();
         setPermElements();
         cardPicker();
-    } else {
-        console.log('Not on the game page.');
-    }
+    } 
 });
 
 /**
@@ -48,10 +45,9 @@ function renderLogo() {
   logoImg.alt = 'PokeBattler Logo';
 
   if (isSmallScreen()) {
-    console.log('setting small logo');
+
     logoImg.src = 'assets/images/pokebattler-logo.webp';
   } else {
-    console.log('setting large logo');
     logoImg.src = 'assets/images/pokebattler-logo-large.webp';
   }
 
@@ -643,35 +639,3 @@ function displayMessage(message) {
         messageArea.style.display = 'none';
     }, 2000); // Clear the message after 2 seconds
 }
-
-  
-/**
-* -----------------------------------------------------------------------------------TO DO 
-* mouse over interactions for stat selection
-*/
-  
-//-----------------------------------------Testing Stuff
-//----------Name handling Test 
-// let playerName = retrievePlayerName()
-// console.log(playerName);
-
-//----------Card object creation testing
-// cards = cardInit()
-// console.log(cards);
-//----------Testing card shuffle function - needs to have cardInit() above uncommented. 
-// let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
-// console.log("Shuffled cards:", shuffledCards);
-//----------Deck creation testing - should generate an array with both players decks
-// let player = playerDeck)
-// console.log(player);
-//----------Testing pulling a single card - can filter for properties, eg .name, .image etc
-// let singleCard = cards[0]; 
-// console.log("Single card:", singleCard.name);
-// console.log("Single card:", singleCard.image);
-// console.log("Single card:", singleCard.stats.attack);
-// console.log("Single card:", singleCard.stats.defense);
-// console.log("Single card:", singleCard.stats.special);
-// console.log("Single card:", singleCard.stats.speed);
-//----------Card picker testing
-// activeCard = createDecks();
-// console.log(activeCard.playerDeck[0]);
