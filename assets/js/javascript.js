@@ -441,7 +441,7 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
     winLossCounter('opponent');
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
-      opponentTurn()}, 3500);
+      opponentTurn()}, 4500);
   } else if(playerStatValue === opponentStatValue && elementId === 'player-card') {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue} It\'s a draw, take another turn!`);
     winLossCounter('draw')
@@ -451,13 +451,13 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
     winLossCounter('draw')
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
-        opponentTurn()}, 3500);
+        opponentTurn()}, 4500);
   } else if(playerStatValue < opponentStatValue) {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer wins this round.`);
     winLossCounter('opponent');
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
-        opponentTurn()}, 3500);
+        opponentTurn()}, 4500);
     } else {
       outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer lost this round, its your turn!.`);
       winLossCounter('player');
@@ -470,7 +470,7 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
       showCard(activeCard.opponentDeck[0], 'opponent')
       outputMessage.innerHTML = '';
     };
-  }, 3500);
+  }, 4500);
   checkEndGame()
 };
 
@@ -542,14 +542,12 @@ function opponentTurn() {
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
   const showStats = document.querySelector('#opponent-card .card-stats');
   const playerStatValue = activeCard.playerDeck[0].stats[randomStat];
-  if (showStats) {
-    showStats.classList.remove('hidden');
-  }
+  showStats.classList.remove('hidden');
   
   let turnTimer = setTimeout(function() {
     resolveRound(randomStat, playerStatValue, pickedStatValue);
     playerTurn = true;
-  }, 3500);
+  }, 4500);
 }
 
 
@@ -618,5 +616,5 @@ function displayMessage(message) {
     
     let messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 3500); 
+    }, 4500); 
 }
