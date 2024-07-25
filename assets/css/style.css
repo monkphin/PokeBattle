@@ -2,12 +2,12 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow: auto; /* Ensure body allows scrolling */
+    overflow: auto; 
 }
 
 body {
     position: relative;
-    background: none; /* Remove the background gradient from the body */
+    background: none; 
 }
 
 .background {
@@ -17,7 +17,7 @@ body {
     width: 100%;
     height: 100%;
     background-image: linear-gradient(rgb(17, 29, 141), white);
-    z-index: -1; /* Ensure it is behind all content */
+    z-index: -1; 
 }
 
 .header {
@@ -39,9 +39,8 @@ body {
     font-weight: bold;
     text-align: center;
     width: 100%;
-    background-color: white; /* Ensure it has a background color */
-    padding: 1em 0; /* Add some padding for better look */
-    flex-shrink: 0; /* Prevent footer from shrinking */
+    padding: 1em 0;
+    flex-shrink: 0;
 }
 
 /* Index page CSS */
@@ -171,8 +170,6 @@ body {
 #message-area {
     background: rgba(255, 255, 255, 0.8);
     top: 110%;
-    left: 10%;
-    width: 80%;
     border: 2px solid #000;
     border-radius: 10px;
     font-weight: bold;
@@ -272,4 +269,36 @@ body {
         width: 50%;
         padding: 0.5em;
     }
+    #deck-size-area {
+        margin-top: 2%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .card-stats {
+        top: 22em;
+        grid-template-columns: 1fr;
+        bottom: 15px;
+        width: 90%;
+    }
+    .stat-name, .stat-value {
+        font-size: 1em;
+        width: 50%;
+        padding: 0.5em;
+    }
+}
+
+@media (min-width: 1400px) {
+    .card-stats {
+        top: 25em;
+        grid-template-columns: 1fr;
+        bottom: 15px;
+        width: 90%;
+    }
+    .stat-name, .stat-value {
+        font-size: 1em;
+        width: 50%;
+        padding: 0.5em;
+    }
+}
 }
