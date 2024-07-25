@@ -354,6 +354,18 @@ function listCreator(statName, statValue, elementId) {
   statWrapper.className = 'col-6 col-lg-12 stat-wrapper';
   statWrapper.appendChild(cardListWrapper);
 
+  // Add hover effect
+  cardListWrapper.addEventListener('mouseenter', function() {
+    if (playerTurn) {
+      cardListWrapper.classList.add('stat-item-hover');
+    }
+  });
+
+  cardListWrapper.addEventListener('mouseleave', function() {
+    cardListWrapper.classList.remove('stat-item-hover');
+  });
+
+  // Add click event listener only if it's the player's turn
   cardListWrapper.addEventListener('click', function() {
     if (playerTurn) {
       // Add active class
@@ -365,15 +377,6 @@ function listCreator(statName, statValue, elementId) {
         showStats.classList.remove('hidden');
       }
     }
-  });
-
-  // Add hover effect
-  cardListWrapper.addEventListener('mouseenter', function() {
-    cardListWrapper.classList.add('stat-item-hover');
-  });
-
-  cardListWrapper.addEventListener('mouseleave', function() {
-    cardListWrapper.classList.remove('stat-item-hover');
   });
 
   return statWrapper;
@@ -508,12 +511,13 @@ function opponentTurn() {
   if (showStats) {
     showStats.classList.remove('hidden');
   }
-  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue}`);
+  let playerEquivStat = activeCard.playerDeck[0].stats[randomStat];
+  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue} vs your stat ${randomStat} which has the value ${playerEquivStat}`);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(selectionMessage);
 
   let turnTimer = setTimeout(function() {
-    resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue, 'opponent-card');
+    resolveRound(playerEquivStat, pickedStatValue, 'opponent-card');
     playerTurn = true;
   }, 3500);
 }
