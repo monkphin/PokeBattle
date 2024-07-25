@@ -418,7 +418,7 @@ function statSelection(statName, statValue, elementId) {
   playerStatName = statName;
   playerStatValue = statValue;
   opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
-  resolveRound(playerStatValue, opponentStatValue, elementId);
+  resolveRound(playerStatName, playerStatValue, opponentStatValue, elementId);
 };
 
 /**
@@ -430,36 +430,47 @@ function statSelection(statName, statValue, elementId) {
  * @param {number} opponentStatValue - the comparable opponent stat value
  * @param {string} elementId - the ID of the element. 
  */
-function resolveRound (playerStatValue, opponentStatValue, elementId) {
-  if(playerStatValue > opponentStatValue) {
+function resolveRound (playerStatName, playerStatValue, opponentStatValue, elementId) {
+  if(playerStatValue > opponentStatValue && elementId === 'player-card') {
     if (endOfGame) return;
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}. Congratulations, you win this round`);
     winLossCounter('player'); 
     playerTurn = true;
-  } else if(playerStatValue < opponentStatValue)  {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
+  } else if(playerStatValue < opponentStatValue && elementId === 'player-card')  {
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}! Unlucky, you lost the round`);
     winLossCounter('opponent');
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
       opponentTurn()}, 3500);
   } else if(playerStatValue === opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!');
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue} It\'s a draw, take another turn!`);
     winLossCounter('draw')
     playerTurn = true;
-  } else {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, the enemy trainer gets another go');
+  } else if (playerStatValue === opponentStatValue){
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `The enemy trainer selected ${playerStatName}, which has the value ${opponentStatValue} vs the your value of ${playerStatValue}! It\'s a draw, the enemy trainer gets another go`);
     winLossCounter('draw')
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
         opponentTurn()}, 3500);
-  };
+  } else if(playerStatValue < opponentStatValue) {
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer wins this round.`);
+    winLossCounter('opponent');
+    playerTurn = false;
+    let opponentTimer = setTimeout(function() {
+        opponentTurn()}, 3500);
+    } else {
+      outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer lost this round, its your turn!.`);
+      winLossCounter('player');
+      playerTurn = true;
+    }; 
+
   let turnTimer = setTimeout(function() {
     if (!endOfGame) {
       showCard(activeCard.playerDeck[0], 'player')
       showCard(activeCard.opponentDeck[0], 'opponent')
       outputMessage.innerHTML = '';
     }
-  }, 2000);
+  }, 3500);
   checkEndGame()
 };
 
@@ -530,18 +541,22 @@ function opponentTurn() {
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
   const showStats = document.querySelector('#opponent-card .card-stats');
+  const playerStatValue = activeCard.playerDeck[0].stats[randomStat];
   if (showStats) {
     showStats.classList.remove('hidden');
   }
-  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue}`);
-  outputMessage.innerHTML = '';
-  outputMessage.appendChild(selectionMessage);
 
+  console.log('random stat = ', randomStat)
+  console.log('picked stat value = ', pickedStatValue)
+  console.log('show stats = ', showStats)
+  console.log('player stat value = ', playerStatValue)
+  
   let turnTimer = setTimeout(function() {
-    resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
+    resolveRound(randomStat, playerStatValue, pickedStatValue);
     playerTurn = true;
   }, 3500);
 }
+
 
 /**
  * Hands the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
@@ -608,7 +623,7 @@ function displayMessage(message) {
     
     let messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 2000); // Clear the message after 2 seconds
+    }, 3500); // Clear the message after 2 seconds
 }
 
   
