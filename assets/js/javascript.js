@@ -1,52 +1,3 @@
-//-----------------------------------------Game Start
-/**
- * Check to ensure the DOM is loaded.
- * This will ensure that the index.html and game.html are fully initialised. 
- * Also checks for the name_form element on the index page and sets up for submission
- * various functions required for the app are also being triggered here. 
- */
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('name_form');
-  if (form) {
-    form.addEventListener('submit', handleSubmit);
-  };
-
-  renderLogo();
-
-  const currentURL = window.location.href;
-  if (currentURL.includes('game.html')) {
-    displayPlayerName();
-    setPermElements();
-    cardPicker();
-  }
-});
-
-function isSmallScreen() {
-  return window.innerWidth < 576;
-}
-
-function renderLogo() {
-  const logoHeader = document.getElementById('logo-header');
-  if (!logoHeader) return;
-
-  const logoURL = document.createElement('a');  
-  logoURL.href = 'index.html';
-  logoURL.rel = 'noopener';
-
-  const logoImg = document.createElement('img');
-  logoImg.alt = 'PokeBattler Logo';
-
-  if (isSmallScreen()) {
-    logoImg.src = 'assets/images/pokebattler-logo.webp';
-  } else {
-    logoImg.src = 'assets/images/pokebattler-logo-large.webp';
-  }
-
-  logoHeader.innerHTML = '';
-  logoURL.appendChild(logoImg);
-  logoHeader.appendChild(logoURL);
-}
-
 /**
  * Global variables used across multiple functions.
  * playerTurn - Bool to make sure that the player can't interact with the game when it's the opponent turn. 
@@ -100,6 +51,33 @@ const smallScreenImages = [
     'assets/images/small_cards/hitmonlee.webp', 'assets/images/small_cards/lickitung.webp', 'assets/images/small_cards/koffing.webp',   
 ];
 
+
+
+//-----------------------------------------Game Start
+/**
+ * Check to ensure the DOM is loaded.
+ * This will ensure that the index.html and game.html are fully initialised. 
+ * Also checks for the name_form element on the index page and sets up for submission
+ * various functions required for the app are also being triggered here. 
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('name_form');
+  if (form) {
+    form.addEventListener('submit', handleSubmit);
+  };
+
+
+  const currentURL = window.location.href;
+  if (currentURL.includes('game.html')) {
+    displayPlayerName();
+    setPermElements();
+    cardPicker();
+  }
+});
+
+function isSmallScreen() {
+  return window.innerWidth < 576;
+}
 /**
  * Renders default none-card text content, which is present at the start of the game
 */
@@ -134,7 +112,7 @@ function handleSubmit(e) {
   e.preventDefault();
   let name = document.getElementById('player_name').value;
   //check to ensure name has been entered
-  if(name) {
+  if(name.trim()) {
     storePlayerName(name);
     window.location.assign('game.html');
   } else {
@@ -440,8 +418,8 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}! Unlucky, you lost the round`);
     winLossCounter('opponent');
     playerTurn = false;
-    let opponentTimer = setTimeout(function() {
-      opponentTurn()}, 4500);
+    opponentTimer = setTimeout(function() {
+      opponentTurn()}, 2500);
   } else if(playerStatValue === opponentStatValue && elementId === 'player-card') {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue} It\'s a draw, take another turn!`);
     winLossCounter('draw')
@@ -450,8 +428,8 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `The enemy trainer selected ${playerStatName}, which has the value ${opponentStatValue} vs the your value of ${playerStatValue}! It\'s a draw, the enemy trainer gets another go`);
     winLossCounter('draw')
     playerTurn = false;
-    let opponentTimer = setTimeout(function() {
-        opponentTurn()}, 4500);
+    opponentTimer = setTimeout(function() {
+        opponentTurn()}, 2500);
   } else if(playerStatValue < opponentStatValue) {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer wins this round.`);
     winLossCounter('opponent');
@@ -460,8 +438,8 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
     if (showStats) {
       showStats.classList.remove('hidden');
     };
-    let opponentTimer = setTimeout(function() {
-        opponentTurn()}, 4500);
+    opponentTimer = setTimeout(function() {
+        opponentTurn()}, 2500);
     } else {
       outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer lost this round, its your turn!.`);
       winLossCounter('player');
@@ -472,13 +450,13 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
       };
     }; 
 
-  let turnTimer = setTimeout(function() {
+  turnTimer = setTimeout(function() {
     if (!endOfGame) {
       showCard(activeCard.playerDeck[0], 'player')
       showCard(activeCard.opponentDeck[0], 'opponent')
       outputMessage.innerHTML = '';
     };
-  }, 4500);
+  }, 2500);
   checkEndGame()
 };
 
@@ -550,9 +528,9 @@ function opponentTurn() {
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
   const playerStatValue = activeCard.playerDeck[0].stats[randomStat];
   
-  let turnTimer = setTimeout(function() {
+  turnTimer = setTimeout(function() {
     resolveRound(randomStat, playerStatValue, pickedStatValue);
-  }, 4500);
+  }, 2500);
 }
 
 
@@ -619,7 +597,7 @@ function displayMessage(message) {
     messageArea.textContent = message;
     messageArea.style.display = 'block';
     
-    let messageTimer = setTimeout(() => {
+    messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 4500); 
+    }, 2500); 
 }

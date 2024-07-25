@@ -39,13 +39,21 @@ button:active {
     background-color: rgba(0, 86, 179, 0.8);
 }
 
+.logo-link {
+    width: 320px;
+}
+
 .header {
     display: flex;
     justify-content: center;
     align-items: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.logo {
     width: 100%;
+    height: auto;
 }
 
 .main-content {
