@@ -456,12 +456,20 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer wins this round.`);
     winLossCounter('opponent');
     playerTurn = false;
+    const showStats = document.querySelector('#opponent-card .card-stats');
+    if (showStats) {
+      showStats.classList.remove('hidden');
+    };
     let opponentTimer = setTimeout(function() {
         opponentTurn()}, 4500);
     } else {
       outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer lost this round, its your turn!.`);
       winLossCounter('player');
       playerTurn = true;
+      const showStats = document.querySelector('#opponent-card .card-stats');
+      if (showStats) {
+        showStats.classList.remove('hidden');
+      };
     }; 
 
   let turnTimer = setTimeout(function() {
@@ -540,9 +548,7 @@ function opponentTurn() {
   const statNames = ['attack', 'defense', 'special', 'speed'];
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
-  const showStats = document.querySelector('#opponent-card .card-stats');
   const playerStatValue = activeCard.playerDeck[0].stats[randomStat];
-  showStats.classList.remove('hidden');
   
   let turnTimer = setTimeout(function() {
     resolveRound(randomStat, playerStatValue, pickedStatValue);
