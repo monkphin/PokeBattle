@@ -353,7 +353,7 @@ function cardRender(elementId, card) {
   statItems.forEach(item => {
     item.classList.remove('stat-item-hover', 'stat-item-active');
   });
-}
+};
 
 /**
  * Creates a bootstrap grid which serves to list the cardstats. ALso attaches an event listener for user interaction.
@@ -383,15 +383,15 @@ function listCreator(statName, statValue, elementId) {
 
   cardListWrapper.addEventListener('click', function() {
     if (playerTurn) {
-      // Add active class
+      // Add active class to allow player to interact. 
       cardListWrapper.classList.add('stat-item-active');
       statSelection(statName, statValue, elementId);
 
       const showStats = document.querySelector('#opponent-card .card-stats');
       if (showStats) {
         showStats.classList.remove('hidden');
-      }
-    }
+      };
+    };
   });
 
   // Add hover effect
@@ -404,7 +404,7 @@ function listCreator(statName, statValue, elementId) {
   });
 
   return statWrapper;
-}
+};
   
 //-----------------------------------------Game Loops
   
@@ -469,20 +469,20 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
       showCard(activeCard.playerDeck[0], 'player')
       showCard(activeCard.opponentDeck[0], 'opponent')
       outputMessage.innerHTML = '';
-    }
+    };
   }, 3500);
   checkEndGame()
 };
 
 /**
- * Checks if the game has ended by checking if either deck is 0.
+ * Checks if the game has ended by checking if either deck size is 0.
  */
 function checkEndGame() {
   if (activeCard.playerDeck.length === 0) {
     endGame('Opponent');
   } else if (activeCard.opponentDeck.length === 0) {
     endGame('Player');
-  }
+  };
 };
   
 /**
@@ -523,7 +523,7 @@ function endGame(winner) {
     outputMessage.appendChild(lossMessage);
   };
   outputMessage.appendChild(newGameButton);
-  // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave the idea to clear timers due to functions continuing after game end
+  // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave the idea to clear timers due to functions continuing after game end causing content to vanish.
   clearTimeout(turnTimer);
   clearTimeout(opponentTimer);
   clearTimeout(opponentTimer);
@@ -545,14 +545,9 @@ function opponentTurn() {
   if (showStats) {
     showStats.classList.remove('hidden');
   }
-
-  console.log('random stat = ', randomStat)
-  console.log('picked stat value = ', pickedStatValue)
-  console.log('show stats = ', showStats)
-  console.log('player stat value = ', playerStatValue)
   
   let turnTimer = setTimeout(function() {
-    resolveRound(randomStat, playerStatValue, pickedStatValue);
+    resolveRound(randomStat, playerStatValue, pickedStatValue, elementId);
     playerTurn = true;
   }, 3500);
 }
@@ -623,37 +618,5 @@ function displayMessage(message) {
     
     let messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 3500); // Clear the message after 2 seconds
+    }, 3500); 
 }
-
-  
-/**
-* -----------------------------------------------------------------------------------TO DO 
-* mouse over interactions for stat selection
-*/
-  
-//-----------------------------------------Testing Stuff
-//----------Name handling Test 
-// let playerName = retrievePlayerName()
-// console.log(playerName);
-
-//----------Card object creation testing
-// cards = cardInit()
-// console.log(cards);
-//----------Testing card shuffle function - needs to have cardInit() above uncommented. 
-// let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
-// console.log("Shuffled cards:", shuffledCards);
-//----------Deck creation testing - should generate an array with both players decks
-// let player = playerDeck)
-// console.log(player);
-//----------Testing pulling a single card - can filter for properties, eg .name, .image etc
-// let singleCard = cards[0]; 
-// console.log("Single card:", singleCard.name);
-// console.log("Single card:", singleCard.image);
-// console.log("Single card:", singleCard.stats.attack);
-// console.log("Single card:", singleCard.stats.defense);
-// console.log("Single card:", singleCard.stats.special);
-// console.log("Single card:", singleCard.stats.speed);
-//----------Card picker testing
-// activeCard = createDecks();
-// console.log(activeCard.playerDeck[0]);
