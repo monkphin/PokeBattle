@@ -2,16 +2,12 @@
 html, body {
     height: 100%;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    overflow: auto; /* Ensure body allows scrolling */
 }
 
 body {
     position: relative;
-    min-height: 100vh;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
+    background: none; /* Remove the background gradient from the body */
 }
 
 .background {
@@ -21,7 +17,7 @@ body {
     width: 100%;
     height: 100%;
     background-image: linear-gradient(rgb(17, 29, 141), white);
-
+    z-index: -1; /* Ensure it is behind all content */
 }
 
 .header {
@@ -43,8 +39,9 @@ body {
     font-weight: bold;
     text-align: center;
     width: 100%;
-    padding: 1em 0; 
-    flex-shrink: 0; 
+    background-color: white; /* Ensure it has a background color */
+    padding: 1em 0; /* Add some padding for better look */
+    flex-shrink: 0; /* Prevent footer from shrinking */
 }
 
 /* Index page CSS */
