@@ -3,58 +3,47 @@
  * Check to ensure the DOM is loaded.
  * This will ensure that the index.html and game.html are fully initialised. 
  * Also checks for the name_form element on the index page and sets up for submission
- * Function checks for the URL of the page and will only trigger functions if we're on
- * the game.html page.
+ * various functions required for the app are also being triggered here. 
  */
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('name_form');
   if (form) {
     form.addEventListener('submit', handleSubmit);
   };
-  
+
   renderLogo();
 
-    const currentURL = window.location.href;
-    if (currentURL.includes('game.html')) {
-        displayPlayerName();
-        setPermElements();
-        cardPicker();
-    } 
+  const currentURL = window.location.href;
+  if (currentURL.includes('game.html')) {
+    displayPlayerName();
+    setPermElements();
+    cardPicker();
+  }
 });
 
-/**
- * Single function to determine if the screen size is small.
- * @returns {boolean} - True if screen size is small, false otherwise.
- */
 function isSmallScreen() {
   return window.innerWidth < 576;
 }
 
-/**
- * Logo size is set by screen width, so that it will always look correct irrespective of screen size. 
- * This also wraps the logo in A tags to ensure it is clickable to send the player back to the home page. 
- */
 function renderLogo() {
   const logoHeader = document.getElementById('logo-header');
   if (!logoHeader) return;
 
   const logoURL = document.createElement('a');  
   logoURL.href = 'index.html';
-  logoURL.rel = 'nooperner';
+  logoURL.rel = 'noopener';
 
   const logoImg = document.createElement('img');
   logoImg.alt = 'PokeBattler Logo';
 
   if (isSmallScreen()) {
-
     logoImg.src = 'assets/images/pokebattler-logo.webp';
   } else {
     logoImg.src = 'assets/images/pokebattler-logo-large.webp';
   }
 
-  // Clear any existing logos and add the new one
   logoHeader.innerHTML = '';
-  logoURL.appendChild(logoImg)
+  logoURL.appendChild(logoImg);
   logoHeader.appendChild(logoURL);
 }
 
@@ -211,12 +200,8 @@ function buildCard(name, image) {
  */
 
 function cardImageSize() {
-  if (isSmallScreen()) {
-    return smallScreenImages;
-  } else {
-    return largeScreenImages;
-  };
-};
+  return isSmallScreen() ? smallScreenImages : largeScreenImages;
+}
 
 /**
  * Initialises the card deck with names and images
@@ -396,18 +381,6 @@ function listCreator(statName, statValue, elementId) {
   statWrapper.className = 'col-6 col-lg-12 stat-wrapper';
   statWrapper.appendChild(cardListWrapper);
 
-  // Add hover effect
-  cardListWrapper.addEventListener('mouseenter', function() {
-    if (playerTurn) {
-      cardListWrapper.classList.add('stat-item-hover');
-    }
-  });
-
-  cardListWrapper.addEventListener('mouseleave', function() {
-    cardListWrapper.classList.remove('stat-item-hover');
-  });
-
-  // Add click event listener only if it's the player's turn
   cardListWrapper.addEventListener('click', function() {
     if (playerTurn) {
       // Add active class
@@ -419,6 +392,15 @@ function listCreator(statName, statValue, elementId) {
         showStats.classList.remove('hidden');
       }
     }
+  });
+
+  // Add hover effect
+  cardListWrapper.addEventListener('mouseenter', function() {
+    cardListWrapper.classList.add('stat-item-hover');
+  });
+
+  cardListWrapper.addEventListener('mouseleave', function() {
+    cardListWrapper.classList.remove('stat-item-hover');
   });
 
   return statWrapper;
@@ -437,7 +419,7 @@ function statSelection(statName, statValue, elementId) {
   playerStatValue = statValue;
   opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
   resolveRound(playerStatValue, opponentStatValue, elementId);
-}
+};
 
 /**
  * Resolves the round - this compares the player and opponent stats
@@ -448,26 +430,24 @@ function statSelection(statName, statValue, elementId) {
  * @param {number} opponentStatValue - the comparable opponent stat value
  * @param {string} elementId - the ID of the element. 
  */
-function resolveRound(playerStatValue, opponentStatValue, elementId) {
-  const statName = playerStatName;
-
-  if (playerStatValue > opponentStatValue) {
+function resolveRound (playerStatValue, opponentStatValue, elementId) {
+  if(playerStatValue > opponentStatValue) {
     if (endOfGame) return;
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round', statName, playerStatValue, opponentStatValue);
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round');
     winLossCounter('player'); 
     playerTurn = true;
-  } else if (playerStatValue < opponentStatValue)  {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round', statName, playerStatValue, opponentStatValue);
+  } else if(playerStatValue < opponentStatValue)  {
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round');
     winLossCounter('opponent');
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
       opponentTurn()}, 3500);
-  } else if (playerStatValue === opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!', statName, playerStatValue, opponentStatValue);
+  } else if(playerStatValue === opponentStatValue && elementId === 'player-card') {
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, take another turn!');
     winLossCounter('draw')
     playerTurn = true;
   } else {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, the Enemy Trainer gets another go', statName, playerStatValue, opponentStatValue);
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw, the enemy trainer gets another go');
     winLossCounter('draw')
     playerTurn = false;
     let opponentTimer = setTimeout(function() {
@@ -479,9 +459,9 @@ function resolveRound(playerStatValue, opponentStatValue, elementId) {
       showCard(activeCard.opponentDeck[0], 'opponent')
       outputMessage.innerHTML = '';
     }
-  }, 3500);
+  }, 2000);
   checkEndGame()
-}
+};
 
 /**
  * Checks if the game has ended by checking if either deck is 0.
@@ -553,36 +533,27 @@ function opponentTurn() {
   if (showStats) {
     showStats.classList.remove('hidden');
   }
-  let playerEquivStat = activeCard.playerDeck[0].stats[randomStat];
-  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue} vs your stat ${randomStat} which has the value ${playerEquivStat}`);
+  const selectionMessage = presentData('h3', `The enemy trainer picked ${randomStat} which has the value ${pickedStatValue}`);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(selectionMessage);
 
   let turnTimer = setTimeout(function() {
-    resolveRound(playerEquivStat, pickedStatValue, 'opponent-card');
+    resolveRound(activeCard.playerDeck[0].stats[randomStat], pickedStatValue);
     playerTurn = true;
   }, 3500);
 }
 
 /**
- * Handles the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
+ * Hands the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
  * @param {Array} winnerDeck - the winning players deck
  * @param {Array} loserDeck - the losing players deck. 
  * @param {string} outcome - the outcome of the round 
  * @param {string} message - the message to show the player based on the outcome. 
- * @param {string} statName - the name of the selected stat.
- * @param {number} playerStatValue - the value of the selected stat for the player.
- * @param {number} opponentStatValue - the value of the selected stat for the opponent.
-
+ 
  */
-function outcomeHandler(winnerDeck, loserDeck, outcome, message, statName, playerStatValue, opponentStatValue) {
+function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
   const winMessage = presentData('h3', message);
   outputMessage.innerHTML = '';
-  if (playerTurn) {
-    const selectedStatMessage = presentData('p', `You selected ${statName} with the value ${playerStatValue}, vs the enemy trainers ${statName} which has the value ${opponentStatValue}`);
-    selectedStatMessage.id = 'stat-message';
-    outputMessage.appendChild(selectedStatMessage);
-  } 
   outputMessage.appendChild(winMessage);
 
   let gainedCard = loserDeck.shift();
@@ -595,7 +566,7 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message, statName, playe
     winnerDeck.push(usedCard, gainedCard);
   };
   updateDeckCount();
-}
+};
 
 /**
  * updates the dusplayed deck counts for each player
@@ -637,5 +608,37 @@ function displayMessage(message) {
     
     let messageTimer = setTimeout(() => {
         messageArea.style.display = 'none';
-    }, 3500); // Clear the message after 2 seconds
+    }, 2000); // Clear the message after 2 seconds
 }
+
+  
+/**
+* -----------------------------------------------------------------------------------TO DO 
+* mouse over interactions for stat selection
+*/
+  
+//-----------------------------------------Testing Stuff
+//----------Name handling Test 
+// let playerName = retrievePlayerName()
+// console.log(playerName);
+
+//----------Card object creation testing
+// cards = cardInit()
+// console.log(cards);
+//----------Testing card shuffle function - needs to have cardInit() above uncommented. 
+// let shuffledCards = shuffleCards(cards); // Using a copy to avoid in-place modification for testing
+// console.log("Shuffled cards:", shuffledCards);
+//----------Deck creation testing - should generate an array with both players decks
+// let player = playerDeck)
+// console.log(player);
+//----------Testing pulling a single card - can filter for properties, eg .name, .image etc
+// let singleCard = cards[0]; 
+// console.log("Single card:", singleCard.name);
+// console.log("Single card:", singleCard.image);
+// console.log("Single card:", singleCard.stats.attack);
+// console.log("Single card:", singleCard.stats.defense);
+// console.log("Single card:", singleCard.stats.special);
+// console.log("Single card:", singleCard.stats.speed);
+//----------Card picker testing
+// activeCard = createDecks();
+// console.log(activeCard.playerDeck[0]);
