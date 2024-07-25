@@ -1,4 +1,4 @@
-//-----------------------------------------Game Start
+/-----------------------------------------Game Start
 /**
  * Check to ensure the DOM is loaded.
  * This will ensure that the index.html and game.html are fully initialised. 
@@ -552,7 +552,6 @@ function opponentTurn() {
   
   let turnTimer = setTimeout(function() {
     resolveRound(randomStat, playerStatValue, pickedStatValue);
-    playerTurn = true;
   }, 4500);
 }
 
