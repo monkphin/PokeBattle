@@ -582,11 +582,7 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, message, statName, playe
     const selectedStatMessage = presentData('p', `You selected ${statName} with the value ${playerStatValue}, vs the enemy trainers ${statName} which has the value ${opponentStatValue}`);
     selectedStatMessage.id = 'stat-message';
     outputMessage.appendChild(selectedStatMessage);
-  } else if (!playerTurn) {
-    const selectedStatMessage = presentData('p', `The enemy trainer selected ${statName} with the value ${opponentStatValue} vs the your ${statName} which has the value ${playerStatValue}`);
-    selectedStatMessage.id = 'stat-message';
-    outputMessage.appendChild(selectedStatMessage);
-  }
+  } 
   outputMessage.appendChild(winMessage);
 
   let gainedCard = loserDeck.shift();
