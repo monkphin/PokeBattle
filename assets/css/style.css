@@ -147,7 +147,7 @@ button:active {
 .card-name {
     font-family: "Montserrat", sans-serif;
     position: absolute;
-    top: 0.5em;
+    top: 0.4em;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.9em;
@@ -248,18 +248,27 @@ button:active {
 /* Adjustments for larger screens */
 
 @media (min-width: 375px) {
+    .card-name {
+        top: 0.5em;
+    }
     .card-stats {
         top: 7.5em;
     }
 }
 
 @media (min-width: 390px) {
+    .card-name {
+        top: 0.6em;
+    }    
     .card-stats {
         top: 8em;
     }
 }
 
 @media (min-width: 400px) {
+    .card-name {
+        top: 0.7em;
+    }
     .card-stats {
         top: 8.5em;
     }
@@ -276,10 +285,6 @@ button:active {
 
     .card {
         width: 90%;
-    }
-
-    .card-name {
-        font-size: 1.2em;
     }
 
     .card-stats {
@@ -309,7 +314,9 @@ button:active {
         font-size: 1em;
         width: 750px;
     }
-
+    .card-name {
+        top: 1.2em;
+    }
     .card-stats {
         top: 13em;
         grid-template-columns: 1fr;
@@ -324,6 +331,10 @@ button:active {
 }
 
 @media (min-width: 1024px) {
+    .card-name {
+        font-size: 1em;
+        top: 1.5em;
+    }
     .card-stats {
         top: 18em;
         grid-template-columns: 1fr;
@@ -341,6 +352,10 @@ button:active {
 }
 
 @media (min-width: 1280px) {
+    .card-name {
+        font-size: 1em;
+        top: 2em;
+    }
     .card-stats {
         top: 22em;
         grid-template-columns: 1fr;
@@ -355,6 +370,10 @@ button:active {
 }
 
 @media (min-width: 1400px) {
+    .card-name {
+        font-size: 1em;
+        top: 2.5em;
+    }
     .card-stats {
         top: 25em;
         grid-template-columns: 1fr;
