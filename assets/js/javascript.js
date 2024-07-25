@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   if (form) {
     form.addEventListener('submit', handleSubmit);
   };
+  
+  renderLogo();
+
     const currentURL = window.location.href;
     if (currentURL.includes('game.html')) {
         console.log('Game page detected, initializing game functions.');
@@ -22,6 +25,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
+/**
+ * Logo size is set by screen width, so that it will always look correct irrespective of screen size. 
+ */
+function renderLogo() {
+  const logoHeader = document.getElementById('logo-header');
+  if (!logoHeader) return;
+
+  const logoImg = document.createElement('img');
+  logoImg.alt = 'PokeBattler Logo';
+
+  if (window.innerWidth < 576) {
+    console.log('setting small logo')
+    logoImg.src = 'assets/images/pokebattler-logo.webp';
+  } else {
+    console.log('setting large logo');
+    logoImg.src = 'assets/images/pokebattler-logo-large.webp';
+  }
+
+  // Clear any existing logos and add the new one
+  logoHeader.innerHTML = '';
+  logoHeader.appendChild(logoImg);
+}
 
 /**
  * Global variables used across multiple functions.
