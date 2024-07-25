@@ -1,4 +1,4 @@
-/-----------------------------------------Game Start
+//-----------------------------------------Game Start
 /**
  * Check to ensure the DOM is loaded.
  * This will ensure that the index.html and game.html are fully initialised. 
