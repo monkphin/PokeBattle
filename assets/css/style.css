@@ -46,6 +46,10 @@ button:active {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+.stat-item-focus {
+  outline: 2px solid #00f; /* Adjust the color and style as needed */
+}
+
 .logo-link {
     width: 320px;
 }

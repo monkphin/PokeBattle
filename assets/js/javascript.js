@@ -312,6 +312,7 @@ function cardRender(elementId, card) {
 function listCreator(statName, statValue, elementId) {
   const cardListWrapper = document.createElement('div');
   cardListWrapper.className = 'row stat-item';
+  cardListWrapper.setAttribute('tabindex', '0');
 
   const nameSpan = document.createElement('div');
   nameSpan.className = 'stat-name';
@@ -354,6 +355,22 @@ function listCreator(statName, statValue, elementId) {
     cardListWrapper.classList.remove('stat-item-hover');
   });
 
+    // Add focus and blur events to handle keyboard navigation styles
+    cardListWrapper.addEventListener('focus', function() {
+      cardListWrapper.classList.add('stat-item-focus');
+    });
+  
+    cardListWrapper.addEventListener('blur', function() {
+      cardListWrapper.classList.remove('stat-item-focus');
+    });
+  
+    cardListWrapper.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter' && playerTurn) {
+        disableStatItems(true);
+        cardListWrapper.click();
+      }
+    });
+
   return statWrapper;
 }
 
@@ -367,9 +384,11 @@ function disableStatItems(disable) {
     if (disable) {
       item.classList.add('disabled');
       item.style.pointerEvents = 'none';
+      item.setAttribute('tabindex', '-1');
     } else {
       item.classList.remove('disabled');
       item.style.pointerEvents = 'auto';
+      item.setAttribute('tabindex', '-0');
     }
   });
 }
