@@ -39,8 +39,12 @@ button {
     border-radius: 16px;
 }
 
+button:hover {
+    background-color: rgba(0, 123, 255, 0.8);
+}
+
 button:active {
-    background-color: hsla(0, 0%, 100%, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .logo-link {
@@ -82,7 +86,7 @@ button:active {
 }
 
 .footer-links .fa-logo {
-    color: #000;
+    color: rgb(0, 87, 179);
 }
 
 .fa-logo:hover {
@@ -90,9 +94,8 @@ button:active {
 }
 
 .fa-logo:active {
-    color: rgba(0, 86, 179, 0.8);
+    color: rgb(0, 58, 120);
 }
-
 
 /* Index page CSS */
 .instructions {
