@@ -150,6 +150,7 @@ The footer provides links to the the site owners socials, in this case Facebook,
 # Bugs and issues.
 Had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achive the layout I was aiming for, this was causing significant issues with rendering which were proving too complex to fix, so decided to simplify things and shifted to using plain CSS for the index page. 
 
+Need to add a slight pause before allowing player to interact with their cards again after the opponent players turn. While this isnt causing a specific issue I can see, it does mean that the player can, via spamming the card buttons leave themselves unaware of the outcome of the opponent turn. Have tried to do this in a few places but have never been able to get it to work. 
 
 Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isnt easily replicable sadly so I have been unable to identify the root cause. 
 
