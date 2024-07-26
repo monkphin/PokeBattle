@@ -23,12 +23,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgb(17, 29, 141), white);
+    background-image: linear-gradient(#111d8d, white);
     z-index: -1; 
 }
 
 button {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 86, 179, 0.8);
     border: 2 solid black;
     color: black;
     text-align: center;
@@ -40,7 +40,7 @@ button {
 }
 
 button:active {
-    background-color: rgba(0, 86, 179, 0.8);
+    background-color: hsla(0, 0%, 100%, 0.8);
 }
 
 .logo-link {
