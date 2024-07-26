@@ -29,13 +29,12 @@ body {
 
 button {
     background-color: rgba(0, 86, 179, 0.8);
-    border: 2 solid black;
+    border: 2px solid black;
     color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     margin: 4px 2px;
-    cursor: finger;
     border-radius: 16px;
 }
 
