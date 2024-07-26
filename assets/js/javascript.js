@@ -98,11 +98,14 @@ function storePlayerName(name) {
 };
     
 /**
- * Retrieves players name from sessionStorage.
+ * Retrieves players name from sessionStorage. If player access the gamepage directly, it redirects to index to ensure a name is entered. 
  * @returns {string} - Player name. 
  */
 function retrievePlayerName() {
   let playerName = sessionStorage.getItem('playerName');
+  if (!playerName) {
+    window.location.assign('index.html');
+  }
   return playerName;
 };
     
