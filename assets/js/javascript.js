@@ -20,38 +20,6 @@ let messageTimer;
 const outputMessage = document.getElementById('message-area');
 const deckSizeArea = document.getElementById('deck-size-area');
 
-/**
- * Arrays of images for large or small screens. 
- */
-
-const largeScreenImages = [
-    'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/squirtle.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/weedle.webp',
-    'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/rattata.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/pikachu.webp',
-    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/nidoran.webp', 'assets/images/large_cards/clefairy.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/jigglypuff.webp',
-    'assets/images/large_cards/zubat.webp', 'assets/images/large_cards/oddish.webp', 'assets/images/large_cards/paras.webp', 'assets/images/large_cards/venonat.webp', 'assets/images/large_cards/diglett.webp',
-    'assets/images/large_cards/meowth.webp', 'assets/images/large_cards/psyduck.webp', 'assets/images/large_cards/mankey.webp', 'assets/images/large_cards/growlithe.webp', 'assets/images/large_cards/poliwag.webp',
-    'assets/images/large_cards/abra.webp', 'assets/images/large_cards/machop.webp', 'assets/images/large_cards/bellsprout.webp', 'assets/images/large_cards/tentacool.webp', 'assets/images/large_cards/geodude.webp',
-    'assets/images/large_cards/ponyta.webp', 'assets/images/large_cards/slowpoke.webp', 'assets/images/large_cards/magnemite.webp', 'assets/images/large_cards/farfetchd.webp', 'assets/images/large_cards/doduo.webp',
-    'assets/images/large_cards/seel.webp', 'assets/images/large_cards/grimer.webp', 'assets/images/large_cards/shellder.webp', 'assets/images/large_cards/ghastly.webp', 'assets/images/large_cards/onix.webp',
-    'assets/images/large_cards/drowzee.webp', 'assets/images/large_cards/krabby.webp', 'assets/images/large_cards/voltorb.webp', 'assets/images/large_cards/exeggcute.webp', 'assets/images/large_cards/cubone.webp',
-    'assets/images/large_cards/hitmonlee.webp', 'assets/images/large_cards/lickitung.webp', 'assets/images/large_cards/koffing.webp',
-];  
-  
-const smallScreenImages = [
-    'assets/images/small_cards/bulbasaur.webp', 'assets/images/small_cards/charmander.webp', 'assets/images/small_cards/squirtle.webp', 'assets/images/small_cards/caterpie.webp', 'assets/images/small_cards/weedle.webp', 
-    'assets/images/small_cards/pidgey.webp', 'assets/images/small_cards/rattata.webp', 'assets/images/small_cards/spearow.webp', 'assets/images/small_cards/ekans.webp', 'assets/images/small_cards/pikachu.webp',
-    'assets/images/small_cards/sandshrew.webp', 'assets/images/small_cards/nidoran.webp', 'assets/images/small_cards/clefairy.webp', 'assets/images/small_cards/vulpix.webp', 'assets/images/small_cards/jigglypuff.webp',
-    'assets/images/small_cards/zubat.webp', 'assets/images/small_cards/oddish.webp', 'assets/images/small_cards/paras.webp', 'assets/images/small_cards/venonat.webp', 'assets/images/small_cards/diglett.webp',
-    'assets/images/small_cards/meowth.webp', 'assets/images/small_cards/psyduck.webp', 'assets/images/small_cards/mankey.webp', 'assets/images/small_cards/growlithe.webp', 'assets/images/small_cards/poliwag.webp',
-    'assets/images/small_cards/abra.webp', 'assets/images/small_cards/machop.webp', 'assets/images/small_cards/bellsprout.webp', 'assets/images/small_cards/tentacool.webp', 'assets/images/small_cards/geodude.webp',
-    'assets/images/small_cards/ponyta.webp', 'assets/images/small_cards/slowpoke.webp', 'assets/images/small_cards/magnemite.webp', 'assets/images/small_cards/farfetchd.webp', 'assets/images/small_cards/doduo.webp',
-    'assets/images/small_cards/seel.webp', 'assets/images/small_cards/grimer.webp', 'assets/images/small_cards/shellder.webp', 'assets/images/small_cards/ghastly.webp', 'assets/images/small_cards/onix.webp',
-    'assets/images/small_cards/drowzee.webp', 'assets/images/small_cards/krabby.webp', 'assets/images/small_cards/voltorb.webp', 'assets/images/small_cards/exeggcute.webp', 'assets/images/small_cards/cubone.webp',
-    'assets/images/small_cards/hitmonlee.webp', 'assets/images/small_cards/lickitung.webp', 'assets/images/small_cards/koffing.webp',   
-];
-
-
-
 //-----------------------------------------Game Start
 /**
  * Check to ensure the DOM is loaded.
@@ -138,7 +106,6 @@ function retrievePlayerName() {
   return playerName;
 };
     
-
 /** 
  * Throws a welcome message to game.html page when loaded
  */
@@ -173,15 +140,6 @@ function buildCard(name, image) {
 };
 
 /**
- * Provides the relevant image array dependant on screen size. 
- * @returns {Array} - array of image paths. 
- */
-
-function cardImageSize() {
-  return isSmallScreen() ? smallScreenImages : largeScreenImages;
-}
-
-/**
  * Initialises the card deck with names and images
  * @returns {Array} - array of cards. 
  */
@@ -199,8 +157,19 @@ function cardInit() {
     'Hitmonlee', 'Lickitung', 'Koffing',
   ];
 
-  const cardImage = cardImageSize();
-  
+  const cardImage = [
+    'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/squirtle.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/weedle.webp',
+    'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/rattata.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/pikachu.webp',
+    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/nidoran.webp', 'assets/images/large_cards/clefairy.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/jigglypuff.webp',
+    'assets/images/large_cards/zubat.webp', 'assets/images/large_cards/oddish.webp', 'assets/images/large_cards/paras.webp', 'assets/images/large_cards/venonat.webp', 'assets/images/large_cards/diglett.webp',
+    'assets/images/large_cards/meowth.webp', 'assets/images/large_cards/psyduck.webp', 'assets/images/large_cards/mankey.webp', 'assets/images/large_cards/growlithe.webp', 'assets/images/large_cards/poliwag.webp',
+    'assets/images/large_cards/abra.webp', 'assets/images/large_cards/machop.webp', 'assets/images/large_cards/bellsprout.webp', 'assets/images/large_cards/tentacool.webp', 'assets/images/large_cards/geodude.webp',
+    'assets/images/large_cards/ponyta.webp', 'assets/images/large_cards/slowpoke.webp', 'assets/images/large_cards/magnemite.webp', 'assets/images/large_cards/farfetchd.webp', 'assets/images/large_cards/doduo.webp',
+    'assets/images/large_cards/seel.webp', 'assets/images/large_cards/grimer.webp', 'assets/images/large_cards/shellder.webp', 'assets/images/large_cards/ghastly.webp', 'assets/images/large_cards/onix.webp',
+    'assets/images/large_cards/drowzee.webp', 'assets/images/large_cards/krabby.webp', 'assets/images/large_cards/voltorb.webp', 'assets/images/large_cards/exeggcute.webp', 'assets/images/large_cards/cubone.webp',
+    'assets/images/large_cards/hitmonlee.webp', 'assets/images/large_cards/lickitung.webp', 'assets/images/large_cards/koffing.webp',
+];  
+
   //for loop to pull each name/image combo from the two arrays
   if(cardName.length === cardImage.length) { 
     for(let i = 0; i < cardName.length; i++) {
@@ -388,7 +357,6 @@ function listCreator(statName, statValue, elementId) {
   return statWrapper;
 }
 
-
 /**
  * Disables or enables all stat items to prevent player from spamming buttons
  * @param {boolean} disable - Whether to disable or enable the stat items.
@@ -484,7 +452,7 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
       setTimeout(function() {
         disableStatItems(false);
         outputMessage.innerHTML = ''; // Clear message after enabling interaction
-      }, 10000); // Adjust the delay time as needed
+      }, 1000); 
     }
   }, 2500);
   checkEndGame();
@@ -562,7 +530,6 @@ function opponentTurn() {
   }, 2500);
 }
 
-
 /**
  * Hands the outcome of the round by moving cards between the decks depending on the outcome and updating deck counts. 
  * @param {Array} winnerDeck - the winning players deck
@@ -599,7 +566,6 @@ function updateDeckCount() {
   opponentDeckSizeElement.textContent = activeCard.opponentDeck.length;
 }
 
-  
 /**
  * Updates the win/loss/draw counters to reflect round outcome. 
  * @param {string} winner - the rounds winner.  
@@ -615,7 +581,6 @@ function winLossCounter(winner) {
   };    
  return numberOfWins, numberOfLosses, numberOfDraws;
 };
-
 
 /**
  * Breifly displays a message to the player to show outcomes. 
