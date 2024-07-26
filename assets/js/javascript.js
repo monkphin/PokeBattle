@@ -20,7 +20,6 @@ let messageTimer;
 const outputMessage = document.getElementById('message-area');
 const deckSizeArea = document.getElementById('deck-size-area');
 
-
 /**
  * Arrays of images for large or small screens. 
  */
@@ -72,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     displayPlayerName();
     setPermElements();
     cardPicker();
+    disableStatItems(!playerTurn);
   }
 });
 
@@ -361,20 +361,29 @@ function listCreator(statName, statValue, elementId) {
 
   cardListWrapper.addEventListener('click', function() {
     if (playerTurn) {
-      // Add active class to allow player to interact. 
+      disableStatItems(true);
+      // Add active class to allow player to interact.
       cardListWrapper.classList.add('stat-item-active');
       statSelection(statName, statValue, elementId);
 
       const showStats = document.querySelector('#opponent-card .card-stats');
       if (showStats) {
+        showStats.classList.remove('disabled');
         showStats.classList.remove('hidden');
-      };
-    };
+      }
+
+      // Wait for some time before allowing interaction again
+      turnTimer = setTimeout(function() {
+        disableStatItems(false);
+      }, 2500);
+    }
   });
 
   // Add hover effect
   cardListWrapper.addEventListener('mouseenter', function() {
-    cardListWrapper.classList.add('stat-item-hover');
+    if (playerTurn) {
+      cardListWrapper.classList.add('stat-item-hover');
+    }
   });
 
   cardListWrapper.addEventListener('mouseleave', function() {
@@ -382,8 +391,26 @@ function listCreator(statName, statValue, elementId) {
   });
 
   return statWrapper;
-};
-  
+}
+
+
+/**
+ * Disables or enables all stat items to prevent player from spamming buttons
+ * @param {boolean} disable - Whether to disable or enable the stat items.
+ */
+function disableStatItems(disable) {
+  const statItems = document.querySelectorAll('.stat-item');
+  statItems.forEach(item => {
+    if (disable) {
+      item.classList.add('disabled');
+      item.style.pointerEvents = 'none';
+    } else {
+      item.classList.remove('disabled');
+      item.style.pointerEvents = 'auto';
+    }
+  });
+}
+
 //-----------------------------------------Game Loops
   
 /**
@@ -419,17 +446,19 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
     winLossCounter('opponent');
     playerTurn = false;
     opponentTimer = setTimeout(function() {
-      opponentTurn()}, 2500);
+      opponentTurn();
+    }, 2500);
   } else if(playerStatValue === opponentStatValue && elementId === 'player-card') {
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue} It\'s a draw, take another turn!`);
-    winLossCounter('draw')
+    winLossCounter('draw');
     playerTurn = true;
   } else if (playerStatValue === opponentStatValue){
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `The enemy trainer selected ${playerStatName}, which has the value ${opponentStatValue} vs the your value of ${playerStatValue}! It\'s a draw, the enemy trainer gets another go`);
-    winLossCounter('draw')
+    winLossCounter('draw');
     playerTurn = false;
     opponentTimer = setTimeout(function() {
-        opponentTurn()}, 2500);
+      opponentTurn();
+    }, 2500);
   } else if(playerStatValue < opponentStatValue) {
     outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer wins this round.`);
     winLossCounter('opponent');
@@ -439,26 +468,28 @@ function resolveRound (playerStatName, playerStatValue, opponentStatValue, eleme
       showStats.classList.remove('hidden');
     };
     opponentTimer = setTimeout(function() {
-        opponentTurn()}, 2500);
-    } else {
-      outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer lost this round, its your turn!.`);
-      winLossCounter('player');
-      playerTurn = true;
-      const showStats = document.querySelector('#opponent-card .card-stats');
-      if (showStats) {
-        showStats.classList.remove('hidden');
-      };
-    }; 
+      opponentTurn();
+    }, 2500);
+  } else {
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null,  `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer lost this round, its your turn!.`);
+    winLossCounter('player');
+    playerTurn = true;
+    const showStats = document.querySelector('#opponent-card .card-stats');
+    if (showStats) {
+      showStats.classList.remove('hidden');
+    };
+  }; 
 
   turnTimer = setTimeout(function() {
     if (!endOfGame) {
-      showCard(activeCard.playerDeck[0], 'player')
-      showCard(activeCard.opponentDeck[0], 'opponent')
+      showCard(activeCard.playerDeck[0], 'player');
+      showCard(activeCard.opponentDeck[0], 'opponent');
       outputMessage.innerHTML = '';
     };
+    disableStatItems(false);
   }, 2500);
-  checkEndGame()
-};
+  checkEndGame();
+}
 
 /**
  * Checks if the game has ended by checking if either deck size is 0.
@@ -527,7 +558,7 @@ function opponentTurn() {
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
   const playerStatValue = activeCard.playerDeck[0].stats[randomStat];
-  
+
   turnTimer = setTimeout(function() {
     resolveRound(randomStat, playerStatValue, pickedStatValue);
   }, 2500);

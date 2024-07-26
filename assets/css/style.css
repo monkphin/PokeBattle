@@ -8,6 +8,10 @@ html, body {
     overflow: auto; 
 }
 
+.disabled {
+    pointer-events: none;
+  }
+
 body {
     position: relative;
     background: none; 
