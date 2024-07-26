@@ -312,7 +312,7 @@ function cardRender(elementId, card) {
 function listCreator(statName, statValue, elementId) {
   const cardListWrapper = document.createElement('div');
   cardListWrapper.className = 'row stat-item';
-  cardListWrapper.setAttribute('tabindex', '0');
+  cardListWrapper.setAttribute('tabindex', playerTurn ? '0' : '-1');  // Set tabindex based on playerTurn
 
   const nameSpan = document.createElement('div');
   nameSpan.className = 'stat-name';
@@ -329,7 +329,7 @@ function listCreator(statName, statValue, elementId) {
   statWrapper.className = 'col-6 col-lg-12 stat-wrapper';
   statWrapper.appendChild(cardListWrapper);
 
-  cardListWrapper.addEventListener('click', function() {
+  function handleInteraction() {
     if (playerTurn) {
       disableStatItems(true);
       // Add active class to allow player to interact.
@@ -342,7 +342,10 @@ function listCreator(statName, statValue, elementId) {
         showStats.classList.remove('hidden');
       }
     }
-  });
+  }
+
+  // Handle click event
+  cardListWrapper.addEventListener('click', handleInteraction);
 
   // Add hover effect
   cardListWrapper.addEventListener('mouseenter', function() {
@@ -355,24 +358,28 @@ function listCreator(statName, statValue, elementId) {
     cardListWrapper.classList.remove('stat-item-hover');
   });
 
-    // Add focus and blur events to handle keyboard navigation styles
-    cardListWrapper.addEventListener('focus', function() {
+  // Add focus and blur events to handle keyboard navigation styles
+  cardListWrapper.addEventListener('focus', function() {
+    if (playerTurn) {
+      disableStatItems(false);
       cardListWrapper.classList.add('stat-item-focus');
-    });
-  
-    cardListWrapper.addEventListener('blur', function() {
-      cardListWrapper.classList.remove('stat-item-focus');
-    });
-  
-    cardListWrapper.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter' && playerTurn) {
-        disableStatItems(true);
-        cardListWrapper.click();
-      }
-    });
+    }
+  });
+
+  cardListWrapper.addEventListener('blur', function() {
+    cardListWrapper.classList.remove('stat-item-focus');
+  });
+
+  cardListWrapper.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && playerTurn) {
+      disableStatItems(false);
+      handleInteraction();
+    }
+  });
 
   return statWrapper;
 }
+
 
 /**
  * Disables or enables all stat items to prevent player from spamming buttons
@@ -388,7 +395,7 @@ function disableStatItems(disable) {
     } else {
       item.classList.remove('disabled');
       item.style.pointerEvents = 'auto';
-      item.setAttribute('tabindex', '-0');
+      item.setAttribute('tabindex', '0');
     }
   });
 }
