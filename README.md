@@ -148,7 +148,11 @@ The footer provides links to the the site owners socials, in this case Facebook,
 ## Future Features
 
 # Bugs and issues.
+Issues with background needing to be a div on its own due to the colour shift not extending down the entire page, irrespective of what was tried. 
 
+Have had to use flex-grow-1 on the main content class to push the footer to the bottom of the page on longer screens. However this introduces some rendering issues with the main content where it will, on narrower screens cause the site content to add space between the logo and itself,which is undesirable due to causing some inconsistency in layout on different sized screens.
+
+Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isnt easily replicable sadly so I have been unable to identify the root cause. 
 
 # Technology.
 
