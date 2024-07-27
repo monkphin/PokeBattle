@@ -148,11 +148,13 @@ The footer provides links to the the site owners socials, in this case Facebook,
 ## Future Features
 
 # Bugs and issues.
-Had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achive the layout I was aiming for, this was causing significant issues with rendering which were proving too complex to fix, so decided to simplify things and shifted to using plain CSS for the index page. 
+Had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering which were proving too complex to fix, so decided to simplify things and shifted to using plain CSS for the index page. 
 
-Need to add a slight pause before allowing player to interact with their cards again after the opponent players turn. While this isnt causing a specific issue I can see, it does mean that the player can, via spamming the card buttons leave themselves unaware of the outcome of the opponent turn. Have tried to do this in a few places but have never been able to get it to work. 
+Need to add a slight pause before allowing player to interact with their cards again after the opponent players turn. While this isn't causing a specific issue I can see, it does mean that the player can, via spamming the card buttons leave themselves unaware of the outcome of the opponent turn. Have tried to do this in a few places but have never been able to get it to work. 
 
-Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isnt easily replicable sadly so I have been unable to identify the root cause. 
+Have seen a slight issue with the response for a victory condition clearing faster than expected after the player scores a draw. I have thus far been unable to identify the cause of this. 
+
+Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause. 
 
 # Technology.
 
@@ -286,6 +288,8 @@ Testing and discussions with my mentor also highlighted a few issues with the Ja
 Effectively, the stats would allow multiple clicks, which the game queued and processed as though the user had been interacting with the game in the expected manner, where they take a turn and wait for events to occur. This was resolved by adding a new function
 that was called at the end of each turn, where the game would check for a boolean being true or not when true this would set CSS to prevent player input as well as adjusting the tabIndex to -1 to prevent keyboard interactivity. 
 
+Beyond this, I also manually tested the site, running through multiple games and testing all aspects of functionality, from form entry through to game play while keeping an eye on the console for any possible errors that may be logged. 
+
 ## Performance
 
 Loading times and performance was tested using Googles Lighthouse tool within Chromes Developer Tools. 
@@ -315,6 +319,12 @@ I had attempted to resolve this using preloads and other methods to try to local
 <img src="docs/404-lighthouse.png">
 </details>
 
+## Javascript Testing
+[Esprima](https://esprima.org/demo/validate.html) was used to check and verify the javascript, this caught a few semicolons that were missed or weren't needed which were correct. After this it gave no further warnings. 
+[JShint](https://jshint.com/) Was also used - this initially gave warnings for a few undefined variables, which were fixed. It also warns about features used in ES6. 
+[BeautifyTools](https://beautifytools.com/javascript-validator.php). Much like JSHint, this gave several warnings around syntax in use which is only available in ES6. 
+
+
 ## Device and Browser Testing
 
 - WIndows Desktop PC
@@ -333,7 +343,8 @@ In Addition, the following browsers have all been used in testing:
 
 ## Responsiveness
 
-Responsiveness testing was performed using Chrome's Developer Tools.
+Responsiveness testing was performed using Chrome's Developer Tools. Where the option to rotate the device was possible this was also tested. As well testing simulating devices that have folding screens. 
+For brevity, the specifics of rotation/screen adjustment testing will only be called out where issues were seen. As it stands, no issues were observed. 
 
 <details>
 <summary>Galaxy Z Fold 5</summary>
@@ -342,7 +353,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | Galaxy z Fold 5       | Index Page    | Displays as Expected |
 | 344 x 882             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 882 x 344             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -353,7 +364,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | Samsung Galaxy S8+    | Index Page    | Displays as Expected |
 | 360 x 740             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 740 x 360             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -364,7 +375,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPhone SE             | Index Page    | Displays as Expected |
 | 375 x 667             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 667 x 375                     | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -375,7 +386,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPhone 12 Pro         | Index Page    | Displays as Expected |
 | 390 x 844             | Club Page     | Displays as Expected |
-|                       | 404 Page  | Displays as Expected |
+| 844 x 390             | 404 Page  | Displays as Expected |
 
 </details>
 
@@ -386,7 +397,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | Samsung Galaxy A51/71 | Index Page    | Displays as Expected |
 | 412 x 914             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 914 x 412             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -397,7 +408,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | Pixel 7	              | Index Page    | Displays as Expected |
 | 412 x 915             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 915 x 412             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -408,7 +419,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | ------------------------ | ------------- | -------------------- |
 | Samsung Galaxy S20 Ultra | Index Page    | Displays as Expected |
 | 412 x 915                | Game Page     | Displays as Expected |
-|                          | 404 Page      | Displays as Expected |
+| 915 x 412                | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -419,7 +430,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPhone XR             | Index Page    | Displays as Expected |
 | 414 x 896             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 896 x 414             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -430,7 +441,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPhone 14 Pro Max     | Index Page    | Displays as Expected |
 | 430 x 932             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 932 x 430             | 404 Page      | Displays as Expected |
 
 
 </details>
@@ -442,7 +453,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | Surface Duo           | Index Page    | Displays as Expected |
 | 540 x 720             | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 720 x 540             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -453,7 +464,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPad Mini             | Index Page    | Displays as Expected |
 | 768 x 1024            | Game Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 1024 x 768            | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -464,7 +475,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPad Air              | Index  Page   | Displays as Expected |
 | 820 x 1180            | Club Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 1180 x 820            | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -475,7 +486,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | Asus Zenbook Fold     | Index  Page   | Displays as Expected |
 | 853 x 1280            | Club Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 1280 x 853            | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -486,7 +497,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | Surface 7 Pro         | Index  Page   | Displays as Expected |
 | 912 x 1368            | Club Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 1368 x 912            | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -508,7 +519,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPad Pro              | Index  Page   | Displays as Expected |
 | 1024 x 1366           | Club Page     | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
+| 1366 x 1024           | 404 Page      | Displays as Expected |
 
 </details>
 

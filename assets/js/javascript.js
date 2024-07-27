@@ -15,6 +15,7 @@ let numberOfLosses = 0;
 let numberOfDraws = 0;
 let turnTimer;
 let opponentTimer;
+let activeCard;
 const outputMessage = document.getElementById('message-area');
 const deckSizeArea = document.getElementById('deck-size-area');
 
@@ -113,7 +114,7 @@ function displayPlayerName() {
   const friendlyMessage = presentData('p', 'Good luck with your game!');
   outputMessage.appendChild(friendlyMessage);
 }
-  
+   
 //-----------------------------------------Deck Constructor 
   
 /**
@@ -281,8 +282,10 @@ function cardRender(elementId, card) {
 
   cardContent.appendChild(cardImg);
   cardContent.appendChild(statsContainer);
+
   cardContainer.appendChild(cardName);
   cardContainer.appendChild(cardContent);
+
   cardElement.appendChild(cardContainer);
 
   // Remove hover/pressed classes from stat items
@@ -398,9 +401,9 @@ function disableStatItems(disable) {
  * @param {string} elementId - the ID of the element. 
  */
 function statSelection(statName, statValue, elementId) {
-  playerStatName = statName;
-  playerStatValue = statValue;
-  opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
+ let playerStatName = statName;
+ let playerStatValue = statValue;
+ let opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
   resolveRound(playerStatName, playerStatValue, opponentStatValue, elementId);
 }
 
