@@ -336,18 +336,24 @@ In Addition, the following browsers have all been used in testing:
 Responsiveness testing was performed using Chrome's Developer Tools.
 
 <details>
-<summary>Galaxy Pixel Fold</summary>
+<summary>Galaxy Z Fold 5</summary>
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Galaxy Pixel Fold     | Home Page     | Displays as Expected |
-| 280 x 653             | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
+| Galaxy z Fold 5       | Index Page    | Displays as Expected |
+| 344 x 882             | Game Page     | Displays as Expected |
 |                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Samsung Galaxy S8+</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Samsung Galaxy S8+    | Index Page    | Displays as Expected |
+| 360 x 740             | Game Page     | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -356,14 +362,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPhone SE             | Home Page     | Displays as Expected |
-| 375 x 667             | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
+| iPhone SE             | Index Page    | Displays as Expected |
+| 375 x 667             | Game Page     | Displays as Expected |
 |                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
 
 </details>
 
@@ -372,14 +373,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPhone 12 Pro         | Home Page     | Displays as Expected |
+| iPhone 12 Pro         | Index Page    | Displays as Expected |
 | 390 x 844             | Club Page     | Displays as Expected |
 |                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
 
 </details>
 
@@ -388,14 +384,42 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Samsung Galaxy A51/71 | Home Page     | Displays as Expected |
-| 412 x 914             | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
+| Samsung Galaxy A51/71 | Index Page    | Displays as Expected |
+| 412 x 914             | Game Page     | Displays as Expected |
 |                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Pixel 7</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Pixel 7	              | Index Page    | Displays as Expected |
+| 412 x 915             | Game Page     | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Samsung Galaxy S20 Ultra</summary>
+
+| Device and Resolution    | Page          | Result               |
+| ------------------------ | ------------- | -------------------- |
+| Samsung Galaxy S20 Ultra | Index Page    | Displays as Expected |
+| 412 x 915                | Game Page     | Displays as Expected |
+|                          | 404 Page      | Displays as Expected |
+
+</details>
+
+<details>
+<summary>iPhone XR</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| iPhone XR             | Index Page    | Displays as Expected |
+| 414 x 896             | Game Page     | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -404,30 +428,21 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPhone 14 Pro Max     | Home Page     | Displays as Expected |
-| 430 x 932             | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
+| iPhone 14 Pro Max     | Index Page    | Displays as Expected |
+| 430 x 932             | Game Page     | Displays as Expected |
 |                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
+
 
 </details>
 
 <details>
-<summary>Surface Pro Duo</summary>
+<summary>Surface Duo</summary>
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Surface Pro Duo       | Home Page     | Displays as Expected |
+| Surface Duo           | Home Page     | Displays as Expected |
 | 540 x 720             | Club Page     | Displays as Expected |
 |                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
 
 </details>
 
@@ -439,43 +454,50 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | iPad Mini             | Home Page     | Displays as Expected |
 | 768 x 1024            | Club Page     | Displays as Expected |
 |                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
 
 </details>
 
 <details>
-<summary>ASUS ZenBook Fold</summary>
+<summary>iPad Air</summary>
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| ASUS ZenBook Fold     | Home Page     | Displays as Expected |
+| iPad Air              | Home Page     | Displays as Expected |
+| 820 x 1180            | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Asus Zenbook Fold</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Asus Zenbook Fold     | Home Page     | Displays as Expected |
 | 853 x 1280            | Club Page     | Displays as Expected |
 |                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
 
 </details>
 
 <details>
-<summary>Surface Pro 7</summary>
+<summary>Surface 7 Pro</summary>
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Surface Pro 7         | Home Page     | Displays as Expected |
+| Surface 7 Pro         | Home Page     | Displays as Expected |
 | 912 x 1368            | Club Page     | Displays as Expected |
 |                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Nest Hub</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Nest Hub              | Home Page     | Displays as Expected |
+| 1024 x 600            | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
 
 </details>
 
@@ -487,11 +509,6 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | iPad Pro              | Home Page     | Displays as Expected |
 | 1024 x 1366           | Club Page     | Displays as Expected |
 |                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
 
 </details>
 
@@ -503,11 +520,6 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | Nest Hub Max          | Home Page     | Displays as Expected |
 | 1280 x 800            | Club Page     | Displays as Expected |
 |                       | Contact Page  | Displays as Expected |
-|                       | Response Page | Displays as Expected |
-|                       | 404 Page      | Displays as Expected |
-|                       | Nav Bar       | Displays as Expected |
-|                       | Carousel      | Displays as Expected |
-|                       | Modal         | Displays as Expected |
 
 </details>
 

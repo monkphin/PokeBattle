@@ -467,6 +467,8 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
     }
   }
 
+  checkEndGame();
+
   turnTimer = setTimeout(function() {
     if (!endOfGame) {
       showCard(activeCard.playerDeck[0], 'player');
@@ -479,7 +481,6 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
       }, 1000); 
     }
   }, 2500);
-  checkEndGame();
 }
 
 /**
