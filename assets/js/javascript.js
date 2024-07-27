@@ -148,29 +148,25 @@ function buildCard(name, image) {
  */
 function cardInit() {
   const cardName = [
-    'Bulbasaur', 'Charmander', 'Squirtle', 'Caterpie', 'Weedle',
-    'Pidgey', 'Rattata', 'Spearow', 'Ekans', 'Pikachu',
-    'Sandshrew', 'Nidoran', 'Clefairy', 'Vulpix', 'Jigglypuff',
-    'Zubat', 'Oddish', 'Paras', 'Venonat', 'Diglett',
-    'Meowth', 'Psyduck', 'Mankey', 'Growlithe', 'Poliwag',
-    'Abra', 'Machop', 'Bellsprout', 'Tentacool', 'Geodude',
-    'Ponyta', 'Slowpoke', 'Magnemite', 'Farfetch\'d', 'Doduo',
-    'Seel', 'Grimer', 'Shellder', 'Ghastly', 'Onix',
-    'Drowzee', 'Krabby', 'Voltorb', 'Exeggcute', 'Cubone',
-    'Hitmonlee', 'Lickitung', 'Koffing',
+    'Abra', 'Bellsprout', 'Bulbasaur', 'Caterpie', 'Charmander', 'Clefairy',
+    'Cubone', 'Diglett', 'Doduo', 'Drowzee', 'Ekans', 'Exeggcute',
+    'Farfetch\'d', 'Geodude', 'Ghastly', 'Grimer', 'Growlithe', 'Hitmonlee',
+    'Jigglypuff', 'Koffing', 'Krabby', 'Lickitung', 'Machop', 'Magnemite',
+    'Mankey', 'Meowth', 'Nidoran', 'Oddish', 'Onix', 'Paras',
+    'Pidgey', 'Pikachu', 'Poliwag', 'Ponyta', 'Psyduck', 'Rattata',
+    'Sandshrew', 'Seel', 'Shellder', 'Slowpoke', 'Spearow', 'Squirtle',
+    'Tentacool', 'Venonat', 'Voltorb', 'Vulpix', 'Weedle', 'Zubat',
   ];
 
   const cardImage = [
-    'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/squirtle.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/weedle.webp',
-    'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/rattata.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/pikachu.webp',
-    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/nidoran.webp', 'assets/images/large_cards/clefairy.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/jigglypuff.webp',
-    'assets/images/large_cards/zubat.webp', 'assets/images/large_cards/oddish.webp', 'assets/images/large_cards/paras.webp', 'assets/images/large_cards/venonat.webp', 'assets/images/large_cards/diglett.webp',
-    'assets/images/large_cards/meowth.webp', 'assets/images/large_cards/psyduck.webp', 'assets/images/large_cards/mankey.webp', 'assets/images/large_cards/growlithe.webp', 'assets/images/large_cards/poliwag.webp',
-    'assets/images/large_cards/abra.webp', 'assets/images/large_cards/machop.webp', 'assets/images/large_cards/bellsprout.webp', 'assets/images/large_cards/tentacool.webp', 'assets/images/large_cards/geodude.webp',
-    'assets/images/large_cards/ponyta.webp', 'assets/images/large_cards/slowpoke.webp', 'assets/images/large_cards/magnemite.webp', 'assets/images/large_cards/farfetchd.webp', 'assets/images/large_cards/doduo.webp',
-    'assets/images/large_cards/seel.webp', 'assets/images/large_cards/grimer.webp', 'assets/images/large_cards/shellder.webp', 'assets/images/large_cards/ghastly.webp', 'assets/images/large_cards/onix.webp',
-    'assets/images/large_cards/drowzee.webp', 'assets/images/large_cards/krabby.webp', 'assets/images/large_cards/voltorb.webp', 'assets/images/large_cards/exeggcute.webp', 'assets/images/large_cards/cubone.webp',
-    'assets/images/large_cards/hitmonlee.webp', 'assets/images/large_cards/lickitung.webp', 'assets/images/large_cards/koffing.webp',
+    'assets/images/large_cards/abra.webp', 'assets/images/large_cards/bellsprout.webp', 'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/clefairy.webp',
+    'assets/images/large_cards/cubone.webp', 'assets/images/large_cards/diglett.webp', 'assets/images/large_cards/doduo.webp', 'assets/images/large_cards/drowzee.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/exeggcute.webp',
+    'assets/images/large_cards/farfetchd.webp', 'assets/images/large_cards/geodude.webp', 'assets/images/large_cards/ghastly.webp', 'assets/images/large_cards/grimer.webp', 'assets/images/large_cards/growlithe.webp', 'assets/images/large_cards/hitmonlee.webp',
+    'assets/images/large_cards/jigglypuff.webp', 'assets/images/large_cards/koffing.webp', 'assets/images/large_cards/krabby.webp', 'assets/images/large_cards/lickitung.webp', 'assets/images/large_cards/machop.webp', 'assets/images/large_cards/magnemite.webp',
+    'assets/images/large_cards/mankey.webp', 'assets/images/large_cards/meowth.webp', 'assets/images/large_cards/nidoran.webp', 'assets/images/large_cards/oddish.webp', 'assets/images/large_cards/onix.webp', 'assets/images/large_cards/paras.webp',
+    'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/pikachu.webp', 'assets/images/large_cards/poliwag.webp', 'assets/images/large_cards/ponyta.webp', 'assets/images/large_cards/psyduck.webp', 'assets/images/large_cards/rattata.webp',
+    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/seel.webp', 'assets/images/large_cards/shellder.webp', 'assets/images/large_cards/slowpoke.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/squirtle.webp',
+    'assets/images/large_cards/tentacool.webp', 'assets/images/large_cards/venonat.webp', 'assets/images/large_cards/voltorb.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/weedle.webp', 'assets/images/large_cards/zubat.webp',
 ];  
 
   //for loop to pull each name/image combo from the two arrays
