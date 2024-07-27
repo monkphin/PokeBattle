@@ -430,29 +430,29 @@ function statSelection(statName, statValue, elementId) {
 function resolveRound(playerStatName, playerStatValue, opponentStatValue, elementId) {
   if (playerStatValue > opponentStatValue && elementId === 'player-card') {
     if (endOfGame) return;
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}. Congratulations, you win this round`);
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round!', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}.`, 'Take your next turn');
     winLossCounter('player');
     playerTurn = true;
   } else if (playerStatValue < opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}! Unlucky, you lost the round`);
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}!`, 'Its the enemy trainers turn.');
     winLossCounter('opponent');
     playerTurn = false;
     opponentTimer = setTimeout(function() {
       opponentTurn();
     }, 2500);
   } else if (playerStatValue === opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}. It's a draw, take another turn!`);
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}!`, 'Take another turn..');
     winLossCounter('draw');
     playerTurn = true;
   } else if (playerStatValue === opponentStatValue) {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', `The enemy trainer selected ${playerStatName}, which has the value ${opponentStatValue} vs your value of ${playerStatValue}! It's a draw, the enemy trainer gets another go`);
+    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'The enemy trainer drew!', `The enemy trainer selected ${playerStatName}, which has the value ${opponentStatValue} vs your value of ${playerStatValue}!`, 'They get another go.');
     winLossCounter('draw');
     playerTurn = false;
     opponentTimer = setTimeout(function() {
       opponentTurn();
     }, 2500);
   } else if (playerStatValue < opponentStatValue) {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer wins this round.`);
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'The enemy trainer wins this round!', `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}!`, 'They get another turn.');
     winLossCounter('opponent');
     playerTurn = false;
     const showStats = document.querySelector('#opponent-card .card-stats');
@@ -463,7 +463,7 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
       opponentTurn();
     }, 2500);
   } else {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}! The enemy trainer lost this round, it's your turn!`);
+    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'The enemy trainer lost this round!', `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}!`, 'It\'s your turn');
     winLossCounter('player');
     playerTurn = true;
     const showStats = document.querySelector('#opponent-card .card-stats');
@@ -567,10 +567,14 @@ function opponentTurn() {
  * @param {string} message - the message to show the player based on the outcome. 
  
  */
-function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
-  const winMessage = presentData('h2', message);
+function outcomeHandler(winnerDeck, loserDeck, outcome, messageTitle, message, whosTurn) {
+  const winMessageTitle = presentData('h2', messageTitle);
+  const messageBody = presentData('p', message)
+  const turnMessage = presentData('p', whosTurn)
   outputMessage.innerHTML = '';
-  outputMessage.appendChild(winMessage);
+  outputMessage.appendChild(winMessageTitle);
+  outputMessage.appendChild(messageBody);
+  outputMessage.appendChild(turnMessage);
 
   let gainedCard = loserDeck.shift();
   let usedCard = winnerDeck.shift();
