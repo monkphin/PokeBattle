@@ -114,9 +114,9 @@ function retrievePlayerName() {
  */
 function displayPlayerName() {
   let playerName = retrievePlayerName();
-  const welcomePlayer = presentData('h1',`Welcome to PokeBattle ${playerName}`);
+  const welcomePlayer = presentData('h2',`Welcome to PokeBattle ${playerName}`);
   outputMessage.appendChild(welcomePlayer);
-  const friendlyMessage = presentData('h2', 'Good luck with your game!');
+  const friendlyMessage = presentData('h3', 'Good luck with your game!');
   outputMessage.appendChild(friendlyMessage);
 };
   
@@ -269,7 +269,7 @@ function cardRender(elementId, card) {
   const cardContent = document.createElement('div');
   cardContent.className = 'card';
 
-  const cardName = presentData('h3', card.name);
+  const cardName = presentData('h1', card.name);
   cardName.className = 'card-name';
 
   const cardImg = document.createElement('img');
@@ -522,13 +522,13 @@ function endGame(winner) {
   deckSizeArea.innerHTML = '';
   let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
   if (winner === 'Player') {
-    const winTitle = presentData('h3', `Congratulations ${playerName}`);
+    const winTitle = presentData('h2', `Congratulations ${playerName}`);
     const winMessage = presentData('p', `You won the game in ${totalRounds}. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
     outputMessage.appendChild(winTitle);
     outputMessage.appendChild(winMessage);
   } else {
-    const lossTitle = presentData('h3', `Commiserations ${playerName}`)
+    const lossTitle = presentData('h2', `Commiserations ${playerName}`)
     const lossMessage = presentData('p', `You lost the game in ${totalRounds}. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
     //Add button element to play again. 
@@ -568,7 +568,7 @@ function opponentTurn() {
  
  */
 function outcomeHandler(winnerDeck, loserDeck, outcome, message) {
-  const winMessage = presentData('h3', message);
+  const winMessage = presentData('h2', message);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(winMessage);
 
@@ -610,17 +610,3 @@ function winLossCounter(winner) {
   };    
  return numberOfWins, numberOfLosses, numberOfDraws;
 };
-
-/**
- * Breifly displays a message to the player to show outcomes. 
- * @param {string} message - the message to display. 
- */
-function displayMessage(message) {
-    const messageArea = document.getElementById('message-area');
-    messageArea.textContent = message;
-    messageArea.style.display = 'block';
-    
-    messageTimer = setTimeout(() => {
-        messageArea.style.display = 'none';
-    }, 2500); 
-}

@@ -122,6 +122,11 @@ button:active {
     width: 95%;
 }
 
+.instructions-title {
+    text-align: center;
+    font-size: 1.5em;
+}
+
 .name-request {
     font-family: "Montserrat", sans-serif;
     align-items: center;
@@ -148,7 +153,7 @@ button:active {
 .name-form button {
     padding: 5px 10px;
     background-color: #007bff;
-    color: white;
+    color: black;
     border: none;
     cursor: pointer;
 }
