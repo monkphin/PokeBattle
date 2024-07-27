@@ -7,16 +7,15 @@
     <title>PokeBattle</title>
 </head>
 <body>
-  <div class="background"><!-- have to call background in this manner due to rendering issues otherwise --></div>
   <div class="wrapper">
     <div class="container">
       <header class="header" id="logo-header">  
-        <a href="index.html"><img src="assets/images/pokebattler-logo-large.webp" alt="PokeBattler" class="logo"></a>
+        <a href="index.html"><img src="assets/images/pokebattler-logo-large.webp" alt="PokeBatter Logo" class="logo"></a>
       </header>
       <main class="main-content">
         <!-- Welcome Message with game instructions -->
         <div class="hero-image">
-          <img src="assets/images/trainers.avif" alt="PokeBattle" class="trainers_image">
+          <img src="assets/images/trainers.avif" alt="PokeBatter Hero Image" class="trainers_image">
         </div>
         <div class="instructions">
           <h1 class="instructions-title">Game Instructions</h1>
@@ -27,9 +26,9 @@
           <p class="name-request">To begin, please enter your name below.</p>
           <!-- player name form -->
           <div>
-            <form id="name_form" class="name-form">
-              <label for="player_name">Player Name: </label>
-              <input type="text" id="player_name" name="player_name">
+            <form id="name-form" class="name-form" aria-labelledby="player-name">
+              <label for="player-name">Player Name: </label>
+              <input type="text" id="player-name" name="player-name">
               <button type="submit" id="submit">Play Game</button>
             </form>
           </div>   

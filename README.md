@@ -156,7 +156,7 @@ Tabbed navigation will sometimes allow the spamming of stat option presses in so
 
 # Technology.
 
-## Laguanges
+## Languages
 
 THe site is built with HTML, CSS and Javascript. It also calls on external CSS and Javascript from Bootstrap and FontAWesome, which are used to assist with layout, using bootstraps grid system and icons from FontAwesome. Much of the content on the game page is generated dynamically by the Javascript, while the index page and 404 are mostly built with static HTML, since they needed very little interactivity. 
 
@@ -221,6 +221,10 @@ THe site is built with HTML, CSS and Javascript. It also calls on external CSS a
 [W3Schools CSS Validator](https://jigsaw.w3.org/css-validator/)
 
 ## Accessibility
+
+headings were not conforming to standards - amended how text was rendered and adjusted how headings were used to ensure that these conform to web standards. 
+
+Stats were not initially selectable via tabbing - amended the javascript file to give stats the tabindex of 1 to ensure these were tabbable.
 
 [WAVE](https://wave.webaim.org) 
 

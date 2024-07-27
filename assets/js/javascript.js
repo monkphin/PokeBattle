@@ -24,11 +24,11 @@ const deckSizeArea = document.getElementById('deck-size-area');
 /**
  * Check to ensure the DOM is loaded.
  * This will ensure that the index.html and game.html are fully initialised. 
- * Also checks for the name_form element on the index page and sets up for submission
+ * Also checks for the name-form element on the index page and sets up for submission
  * various functions required for the app are also being triggered here. 
  */
 document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('name_form');
+  const form = document.getElementById('name-form');
   if (form) {
     form.addEventListener('submit', handleSubmit);
   };
@@ -78,7 +78,7 @@ function setPermElements() {
  */
 function handleSubmit(e) {
   e.preventDefault();
-  let name = document.getElementById('player_name').value;
+  let name = document.getElementById('player-name').value;
   //check to ensure name has been entered
   if(name.trim()) {
     storePlayerName(name);
