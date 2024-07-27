@@ -15,9 +15,9 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 - [User Stories](#user-stories)
 
-  - [Club Visitor](#site-visitor)
+  - [Page Visitor](#site-visitor)
   - [Mobile User](#mobile-user)
-  - [Club Owner](#site-owner)
+  - [Page Owner](#site-owner)
 
 - [Design](#design)
 
@@ -132,7 +132,6 @@ The header exists predominantly to show the sites logo. However it is clickable 
 ## Hero Image
 The hero image is displayed on the index page only. Ot provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
 
-
 ## Instructions
 These are provided to ensure that players know the basics of how the game will function. Advising on how the game round should flow, what the objective of the turn and game is, as well as how many cards the two players have. This also presents an opportunity for the player to enter their name, which is called on at the end of hte game to congratulate or commiserate with the with player. Like other aspects of the site this is fully responsive and will react to varying screen resolutions, adjusting as needed. 
 
@@ -146,15 +145,21 @@ The footer provides links to the the site owners socials, in this case Facebook,
 ## 404 Page
 
 ## Future Features
+Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games. 
+The ability to have two players in the game, rather than a player and the computer. 
+Ideally, id like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names causing cards to not render. I believe this is possible via JQuery https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory
+I'd like to add options to change the computer players difficulty. Currently it picks a random stat, rather than having any specific behaviour. Options to make it specifically pick lower stat options, or higher stat options would allow for difficulty level changes or setting the random picker to favour higher/lower numbers as needed would enable this. 
+
 
 # Bugs and issues.
-Had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering which were proving too complex to fix, so decided to simplify things and shifted to using plain CSS for the index page. 
+1: I had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering which were proving too complex to fix, so decided to simplify things and shifted to using plain CSS for the index and 404 pages The game page still currently uses bootstrap. 
 
-Need to add a slight pause before allowing player to interact with their cards again after the opponent players turn. While this isn't causing a specific issue I can see, it does mean that the player can, via spamming the card buttons leave themselves unaware of the outcome of the opponent turn. Have tried to do this in a few places but have never been able to get it to work. 
+2: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify which of this will fix the issue. Or where the fix will be needed. 
 
-Have seen a slight issue with the response for a victory condition clearing faster than expected after the player scores a draw. I have thus far been unable to identify the cause of this. 
+3: Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause. Though I believe this may be related to issue 2 above. 
 
-Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause. 
+4: There is an issue with the response for a victory condition clearing faster than expected after the player scores a draw. I have thus far been unable to identify the cause of this. 
+
 
 # Technology.
 
