@@ -248,7 +248,7 @@ Some errors were present when checking the game.html. This is due to falling bac
 [WAVE](https://wave.webaim.org) was used to check to ensure the site conforms to accessibility standards. 
 
 Issue #1: All pages initially showed an issue where wave testing was detecting the footer links as a possible heading. 
-Reason: Footer links were originally created withina  single P element with a large font size. Causing Wave to mistake them for a header.
+Reason: Footer links were originally created within a single P element with a large font size. Causing Wave to mistake them for a header.
 Fix: Moved footer elements into an unordered list and amended CSS to ensure these were displayed horizontally. 
 
 Issue #2: Headings were not conforming to standards
@@ -277,22 +277,304 @@ Fix: Added a key event using the enter key, so pressing this could action the se
 </details>
 
 
-## User Testing.
+## User Testing
+
+I reached out to several friends to help assess the colour choices, layouts, usability and readability of the site. 
+Comments included that the colours were calming and that after some adjustments had been made to the messages displayed between turns, it was easier to read and understand what was happening. 
+
+Testing and discussions with my mentor also highlighted a few issues with the Javascript which would allow players to queue multiple inputs to the game logic, leading to the game seemingly playing on its own with the player having no idea what was happening. 
+Effectively, the stats would allow multiple clicks, which the game queued and processed as though the user had been interacting with the game in the expected manner, where they take a turn and wait for events to occur. This was resolved by adding a new function
+that was called at the end of each turn, where the game would check for a boolean being true or not when true this would set CSS to prevent player input as well as adjusting the tabIndex to -1 to prevent keyboard interactivity. 
 
 ## Performance
 
+Loading times and performance was tested using Googles Lighthouse tool within Chromes Developer Tools. 
+
+Without trying to optimise, both the index page and 4040 page were scoring above 90 in all areas, with some scores reaching 100. 
+However the game page was a different story. Scoring as low as 68 over several tests for its performance. The main issue being highlighted by Lighthouse was the card images. 
+On investigation these were overly large images - being 745 x 1040px, each clocking in around 400kb. Since at its largest the game page limits these images to 548 x 765px, i resized the images to match this and also lowered the image quality slightly which dropped the file size to 20kb per card. 
+This pushed the lowest score to a much more acceptable 89/100. 
+
+
+This page relies heavily on Javascript for content rendering which I suspect may be the main culprit here.
+Since the card images are also all called from the javascript file this can add delays and img.card-image element was highlighted as the main issue.
+I had attempted to resolve this using preloads and other methods to try to locally cache the images. However the score did not improve. 
+
+<details>
+<summary>Index Page</summary>
+<img src="docs/index-lighthouse.png">
+</details>
+
+<details>
+<summary>Game Page</summary>
+<img src="docs/game-lighthouse.png">
+</details>
+
+<details>
+<summary>404 Page</summary>
+<img src="docs/404-lighthouse.png">
+</details>
+
 ## Device and Browser Testing
+
+- WIndows Desktop PC
+- Apple M1 MacBook Pro
+- Apple M2 MacBook Pro Max
+- Apple iPad Pro
+- iPhone 15 Pro Max
+- Samsung Galaxy S24
+
+In Addition, the following browsers have all been used in testing:
+
+- Chrome
+- Safari
+- Firefox
+- Edge
 
 ## Responsiveness
 
+Responsiveness testing was performed using Chrome's Developer Tools.
+
+<details>
+<summary>Galaxy Pixel Fold</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Galaxy Pixel Fold     | Home Page     | Displays as Expected |
+| 280 x 653             | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>iPhone SE</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| iPhone SE             | Home Page     | Displays as Expected |
+| 375 x 667             | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>iPhone 12 Pro</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| iPhone 12 Pro         | Home Page     | Displays as Expected |
+| 390 x 844             | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Samsung Galaxy A51/71</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Samsung Galaxy A51/71 | Home Page     | Displays as Expected |
+| 412 x 914             | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>iPhone 14 Pro Max</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| iPhone 14 Pro Max     | Home Page     | Displays as Expected |
+| 430 x 932             | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Surface Pro Duo</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Surface Pro Duo       | Home Page     | Displays as Expected |
+| 540 x 720             | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>iPad Mini</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| iPad Mini             | Home Page     | Displays as Expected |
+| 768 x 1024            | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>ASUS ZenBook Fold</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| ASUS ZenBook Fold     | Home Page     | Displays as Expected |
+| 853 x 1280            | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Surface Pro 7</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Surface Pro 7         | Home Page     | Displays as Expected |
+| 912 x 1368            | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>iPad Pro</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| iPad Pro              | Home Page     | Displays as Expected |
+| 1024 x 1366           | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
+<details>
+<summary>Nest Hub Max</summary>
+
+| Device and Resolution | Page          | Result               |
+| --------------------- | ------------- | -------------------- |
+| Nest Hub Max          | Home Page     | Displays as Expected |
+| 1280 x 800            | Club Page     | Displays as Expected |
+|                       | Contact Page  | Displays as Expected |
+|                       | Response Page | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
+|                       | Nav Bar       | Displays as Expected |
+|                       | Carousel      | Displays as Expected |
+|                       | Modal         | Displays as Expected |
+
+</details>
+
 # Version control and Deployment
+
+
+The site's code is all stored on GitHub, which is used for version control and is currently hosting a deployed copy of the site using Github Pages. 
 
 ## Repo Creation
 
+A new repo was created directly on the GitHub website using the below steps: 
+
+1: Navigate to github.com.
+2: login to my account.
+3: click the repositories tab on the top of the website. 
+4: Click the green 'new' button 
+5: On the newly loaded page, in the text field enter a name for the repo, in this case, nlaw was entered.
+6: An optional description can be added in the text box below this. In this instance, this was left blank.
+7: Select the visibility as either public or private. Since this needs to be visible for assessment and marking, the default 'Public' option was left checked.
+9: Click the Create repository button and wait for a few moments, once this has been cloned into your account the page will reload and you'll be presented with the code space for the repo.
+
+
 ## Cloning locally
 
-## Deployment
+Since I chose to work in Visual Studio Code, the contents of the newly created repo needed to be transferred to my computer. To do this I followed the below steps:
 
+
+1. In VSCode, I opened the Terminal window, by visiting the 'Terminal' menu in VSCode and selecting 'New Terminal'
+2. Within this terminal window, I made sure I was in the correct folder for where I wanted to store my work, if this was not correct I would have used the bash command cd to navigate to the correct folder. In this case, ~/Code, which is a folder called 'Code' in my logged-in user Home Folder.
+3. In a web browser, I navigated to the GitHub repository for the project and clicked on the green '<> Code' button, this presented me with several options for cloning. I selected the 'HTTPS' option and copied the URL in the text field.
+4. In Visual Studio Code’s terminal, I typed git clone https://github.com/monkphin/nlaw.git and pressed enter, which cloned the repo to my local machine as shown by the below output.
+ 
+    ```
+    darren@localhost MINGW64 ~/Code (main)
+    $ git clone https://github.com/monkphin/PokeBattle.git
+    Cloning into 'PokeBattle'...
+    remote: Enumerating objects: 12, done.
+    remote: Counting objects: 100% (12/12), done.
+    remote: Compressing objects: 100% (12/12), done.
+    remote: Total 12 (delta 0), reused 8 (delta 0), pack-reused 0
+    Receiving objects: 100% (12/12), 5.68 KiB | 830.00 KiB/s, done.
+    ```
+
+5. Once this had finished cloning I used cd to navigate into the relevant folder - in this case, cd PokeBattle
+   
+    ```
+    darren@localhost MINGW64 ~/Code (main)
+    $ cd PokeBattle/
+    darren@localhost MINGW64 ~/Code/PokeBattle (main)
+    ```
+6. I am now able to work on the project on my local machine.
+
+I used the ability to clone locally to allow me to work on several devices over the course of the creation of the website and its readme file., including using personal development time while at work or using my work provided machine while staying in hotels for office visits. As such the repo will show my work account having committed some changes to this project also. 
+
+## Deployment
+As mentioned the site is currently deployed via GitHub Pages.
+To deploy the site the following steps were used:
+
+
+1. Navigate to the specific GitHub Repo for the site - in this case: https://github.com/monkphin/PokeBattle/
+2. Click settings in the menu at the top of the project.
+3. On the left-hand menu of the settings page, click on the Pages link.
+4. Under the 'Build and Deploy heading click the drop-down under 'Branch' and select which branch to deploy from. In this case, it was 'main'.  
+5. Check to ensure the correct site root is selected in the drop-down next to the branch drop-down selector that is now visible. In this case, '/(root)'.
+6. Click 'save'.
+7. Wait a moment for the web page to reload, at which point you will see a notice at the top of the page stating 'GitHub Pages source saved'
+8. Once the page has reloaded, you should see a message at the top stating 'Your site is live at https://monkphin.github.io/PokeBattle/' If this is not visible, refresh the page and it should now be visible.
 
 # Credits 
 PokeBattler Logo taken from https://www.pokebattler.com/
