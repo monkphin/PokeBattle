@@ -4,10 +4,9 @@
  * endOfGame - Bool to signal the end of the game.
  * cards - Array that makes up the game deck.
  * numberOfWins, numberOfLosses, numberOfDraws - these track the count of wins, losses, and draws.
- * turnTimer, opponentTimer, messageTimer: Timers for allowing timers to be called and cleared at the end of the game to prevent reloading. 
+ * turnTimer, opponentTimer: Timers for allowing timers to be called and cleared at the end of the game to prevent reloading. 
  * outputMessage, deckSizeArea: HTML elements for rendering messages, win/loss area, and deck size area.
  */
-
 let playerTurn = true;
 let endOfGame = false;
 let cards = [];
@@ -16,11 +15,11 @@ let numberOfLosses = 0;
 let numberOfDraws = 0;
 let turnTimer;
 let opponentTimer;
-let messageTimer;
 const outputMessage = document.getElementById('message-area');
 const deckSizeArea = document.getElementById('deck-size-area');
 
 //-----------------------------------------Game Start
+
 /**
  * Check to ensure the DOM is loaded.
  * This will ensure that the index.html and game.html are fully initialised. 
@@ -31,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('name-form');
   if (form) {
     form.addEventListener('submit', handleSubmit);
-  };
-
+  }
 
   const currentURL = window.location.href;
   if (currentURL.includes('game.html')) {
@@ -43,13 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-function isSmallScreen() {
-  return window.innerWidth < 576;
-}
 /**
  * Renders default none-card text content, which is present at the start of the game
 */
-
 function setPermElements() {
   const playerCardCount = presentData('div', 'Player deck size: ');
   playerCardCount.className = 'col-sm-3 player-deck-text';
@@ -66,7 +60,7 @@ function setPermElements() {
   opponentDeckSize.id = 'opponent-deck-size';
   opponentDeckSize.className = 'col-sm-3 opponent-deck-num';
   deckSizeArea.appendChild(opponentDeckSize);
-};
+}
 
 //-----------------------------------------Player Information 
   
@@ -85,8 +79,8 @@ function handleSubmit(e) {
     window.location.assign('game.html');
   } else {
     alert('Please enter your name before continuing');
-  };
-};
+  }
+}
     
 /**
  * Stores the players name using sessionStorage  
@@ -95,7 +89,7 @@ function handleSubmit(e) {
  */
 function storePlayerName(name) {
   sessionStorage.setItem('playerName', name);
-};
+}
     
 /**
  * Retrieves players name from sessionStorage. If player access the gamepage directly, it redirects to index to ensure a name is entered. 
@@ -107,7 +101,7 @@ function retrievePlayerName() {
     window.location.assign('index.html');
   }
   return playerName;
-};
+}
     
 /** 
  * Throws a welcome message to game.html page when loaded
@@ -118,8 +112,7 @@ function displayPlayerName() {
   outputMessage.appendChild(welcomePlayer);
   const friendlyMessage = presentData('p', 'Good luck with your game!');
   outputMessage.appendChild(friendlyMessage);
-};
-  
+}
   
 //-----------------------------------------Deck Constructor 
   
@@ -140,7 +133,7 @@ function buildCard(name, image) {
       speed: Math.ceil(Math.random() * 10),
     },
   };
-};
+}
 
 /**
  * Initialises the card deck with names and images
@@ -173,12 +166,12 @@ function cardInit() {
   if(cardName.length === cardImage.length) { 
     for(let i = 0; i < cardName.length; i++) {
       cards.push(buildCard(cardName[i], cardImage[i]));
-    };
+    }
   } else {
-    console.log('The cardInit Arrays are not an equal length.')
+    console.log('The cardInit Arrays are not an equal length.');
   }
   return cards;
-};
+}
   
 /**
  * Shuffles the deck using a Fisher-Yates algorithm 
@@ -193,7 +186,7 @@ const shuffleCards = array => {
     const temp = array[i];
     array[i] = array[j];
     array[j] = temp;
-  };
+  }
   return array;
 };
   
@@ -208,7 +201,7 @@ function createDecks() {
   const opponentDeck = shuffledDeck.slice(0, 20);
   
   return {playerDeck, opponentDeck};
-};
+}
   
 /**
 *pulls the topmost card from each deck for presentation.
@@ -218,7 +211,7 @@ function cardPicker() {
   showCard(activeCard.playerDeck[0], 'player');
   showCard(activeCard.opponentDeck[0], 'opponent');
   updateDeckCount();
-};
+}
   
 //-----------------------------------------Front End presentation 
 
@@ -233,7 +226,7 @@ function presentData(elementName, elementContent) {
   const content = document.createTextNode(elementContent);
   element.appendChild(content);
   return element;
-};
+}
   
 /** 
  * Present both players cards to HTML using the cardRender function 
@@ -245,8 +238,8 @@ function showCard(card, player) {
     cardRender('player-card', card);
   } else {
     cardRender('opponent-card', card);
-  };
-};
+  }
+}
   
 /**
  * Renders the cards image, name and stats. 
@@ -288,10 +281,8 @@ function cardRender(elementId, card) {
 
   cardContent.appendChild(cardImg);
   cardContent.appendChild(statsContainer);
-
   cardContainer.appendChild(cardName);
   cardContainer.appendChild(cardContent);
-
   cardElement.appendChild(cardContainer);
 
   // Remove hover/pressed classes from stat items
@@ -299,7 +290,7 @@ function cardRender(elementId, card) {
   statItems.forEach(item => {
     item.classList.remove('stat-item-hover', 'stat-item-active');
   });
-};
+}
 
 /**
  * Creates a bootstrap grid which serves to list the cardstats. ALso attaches an event listener for user interaction.
@@ -411,7 +402,7 @@ function statSelection(statName, statValue, elementId) {
   playerStatValue = statValue;
   opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
   resolveRound(playerStatName, playerStatValue, opponentStatValue, elementId);
-};
+}
 
 /**
  * Resolves the round - this compares the player and opponent stats
@@ -491,8 +482,8 @@ function checkEndGame() {
     endGame('Opponent');
   } else if (activeCard.opponentDeck.length === 0) {
     endGame('Player');
-  };
-};
+  }
+}
   
 /**
  * Ends the game and shows the final result. Along with number of turns won/lost/drawn
@@ -501,7 +492,7 @@ function checkEndGame() {
 function endGame(winner) {
   endOfGame = true;
   let playerName = retrievePlayerName();
-  let newGameButton = document.createElement('button')
+  let newGameButton = document.createElement('button');
   newGameButton.textContent = 'Play again!';
   newGameButton.addEventListener('click', function() {
     outputMessage.innerHTML = '';
@@ -520,23 +511,23 @@ function endGame(winner) {
   if (winner === 'Player') {
     const winTitle = presentData('h2', `Congratulations ${playerName}`);
     const winMessage = presentData('p', `You won the game in ${totalRounds}. 
-    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
+    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`);
     outputMessage.appendChild(winTitle);
     outputMessage.appendChild(winMessage);
   } else {
-    const lossTitle = presentData('h2', `Commiserations ${playerName}`)
+    const lossTitle = presentData('h2', `Commiserations ${playerName}`);
     const lossMessage = presentData('p', `You lost the game in ${totalRounds}. 
-    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`)
+    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`);
     //Add button element to play again. 
     outputMessage.appendChild(lossTitle);
     outputMessage.appendChild(lossMessage);
-  };
+  }
   outputMessage.appendChild(newGameButton);
   // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave the idea to clear timers due to functions continuing after game end causing content to vanish.
   clearTimeout(turnTimer);
   clearTimeout(opponentTimer);
   clearTimeout(opponentTimer);
-};
+}
   
 /**
  * Handles the opponents turn by randomly picking a stat to resolve via resolveRound used the below
@@ -565,8 +556,8 @@ function opponentTurn() {
  */
 function outcomeHandler(winnerDeck, loserDeck, outcome, messageTitle, message, whosTurn) {
   const winMessageTitle = presentData('h2', messageTitle);
-  const messageBody = presentData('p', message)
-  const turnMessage = presentData('p', whosTurn)
+  const messageBody = presentData('p', message);
+  const turnMessage = presentData('p', whosTurn);
   outputMessage.innerHTML = '';
   outputMessage.appendChild(winMessageTitle);
   outputMessage.appendChild(messageBody);
@@ -580,9 +571,9 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, messageTitle, message, w
     loserDeck.push(gainedCard);
   } else {
     winnerDeck.push(usedCard, gainedCard);
-  };
+  }
   updateDeckCount();
-};
+}
 
 /**
  * updates the dusplayed deck counts for each player
@@ -607,6 +598,6 @@ function winLossCounter(winner) {
     numberOfLosses++;
   } else {
     numberOfDraws++;
-  };    
+  }
  return numberOfWins, numberOfLosses, numberOfDraws;
-};
+}

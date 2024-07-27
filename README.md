@@ -31,7 +31,7 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
   - [Header](#header)
   - [Footer](#footer)
-  - [Home Page](#home-page)
+  - [Index Page](#Index-page)
   - [Game Page](#game-page)
   - [404 Page](#404-page)
   - [Future Features](#future-features)
@@ -81,7 +81,7 @@ The design needed to be realtively simplistic, reflecting the nature of the game
 Wireframes were created with Balsamiq software to provide rough mockups for layout.
 
 <details>
-<summary>Homepage</summary>
+<summary>Index page</summary>
 <img src="docs/desktop=indexpage.png">
 <img src="docs/mobile-indexpage.png">
 </details>
@@ -120,7 +120,7 @@ Icons were provided by [FontAwesome](https://fontawsome.com)
 # Features
 
 The website consists of 3 pages:
-- home page
+- Index page
 - game page
 - 404 page
 
@@ -130,7 +130,7 @@ The game page is normally only accessible via the 'play game' button, once the p
 The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. It has two differently sized images to allow for better rendering on devices of differing capabilities. The appropriate image is picked by a javascript function, which calls on a helper function to determine the size of the window, allowing the appropriate image to be selected. 
 
 ## Hero Image
-The hero image is displayed on the home page only. Ot provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
+The hero image is displayed on the index page only. Ot provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
 
 
 ## Instructions
@@ -139,7 +139,7 @@ These are provided to ensure that players know the basics of how the game will f
 ## Footer
 The footer provides links to the the site owners socials, in this case Facebook, Github, twitter and LinkedIn. 
 
-## Homepage
+## Index page
 
 ## Game Page
 
@@ -218,24 +218,24 @@ THe site is built with HTML, CSS and Javascript. It also calls on external CSS a
 All pages passed with 0 errors. 
 
 <details>
-<summary>Homepage</summary>
+<summary>Index page</summary>
 <img src="docs/index-html.png">
 </details>
 
 <details>
-<summary>Homepage</summary>
+<summary>Game page</summary>
 <img src="docs/game-html.png">
 </details>
 
 <details>
-<summary>Homepage</summary>
+<summary>404 page</summary>
 <img src="docs/404-html.png">
 </details>
 
 ## CSS Validation
 
 [W3Schools CSS Validator](https://jigsaw.w3.org/css-validator/)
-Some errors were present when checking the game.html. This is due to falling back on Bootstraps grid system to assist in layout and positioning for the cards and some items on the webpage. I am slowly refactoring the site to move away from using Bootstrap, however due to the volume of elements on the game page, this page still uses Boostrap. 
+Some errors were present when checking the game.html. This is due to falling back on Bootstraps grid system to assist in layout and positioning for the cards and some items on the webpage. I am slowly refactoring the site to move away from using Bootstrap, however due to the volume of elements on the game page, this page still uses Bootstrap. 
 
 <details>
 <summary>Full site CSS</summary>
@@ -262,7 +262,7 @@ Issue #4: While elements were tabbable, these were not usable via keyboard input
 Fix: Added a key event using the enter key, so pressing this could action the selected stat. 
 
 <details>
-<summary>Homepage</summary>
+<summary>Index page</summary>
 <img src="docs/index-wave.png">
 </details>
 
@@ -375,7 +375,7 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 | --------------------- | ------------- | -------------------- |
 | iPhone 12 Pro         | Index Page    | Displays as Expected |
 | 390 x 844             | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+|                       | 404 Page  | Displays as Expected |
 
 </details>
 
@@ -440,9 +440,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Surface Duo           | Home Page     | Displays as Expected |
-| 540 x 720             | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+| Surface Duo           | Index Page    | Displays as Expected |
+| 540 x 720             | Game Page     | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -451,9 +451,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPad Mini             | Home Page     | Displays as Expected |
-| 768 x 1024            | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+| iPad Mini             | Index Page    | Displays as Expected |
+| 768 x 1024            | Game Page     | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -462,9 +462,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPad Air              | Home Page     | Displays as Expected |
+| iPad Air              | Index  Page   | Displays as Expected |
 | 820 x 1180            | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -473,9 +473,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Asus Zenbook Fold     | Home Page     | Displays as Expected |
+| Asus Zenbook Fold     | Index  Page   | Displays as Expected |
 | 853 x 1280            | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -484,9 +484,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Surface 7 Pro         | Home Page     | Displays as Expected |
+| Surface 7 Pro         | Index  Page   | Displays as Expected |
 | 912 x 1368            | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -495,9 +495,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Nest Hub              | Home Page     | Displays as Expected |
+| Nest Hub              | Index  Page   | Displays as Expected |
 | 1024 x 600            | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -506,9 +506,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPad Pro              | Home Page     | Displays as Expected |
+| iPad Pro              | Index  Page   | Displays as Expected |
 | 1024 x 1366           | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -517,9 +517,9 @@ Responsiveness testing was performed using Chrome's Developer Tools.
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Nest Hub Max          | Home Page     | Displays as Expected |
+| Nest Hub Max          | Index  Page   | Displays as Expected |
 | 1280 x 800            | Club Page     | Displays as Expected |
-|                       | Contact Page  | Displays as Expected |
+|                       | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -536,7 +536,7 @@ A new repo was created directly on the GitHub website using the below steps:
 2: login to my account.
 3: click the repositories tab on the top of the website. 
 4: Click the green 'new' button 
-5: On the newly loaded page, in the text field enter a name for the repo, in this case, nlaw was entered.
+5: On the newly loaded page, in the text field enter a name for the repo, in this case, PokeBattle was entered.
 6: An optional description can be added in the text box below this. In this instance, this was left blank.
 7: Select the visibility as either public or private. Since this needs to be visible for assessment and marking, the default 'Public' option was left checked.
 9: Click the Create repository button and wait for a few moments, once this has been cloned into your account the page will reload and you'll be presented with the code space for the repo.
