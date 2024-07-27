@@ -215,18 +215,67 @@ THe site is built with HTML, CSS and Javascript. It also calls on external CSS a
 ## HTML Validation  
 
 [W3Schools HTML Validator](https://validator.w3.org/)
+All pages passed with 0 errors. 
+
+<details>
+<summary>Homepage</summary>
+<img src="docs/index-html.png">
+</details>
+
+<details>
+<summary>Homepage</summary>
+<img src="docs/game-html.png">
+</details>
+
+<details>
+<summary>Homepage</summary>
+<img src="docs/404-html.png">
+</details>
 
 ## CSS Validation
 
 [W3Schools CSS Validator](https://jigsaw.w3.org/css-validator/)
+Some errors were present when checking the game.html. This is due to falling back on Bootstraps grid system to assist in layout and positioning for the cards and some items on the webpage. I am slowly refactoring the site to move away from using Bootstrap, however due to the volume of elements on the game page, this page still uses Boostrap. 
+
+<details>
+<summary>Full site CSS</summary>
+<img src="docs/site-css.png">
+</details>
+
 
 ## Accessibility
 
-headings were not conforming to standards - amended how text was rendered and adjusted how headings were used to ensure that these conform to web standards. 
+[WAVE](https://wave.webaim.org) was used to check to ensure the site conforms to accessibility standards. 
 
-Stats were not initially selectable via tabbing - amended the javascript file to give stats the tabindex of 1 to ensure these were tabbable.
+Issue #1: All pages initially showed an issue where wave testing was detecting the footer links as a possible heading. 
+Reason: Footer links were originally created withina  single P element with a large font size. Causing Wave to mistake them for a header.
+Fix: Moved footer elements into an unordered list and amended CSS to ensure these were displayed horizontally. 
 
-[WAVE](https://wave.webaim.org) 
+Issue #2: Headings were not conforming to standards
+Reason: No page had a single H1 tag present, H2 and H3 tags were used heavily however. 
+Fix: Amended how text was rendered and adjusted how headings were used to ensure that these conform to web standards. 
+
+Issue #3: Stats were not initially selectable via tabbing 
+Fix: Amended the javascript file to give stats the tabindex of 1 to ensure these were tabbable
+
+Issue #4: While elements were tabbable, these were not usable via keyboard input
+Fix: Added a key event using the enter key, so pressing this could action the selected stat. 
+
+<details>
+<summary>Homepage</summary>
+<img src="docs/index-wave.png">
+</details>
+
+<details>
+<summary>Game Page</summary>
+<img src="docs/game-wave.png">
+</details>
+
+<details>
+<summary>404 Page</summary>
+<img src="docs/404-wave.png">
+</details>
+
 
 ## User Testing.
 

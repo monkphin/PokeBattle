@@ -383,7 +383,6 @@ function listCreator(statName, statValue, elementId) {
   return statWrapper;
 }
 
-
 /**
  * Disables or enables all stat items to prevent player from spamming buttons
  * @param {boolean} disable - Whether to disable or enable the stat items.
@@ -398,7 +397,7 @@ function disableStatItems(disable) {
     } else {
       item.classList.remove('disabled');
       item.style.pointerEvents = 'auto';
-      item.setAttribute('tabindex', '0');
+      item.setAttribute('tabindex', '1');
     }
   });
 }
