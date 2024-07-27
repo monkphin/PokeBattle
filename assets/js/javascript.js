@@ -114,9 +114,9 @@ function retrievePlayerName() {
  */
 function displayPlayerName() {
   let playerName = retrievePlayerName();
-  const welcomePlayer = presentData('h2',`Welcome to PokeBattle ${playerName}`);
+  const welcomePlayer = presentData('h2',`Welcome to Pokebattle ${playerName}`);
   outputMessage.appendChild(welcomePlayer);
-  const friendlyMessage = presentData('h3', 'Good luck with your game!');
+  const friendlyMessage = presentData('p', 'Good luck with your game!');
   outputMessage.appendChild(friendlyMessage);
 };
   
