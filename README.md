@@ -38,7 +38,8 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 - [Bugs and Issues](#bugs-and-issues)
 
-  - [Index Page](#index-page)
+  - [Resolved Bugs](#resolved-bugs )
+  - [Unresolved Bugs](#unresolved-bugs )
 
 - [Technology](#technology)
 
@@ -124,10 +125,10 @@ The website consists of 3 pages:
 - game page
 - 404 page
 
-The game page is normally only accessible via the 'play game' button, once the player has entered their name into the text field. If the player tries to bypass entering their name an alert is generated advising them to enter their name. The custom 404 page is present in case a visitor somehow manages to access a nonexistent part of the website and offers methods to get back to the index page. 
+The game page is normally only accessible via the 'play game' button, once the player has entered their name into the text field. If the player tries to bypass entering their name an alert is generated advising them to enter their name. The custom 404 page is present in case a visitor somehow manages to access a nonexistent part of the website and offers methods to get back to the index page. Their is also an if statement where it checks if the playername has been stored when accessing the game.html page. If this has not been stored, it sends the player to the index.html page to ensure they enter their name and read how the play the game. This is incase the game.html page is accessed directly via bookmarks or direct linking. 
 
 ## Logo
-The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. It has two differently sized images to allow for better rendering on devices of differing capabilities. The appropriate image is picked by a javascript function, which calls on a helper function to determine the size of the window, allowing the appropriate image to be selected. 
+The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. Its fully responsive and will adapt to the size of the brwoser window the site is loaded in.
 
 ## Hero Image
 The hero image is displayed on the index page only. Ot provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
@@ -136,7 +137,7 @@ The hero image is displayed on the index page only. Ot provides a picture of two
 These are provided to ensure that players know the basics of how the game will function. Advising on how the game round should flow, what the objective of the turn and game is, as well as how many cards the two players have. This also presents an opportunity for the player to enter their name, which is called on at the end of hte game to congratulate or commiserate with the with player. Like other aspects of the site this is fully responsive and will react to varying screen resolutions, adjusting as needed. 
 
 ## Footer
-The footer provides links to the the site owners socials, in this case Facebook, Github, twitter and LinkedIn. 
+The footer provides links to the the site owners socials, in this case Facebook, Github, Twitter and LinkedIn. 
 
 ## Index page
 
@@ -145,21 +146,26 @@ The footer provides links to the the site owners socials, in this case Facebook,
 ## 404 Page
 
 ## Future Features
-Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games. 
-The ability to have two players in the game, rather than a player and the computer. 
-Ideally, id like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names causing cards to not render. I believe this is possible via JQuery https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory
-I'd like to add options to change the computer players difficulty. Currently it picks a random stat, rather than having any specific behaviour. Options to make it specifically pick lower stat options, or higher stat options would allow for difficulty level changes or setting the random picker to favour higher/lower numbers as needed would enable this. 
+* Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games. 
+* The ability to have two players in the game, rather than a player and the computer. 
+* I'd like to add options to change the computer players difficulty. Currently it picks a random stat, rather than having any specific behaviour. Options to make it specifically pick lower stat options, or higher stat options would allow for difficulty level changes or setting the random picker to favour higher/lower numbers as needed would enable this. 
+* I'd like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names causing cards to not render. I believe this is possible via JQuery https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory
 
+# Bugs and issues
 
-# Bugs and issues.
-1: I had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering which were proving too complex to fix, so decided to simplify things and shifted to using plain CSS for the index and 404 pages The game page still currently uses bootstrap. 
+## Resolved bugs 
 
-2: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify which of this will fix the issue. Or where the fix will be needed. 
+1: I had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering on the index and 4040 pages which were proving too complex to fix. Instead I simplified things and shifted to using plain CSS for the index and 404 pages The game page still currently uses bootstrap, though this is not causing significant issues beyond needing to heavily lean on media queries to ensure the stats are correctly posisitoned over the cards. 
 
-3: Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause. Though I believe this may be related to issue 2 above. 
+2: Identified an issue where the results would clear nearly instantly after when the player wins if the prior round was the players turn and they drew. This was resolved by clearing timers at the start of the resolveRound function, preventing these from continuing and causing issues with called timers. 
 
-4: There is an issue with the response for a victory condition clearing faster than expected after the player scores a draw. I have thus far been unable to identify the cause of this. 
+3: A major issue was identified by a mix of player testing and when talking to my Mentor - effectively the player could enque multiple turns by repeatedly pressing the stat options, causing functions to be triggered before they were supposed to be and causing the UI to continue to cycle through the game on its own, producing unexected results. This was resolved by calling to a new function 'disableStatItems' which would check for a boolean condition. WHen the boolean is true, it disables interactivity of the stat elements via CSS, disabling pointer events and changing the tabIndex to prevent the player from interacting with their stats and causing events to queue up and cycle through on their own. 
 
+## Unresolved bugs. 
+
+1: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify which of this will fix the issue. Or where the fix will be needed. Another alterntive would be to remove the reliance on timers and move to a button to start each round. However this would remove some of the immediacy of the game. 
+
+2: Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause. Though I believe this may be related to issue 2 above. 
 
 # Technology.
 
@@ -283,15 +289,12 @@ Fix: Added a key event using the enter key, so pressing this could action the se
 <img src="docs/404-wave.png">
 </details>
 
-
 ## User Testing
 
 I reached out to several friends to help assess the colour choices, layouts, usability and readability of the site. 
 Comments included that the colours were calming and that after some adjustments had been made to the messages displayed between turns, it was easier to read and understand what was happening. 
 
-Testing and discussions with my mentor also highlighted a few issues with the Javascript which would allow players to queue multiple inputs to the game logic, leading to the game seemingly playing on its own with the player having no idea what was happening. 
-Effectively, the stats would allow multiple clicks, which the game queued and processed as though the user had been interacting with the game in the expected manner, where they take a turn and wait for events to occur. This was resolved by adding a new function
-that was called at the end of each turn, where the game would check for a boolean being true or not when true this would set CSS to prevent player input as well as adjusting the tabIndex to -1 to prevent keyboard interactivity. 
+Testing and discussions with my mentor also highlighted a few issues with the Javascript which would allow players to queue multiple inputs to the game logic, leading to the game seemingly playing on its own with the player having no idea what was happening. This has been raised in more detail in the [Bugs and Issues](#bugs-and-issues) section. 
 
 Beyond this, I also manually tested the site, running through multiple games and testing all aspects of functionality, from form entry through to game play while keeping an eye on the console for any possible errors that may be logged. 
 
