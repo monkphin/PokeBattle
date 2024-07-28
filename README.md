@@ -26,6 +26,7 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
   - [Typography](#typography)
   - [Images](#images)
   - [Icons](#icons)
+  - [Gameplay](#gameplay)
 
 - [Features](#features)
 
@@ -72,10 +73,51 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 # User Experience
 
-PokeBattle is an online toptrumps like game created to allow fans of the Pokemon series and TopTrumps games to have a single player game that can be played online. Due to the nature of the game and the IP, the site needs to be relatively simplistic in its display as well as using a bright, simple colour pallette. 
+PokeBattle is an online Top Trumps like game created to allow fans of the Pokemon series and TopTrumps games to have a single player game that can be played online. Due to the nature of the game and the IP, the site needs to be relatively simplistic in its display as well as using a bright, simple colour pallette. 
+
+## Site Owner goals
+- To provide a fun game for visitors to engage with. 
+- For the game to be visually appealing 
+- For the game to be simplistic to play but able to present a challenge to players
+- The site should have an easy to navigate structure that responds to the device its accessed from. 
+- For social and professional channels to be signposted. 
+- To have some level of accessability built into the game. 
+
+## Visitor Goals
+- For the game to be easy to play.
+- For the game to keep me informed of whats happening.
+- To be able to play the game on any device I choose to access it from. 
+- To have access to the site owners socials so I can follow them and see what else they may be working on. 
+- For the site to be easy to use irrespective of the device I access it from
+- To be able to use some form of keyboard input
+
+# User Stories
+
+## Site Owner
+## Site Owner
+1. As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device. 
+2. As the site owner, I want players to need to enter their name so that the game can respond more personally to them. 
+3. As the site owner, I want some degree of accessability to be considered in the way the site works so that the site can be used by people who may have accessibility issues. 
+4. As the site owner, I want the game to use randomly derived stats, so that I can limit the amount of research needed to generate the card data, allow the data to be card theme agnostic and to ensure no two games are the same. 
+5. As the site owner I want the player stats to be shown to the player but not be able to see the opponents until after they have picked so they know which stats have which values to pick when playing but are unable to see the opponents stats so they do not know the best options. 
+6. As the site owner, I would like the decks to be randomly shuffled so that the player and computer can have different hands. 
+7. As the site owner, I want to ensure that the cards are removed from the deck as each players hand is created and the player is made aware of hand sizes so that they may better experience the game. 
+8. As the site owner, I want to ensure the game page cannot be accessed without having a name saved by the game so that the player is presented with the rules and I know they cannot bypass the page displaying them. 
+9. As the site owner, I want to ensure the game cannot be made to function in a way that causes issues with game play. 
+10. As the site owner I want the player to be able to find my social media links so they can connect with me and follow for other projects I'm working on or for new game play and site features. 
+
+## Site Visitor
+11. As a site visitor, I want the gameplay to be relatively simplistic, so I can enjoy the game without having to remember complex rules. 
+12. As a site visitor, I want to be able to play the game against a computer opponent, so I can play solo. 
+13. As a site visitor, I want to be able to pick and choose which card statistics I am comparing with the opponents card and these to be visible to me, so I can have some choice of outcome.
+14. As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device. 
+15. As a site visitor. I want to be able to go back to the home page, to allow me to exit the game without leaving the site. 
+16. As a site visitor, I want to be able to quickly find out how to play the game so that I can enjoy the game without having to look anything up. 
+17. As a site visitor I want to know how to can find the owner of the site so that I can find out if they have new features coming. 
+18. As a site visitor, I would like to see the outcome of each round, so I can better see how the round was won or lost. 
 
 # Design
-The design needed to be realtively simplistic, reflecting the nature of the game and IP in use. Ideally with minimal moving content, with the pertinent data, such as cards, output etc all being visible on a single screen. This meant using CSS query selectors to allow for the cards to be displayed side by side when shifting resolutions. Since on smaller screens any other card positioning would result in some data being pushed off the bottom. Overall the design has been kept deliberartely clean and simple in order to not distract from the main content. With areas of note being called out in bounding boxes that sit above the background. Initial testing was done with drop shadows on these elements and the cards. However it was deccided that the shaows detracted from the overall clean look and could lead to potential distraction due to the UI being a little too busy. 
+The design needed to be relatively simplistic, reflecting the nature of the game and IP in use. Ideally with minimal moving content, with the pertinent data, such as cards, output etc all being visible on a single screen. This meant using CSS query selectors to allow for the cards to be displayed side by side when shifting resolutions. Since on smaller screens any other card positioning would result in some data being pushed off the bottom. Overall the design has been kept deliberately clean and simple in order to not distract from the main content. With areas of note being called out in bounding boxes that sit above the background. Initial testing was done with drop shadows on these elements and the cards. However it was decided that the shadows detracted from the overall clean look and could lead to potential distraction due to the UI being a little too busy. 
 
 ## Wireframes:
 
@@ -104,7 +146,7 @@ Wireframes were created with Balsamiq software to provide rough mockups for layo
 
 The colours selected were chosen to be inline with the bright, bold colours in use by the Pokemon IP, keeping things relatively simple but allowing all the elements to clearly standout and be viewable, as well as text to be legible. 
 
-After some experimentation I settled on a simple range of colours between blue and white, since these seemed to be most pleasent without providing too much conflict with the varying colours of the cards. 
+After some experimentation I settled on a simple range of colours between blue and white, since these seemed to be most pleasant without providing too much conflict with the varying colours of the cards. 
 
 ## Typography.
 
@@ -118,6 +160,16 @@ Images were sourced from a few locations - the pokemon themselves were from Poke
 
 Icons were provided by [FontAwesome](https://fontawsome.com)
 
+## Gameplay
+
+A rough map of how the game should play was created with LucidChart to help show and drive how the game should function. This helped derive the core javascript functions that would be needed in order for the game to work. 
+
+
+<details>
+<summary>Gameplay Flow Map</summary>
+<img src="docs/flow-map.png">
+</details>
+
 # Features
 
 The website consists of 3 pages:
@@ -125,45 +177,134 @@ The website consists of 3 pages:
 - game page
 - 404 page
 
-The game page is normally only accessible via the 'play game' button, once the player has entered their name into the text field. If the player tries to bypass entering their name an alert is generated advising them to enter their name. The custom 404 page is present in case a visitor somehow manages to access a nonexistent part of the website and offers methods to get back to the index page. Their is also an if statement where it checks if the playername has been stored when accessing the game.html page. If this has not been stored, it sends the player to the index.html page to ensure they enter their name and read how the play the game. This is incase the game.html page is accessed directly via bookmarks or direct linking. 
+The game page is only accessible via the 'play game' button, once the player has entered their name into the text field. If the player tries to bypass entering their name an alert is generated advising them to enter their name, similarly if they enter all spaces the same alert will be generated. The custom 404 page is present in case a visitor somehow manages to access a nonexistent part of the website and offers methods to get back to the index page. Their is also an if statement to checks if the player name has been stored when accessing the game.html page. If this has not been stored, it redirects the player to the index.html page to ensure they enter their name and read how the play the game using window.location.assign(). This is incase the game.html page is accessed directly via bookmarks or direct linking and ensures that players cannot just start the game without accessing the index page first. 
+
+
+## Index page
+The sites home page, or index page, provides the basic rules of the game, as well as an option for the player to enter their name and proceed through to the game itself. The page features the sites logo, a hero image, the game instructions with a form at the end and also a footer containing social media links. This page responds to keyboard input, specifically the tab and enter keys, so has some degree of accessability built in. Its deign is mobile first and is fully responsive. 
+
+Story points 1, 2, 3, 8, 10, 11, 14, 16, 17, 19
+
+## Game Page
+The game page is where the real meat of the content is, with the majority of whats on display being dynamically generated by the Javascript which drives the game. It has 5 main areas that are visible to the player at all times depending on their screen resolution. The logo, the card area, the deck size area, the game message area and finally the footer. These five areas are statically coded to the page, along with some of the text in the deck size area. The cards, card names and card stats are all dynamically generated as are the deck size counts and the responses in the response area. 
+
+Examples of responses the game will provide to the player include the initial welcome message, where the players name is mentioned and they are wished luck. Messages outlining win, loss or draw outcomes for both the player or the computer as well as information around the selected stat name and the stat value and finally a prompt to which players is taking the next turn, which was added after testing showed that if you skimmed the other parts of the message it wasn't always obvious who's turn it was. Finally on the game end, a message outlining how many turns, wins, losses and draws occurred in the game with an button inviting them to play again. As with the rest of the site, this is fully responsive and has some accessability functionality, where I have ensured that that card stats are selectable and can be triggered via keyboard inputs. 
+
+Much like the rest of the site, its been designed with mobile first in mind and is responsive to varying screen sizes. However, this is the only page that uses bootstrap, which longer term I would like to migrate it away from using to match the rest of the site and hopefully simplify the CSS. 
+
+Story points. 1, 3, 5, 8, 10, 11, 13, 14, 15, 17, 18, 19
+
+## 404 Page
+The 404 page is a relatively simple, static HTML page. It features the logo, a heading, an image, some text with a link and the footer. The objective of the 404 page is to provide a themed page which fits the look and feel of the rest of the site incase a visitor manages to access a none existent page which they can use to return to the home page. This was derived from the same layout used on the index page and shares a lot in common with its design and CSS styling, to the point of using the same classes in several cases to avoid duplication. Since it's design is based on the homepage, the logo and footer are present as is a centrally located div which displays any text or images. With the only missing feature being the hero image. Much like the rest of the site, its been designed with mobile first in mind and is fully responsive.
+
+Story points 1, 3, 10, 14, 17, 19. 
 
 ## Logo
-The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. Its fully responsive and will adapt to the size of the brwoser window the site is loaded in.
+The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. Its fully responsive and will adapt to the size of the browser window the site is loaded in. THe logo is consistently presented on every page of the site. 
+
+
+Story points 1, 14 15. 
 
 ## Hero Image
-The hero image is displayed on the index page only. Ot provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
+The hero image is displayed on the index page only. It provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
+
+Story point 1, 14
 
 ## Instructions
 These are provided to ensure that players know the basics of how the game will function. Advising on how the game round should flow, what the objective of the turn and game is, as well as how many cards the two players have. This also presents an opportunity for the player to enter their name, which is called on at the end of hte game to congratulate or commiserate with the with player. Like other aspects of the site this is fully responsive and will react to varying screen resolutions, adjusting as needed. 
 
+### sessionStorage
+The players name is stored in sessionStorage by some initial calls in the javascript which check it the DOM is loaded before using an if statement to check for the form. If the form is present on a submit event, it will sent the contents of the form to the handleSubmit function. 
+
+### handleSubmit
+HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function preventDefault to prevent default behaviour on the form, it then, via an if statement, captures the players name and applies a trim to it - removing whitespace. If however the name is submitted as just whitespace or the player tries to bypass entering their name and instead just hits the play game button it will trigger an alert to the player advising to enter their name. 
+
+Story point 1, 2, 14, 16
+
 ## Footer
-The footer provides links to the the site owners socials, in this case Facebook, Github, Twitter and LinkedIn. 
+The footer provides links to the the site owners socials, in this case Facebook, Github, Twitter and LinkedIn. The footer is present on all pages of he site.  
 
-## Index page
+Story points 10, 17
 
-## Game Page
+## Card Area
+The card area of the game page is used to display the card images, the name of the card name and the card stats. Card creation is started early in the Javascript file when cardPicker is first called. This is fully responsive with all aspects of what is on show adapting to screen size shifts. For smaller screens the stats are shown in a 2 x 2 grid, rather than a vertical list. This is done for improved UI and UX, since initial tests with a vertical list as is used on larger screens showed issues with how much space was available to target for each stat item, which would result in stats being incorrectly tapped. The following functions are all used in some form or another to present data here. 
 
-## 404 Page
+### cardPicker
+The cardPicker function kicks off a chain of functions which all rely on each other to create the cards. Firstly is calls on the createDecks function to start generating each players hand, to enable this createDecks calls cardInit. This function is first called by the currentURL const, which uses an if statement to check if the current URL includes game.html. 
+
+### cardInit
+CardInit stores two arrays which contain the card name and the card image - the reason for this is to mitigate the need to generate cards for several screen sizes to ensure the card name is legible on different sized devices. Since the name is a string of data, it can be manipulated with CSS when its presented to the user, meaning we can adjust its appearance as needed. To generate the cards, it will iterate through both arrays and push each iteration to the buildCard function. 
+
+### buildCard
+The sole purpose of buildCard is to create each card as an object of objects where the card name and image are stored as two of the 6 objects it contains with the other four being part of the stats array within the cards object. The stats are randomly generated as the cards object is created. 
+
+### createDecks
+Once cardInit has completed iterating through the arrays to create all 48 cards, createDecks then hands these to the shuffleCards variable, where the array of cards is shuffled using a Fisher-Yates algorithm. Finally the createDecks function breaks this newly shuffled array into two unique decks, using slice and splice to ensure that neither deck can contain duplicate cards. As a result of this, both decks should be fully random with fully randomised card stats. 
+
+### showCards
+cardPicker then takes the topmost (array entry 0) card from the player and opponent deck arrays and presents them, along with if the card is the players or the opponents to the showCard function. ShowCards main purpose is to derive which players card we're referencing with an if statement, before handing this to cardRender, which is responsible for rendering the card onscreen. This function also relies on the presentData helper function in order to simplify rendering data. The presentData function is utilised by several other functions throughout the game to help minimise repetition of code for creating HTML elements. 
+
+### cardRender
+CardRender 
+
+### listCreator
+Finally cardRender also calls on listCreator, which is responsible for displaying and handling click event on the card stats via a  child function called handleInteraction. listCreator also ensures that the opponent stats remain hidden until a stat is picked. 
+
+Story points 1, 3, 4, 5, 6, 13, 14, 15
+
+## Deck Count Area
+
+The deck area is designed purely to show the counts of each players deck so they can be aware of how the game is going. Much like with the card area, a function is called early in the javascript which helps set this up in the form of setPermElements. The actual dynamic card counts are displayed by the updateDeckCount function, which is called by the outcomeHandler function. Much like all other aspects of the site, this is fully responsive with the text adapting to suit the screen it is on. Since this includes nothing the player needs to interact with directly its not set up to be accessible via tabbing. The below functions are all utilised in some form to show the content in this area. 
+
+### setPermElements
+This function has a single real purpose, which is to display the static text in the card count area. It does this using the presentData helper function mentioned earlier. This is called by the same currentURL variable that kicks off all other starting functions. 
+
+### updateDeckCount
+This simple function exists purely to render the current count of cards in each players hand. It does this by adding the length to the player-deck-size and opponent-deck-size elements. 
+
+Story points 1, 20
+
+## Message Area
+The message area is the final part of the game page and is where the player is first greeted, outcomes of each round are displayed and finally the end of game statistics are shown. 
+Again, like the rest of the site this is fully responsive and at the end of the game is tabbable via the 'new game' button, allowing people using keyboard entry to start another game. 
+All the content here is dynamically generated by javascript, its default state between rounds is empty. The initial welcome message is displayed by the displayPlayerName function. The following functions are all part of how messages are displayed here. 
+
+### displayPlayerName
+This function is called early in the javascript, in the same currentURL variable that triggers the other parts of the script mentioned so far. DisplayPlayerName calls on the retrievePlayerName function to retrieve the name from sessionStorage. It also includes an if statement which checks to see if playerName is true - implying its been saved and stored, if its not, it will instead load the index.html page, ensuring the player enters their name and is able to read the rules if they choose to. This serves to prevent the game.html page being accessed directly if their is no stored playerName in the current browser session, since we're using sessionStorage. 
+
+### resolveRound
+The mainstay of messages are displayed via the resolveRound function. This is called as part of the game loop, being triggered by the statSelection and opponentTurn functions which handle the player and opponent turns respectively. Its a little messy and could potentially be simplified, but in its essence resolveRound is a bunch of if/if else statements which are looking testing the outcomes of the player and opponent scores, looking to see which is the larger number and calling on outcomeHandler to show the relevant output based on the result. 3 of the statements are also checking to see if player-card is present in the arguments sent to the function to ensure that the player focused messages are sent when its the players turn and the enemy focused messages are sent when its the opponent players turn. These statements will also set the playerTurn variable to be either true or false depending on which player won, as well as sending the outcome of the turn to the winLossCounter function so the final results can be displayed at the end of the game. Depending on which If/if else statement is triggered this function can also invoke the opponentTurn function finally the state of the game is checked via the checkEndGame function to see if the game needs to end or not, with disableStatItems being set to true so that the player cannot interact with their card element and queue multiple turns to be processed. 
+
+### outcomeHandler
+the outComeHandler function is directly responsible for showing the results of resolveRound to the player in the message area. It uses the presentData helper function to create the elements being displayed. Finally it will, depending on the outcome move the cards between the winning and losing hands in the result of a win/loss condition, or push them back to the bottom of the hands in the result of a draw. Finally this will call on the updateDeckCount function to ensure the player is kept aware of how many cards are in each hand. 
+
+### endGame
+The final function that is used in the showing of data in the message area is the endGame function. This uses a the retrievePlayerName and presentData functions to call on the name of the player before sending the correct output to the presentData function to be packaged into the needed HTML elements. It also present the new game button, which resets and restarts the game state. 
+
+Story points: 1, 2, 3, 7, 8, 9, 14, 18, 20
+
+
 
 ## Future Features
 * Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games. 
 * The ability to have two players in the game, rather than a player and the computer. 
 * I'd like to add options to change the computer players difficulty. Currently it picks a random stat, rather than having any specific behaviour. Options to make it specifically pick lower stat options, or higher stat options would allow for difficulty level changes or setting the random picker to favour higher/lower numbers as needed would enable this. 
 * I'd like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names causing cards to not render. I believe this is possible via JQuery https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory
+* I'd like to show who's turn it is in the message area between other messages being shown. Sometimes if you weren't paying attention it may not always be obvious who's turn it currently is. This would help remediate that and allow for a slightly more distracted game, where the player could be doing other things beyond playing the game. This would also allow for improved functionality with a multiplayer, allowing for more asynchronous game play to occur. 
 
 # Bugs and issues
 
 ## Resolved bugs 
 
-1: I had to refactor HTML due to initially using a mix of flexbox and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering on the index and 4040 pages which were proving too complex to fix. Instead I simplified things and shifted to using plain CSS for the index and 404 pages The game page still currently uses bootstrap, though this is not causing significant issues beyond needing to heavily lean on media queries to ensure the stats are correctly posisitoned over the cards. 
+1: I had to refactor HTML due to initially using a mix of flex-box and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering on the index and 4040 pages which were proving too complex to fix. Instead I simplified things and shifted to using plain CSS for the index and 404 pages The game page still currently uses bootstrap, though this is not causing significant issues beyond needing to heavily lean on media queries to ensure the stats are correctly positioned over the cards. 
 
 2: Identified an issue where the results would clear nearly instantly after when the player wins if the prior round was the players turn and they drew. This was resolved by clearing timers at the start of the resolveRound function, preventing these from continuing and causing issues with called timers. 
 
-3: A major issue was identified by a mix of player testing and when talking to my Mentor - effectively the player could enque multiple turns by repeatedly pressing the stat options, causing functions to be triggered before they were supposed to be and causing the UI to continue to cycle through the game on its own, producing unexected results. This was resolved by calling to a new function 'disableStatItems' which would check for a boolean condition. WHen the boolean is true, it disables interactivity of the stat elements via CSS, disabling pointer events and changing the tabIndex to prevent the player from interacting with their stats and causing events to queue up and cycle through on their own. 
+3: A major issue was identified by a mix of player testing and when talking to my Mentor - effectively the player could enqueue multiple turns by repeatedly pressing the stat options, causing functions to be triggered before they were supposed to be and causing the UI to continue to cycle through the game on its own, producing unexpected results. This was resolved by calling to a new function 'disableStatItems' which would check for a boolean condition. WHen the boolean is true, it disables interactivity of the stat elements via CSS, disabling pointer events and changing the tabIndex to prevent the player from interacting with their stats and causing events to queue up and cycle through on their own. 
 
 ## Unresolved bugs. 
 
-1: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify which of this will fix the issue. Or where the fix will be needed. Another alterntive would be to remove the reliance on timers and move to a button to start each round. However this would remove some of the immediacy of the game. 
+1: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify which of this will fix the issue. Or where the fix will be needed. Another alternative would be to remove the reliance on timers and move to a button to start each round. However this would remove some of the immediacy of the game. 
 
 2: Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause. Though I believe this may be related to issue 2 above. 
 
@@ -177,7 +318,7 @@ THe site is built with HTML, CSS and Javascript. It also calls on external CSS a
 
 - Bootstrap 5.3.3
 
-  - Used for layout and positioning.
+  - Used for some layout and positioning on the game page.
 
 - W3Schools
 
@@ -194,6 +335,10 @@ THe site is built with HTML, CSS and Javascript. It also calls on external CSS a
 - VSCode
 
   - IDE of choice.
+
+- LucidChart
+
+  - Used to help mock up a rough map for how the game play should flow. 
 
 - Balsamiq
 
@@ -224,6 +369,8 @@ THe site is built with HTML, CSS and Javascript. It also calls on external CSS a
   - Used to format files  
 
 # Testing and Validation
+
+The majority of testing was manual in nature, focusing on BDD principals. Relying on visual checking of layouts, users testing the game and trying to introduce unexpected scenarios. Performance testing via Lighthouse, accessibility testing with Wave and checking the HTML, CSS and Javascript with online tools such as JSHint, Esprima and BeautifyTools. 
 
 ## HTML Validation  
 
@@ -383,7 +530,7 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 | --------------------- | ------------- | -------------------- |
 | iPhone SE             | Index Page    | Displays as Expected |
 | 375 x 667             | Game Page     | Displays as Expected |
-| 667 x 375                     | 404 Page      | Displays as Expected |
+| 667 x 375             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -394,7 +541,7 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 | --------------------- | ------------- | -------------------- |
 | iPhone 12 Pro         | Index Page    | Displays as Expected |
 | 390 x 844             | Club Page     | Displays as Expected |
-| 844 x 390             | 404 Page  | Displays as Expected |
+| 844 x 390             | 404 Page      | Displays as Expected |
 
 </details>
 
@@ -481,7 +628,7 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPad Air              | Index  Page   | Displays as Expected |
+| iPad Air              | Index Page    | Displays as Expected |
 | 820 x 1180            | Club Page     | Displays as Expected |
 | 1180 x 820            | 404 Page      | Displays as Expected |
 
@@ -492,7 +639,7 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Asus Zenbook Fold     | Index  Page   | Displays as Expected |
+| Asus Zenbook Fold     | Index Page    | Displays as Expected |
 | 853 x 1280            | Club Page     | Displays as Expected |
 | 1280 x 853            | 404 Page      | Displays as Expected |
 
@@ -503,7 +650,7 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Surface 7 Pro         | Index  Page   | Displays as Expected |
+| Surface 7 Pro         | Index Page    | Displays as Expected |
 | 912 x 1368            | Club Page     | Displays as Expected |
 | 1368 x 912            | 404 Page      | Displays as Expected |
 
@@ -514,7 +661,7 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Nest Hub              | Index  Page   | Displays as Expected |
+| Nest Hub              | Index Page    | Displays as Expected |
 | 1024 x 600            | Club Page     | Displays as Expected |
 |                       | 404 Page      | Displays as Expected |
 
@@ -525,7 +672,7 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| iPad Pro              | Index  Page   | Displays as Expected |
+| iPad Pro              | Index Page    | Displays as Expected |
 | 1024 x 1366           | Club Page     | Displays as Expected |
 | 1366 x 1024           | 404 Page      | Displays as Expected |
 
@@ -536,11 +683,19 @@ For brevity, the specifics of rotation/screen adjustment testing will only be ca
 
 | Device and Resolution | Page          | Result               |
 | --------------------- | ------------- | -------------------- |
-| Nest Hub Max          | Index  Page   | Displays as Expected |
+| Nest Hub Max          | Index Page    | Displays as Expected |
 | 1280 x 800            | Club Page     | Displays as Expected |
 |                       | 404 Page      | Displays as Expected |
 
 </details>
+
+## Automated Testing
+Limited automated testing was performed on the project. This was completed after the code was finished, since due to time constraints I was more focused on getting the project done, than finishing the specific module leading up to it, so picked part of the module up after I'd already completed the work needed to complete the project. As such, the software while tested manually as it was being written via testing code using console logging to ensure the correct outcomes were observed as functions were being created, no automated testing was performed during its creation. 
+
+A limited set of tests has been created to demonstrate what this may have looked like for a couple of functions that are key parts of the the game. 
+Storing and retrieving the playerName, which while not essential to game play does demonstrate simple functionality and the buildCard function which is more key to the game itself. 
+
+<img src="docs/jest.png">
 
 # Version control and Deployment
 
@@ -608,7 +763,16 @@ To deploy the site the following steps were used:
 8. Once the page has reloaded, you should see a message at the top stating 'Your site is live at https://monkphin.github.io/PokeBattle/' If this is not visible, refresh the page and it should now be visible.
 
 # Credits 
-PokeBattler Logo taken from https://www.pokebattler.com/
-POkemon images taken from https://pokemondb.net/pokedex/national
-card backgrounds taken from https://pokecardmaker.net/creator
-Sad Pikachu taken from https://www.deviantart.com/jujumays/art/A-Very-Sad-Pikachu-929558432
+
+## Images
+* PokeBattler Logo taken from https://www.pokebattler.com/
+* Pokemon images taken from https://pokemondb.net/pokedex/national
+* Card backgrounds taken from https://pokecardmaker.net/creator
+* Sad Pikachu taken from https://www.deviantart.com/jujumays/art/A-Very-Sad-Pikachu-929558432
+
+##Javascript code blocks or suggestions
+* Information on localStorage vs sessionStorage https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page
+* Array shuffling to shuffle the deck of cards before splitting between the players. https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
+* Using timers to add delays. https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
+* Clearing timers to ensure functions that are called after a timer completes are not called. https://www.codecademy.com/resources/docs/javascript/window/clearTimeout
+* Code to iterate through an array to pick a random option https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object 

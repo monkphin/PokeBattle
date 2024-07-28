@@ -287,16 +287,10 @@ function cardRender(elementId, card) {
   cardContainer.appendChild(cardContent);
 
   cardElement.appendChild(cardContainer);
-
-  // Remove hover/pressed classes from stat items
-  const statItems = document.querySelectorAll('.stat-item');
-  statItems.forEach(item => {
-    item.classList.remove('stat-item-hover', 'stat-item-active');
-  });
 }
 
 /**
- * Creates a bootstrap grid which serves to list the cardstats. ALso attaches an event listener for user interaction.
+ * Creates a bootstrap grid which serves to list the cardstats. Also attaches an event listener for user interaction.
  * @param {string} statName - the name of hte stat. 
  * @param {number} statValue - the value of the stat. 
  * @param {string} elementId - the ID of the element
@@ -483,7 +477,7 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
 }
 
 /**
- * Checks if the game has ended by checking if either deck size is 0.
+ * Checks if the game has ended by checking if either hand size is 0.
  */
 function checkEndGame() {
   if (activeCard.playerDeck.length === 0) {
@@ -583,7 +577,7 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, messageTitle, message, w
 }
 
 /**
- * updates the dusplayed deck counts for each player
+ * updates the displayed deck counts for each player
  */
 function updateDeckCount() {
   const playerDeckSizeElement = document.getElementById('player-deck-size');
@@ -596,7 +590,7 @@ function updateDeckCount() {
 /**
  * Updates the win/loss/draw counters to reflect round outcome. 
  * @param {string} winner - the rounds winner.  
- * @returns {number, number, number} nunmberOfWins, numberOfLosses, numberOFDraws - the number of wins/losses/draws. 
+ * @returns {number, number, number} numberOfWins, numberOfLosses, numberOFDraws - the number of wins/losses/draws. 
  */
 function winLossCounter(winner) {
   if (winner === 'player') {
@@ -608,3 +602,11 @@ function winLossCounter(winner) {
   }
  return numberOfWins, numberOfLosses, numberOfDraws;
 }
+
+
+module.exports = {
+  storePlayerName,
+  retrievePlayerName,
+  buildCard,
+  // add other functions you need to test
+};
