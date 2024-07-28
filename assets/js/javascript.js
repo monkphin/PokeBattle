@@ -417,8 +417,13 @@ function statSelection(statName, statValue, elementId) {
  * @param {string} elementId - the ID of the element. 
  */
 function resolveRound(playerStatName, playerStatValue, opponentStatValue, elementId) {
+  if (endOfGame) return;
+
+  // clearing timers
+  clearTimeout(turnTimer);
+  clearTimeout(opponentTimer);
+
   if (playerStatValue > opponentStatValue && elementId === 'player-card') {
-    if (endOfGame) return;
     outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round!', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}.`, 'Take your next turn');
     winLossCounter('player');
     playerTurn = true;
@@ -528,7 +533,6 @@ function endGame(winner) {
   outputMessage.appendChild(newGameButton);
   // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave the idea to clear timers due to functions continuing after game end causing content to vanish.
   clearTimeout(turnTimer);
-  clearTimeout(opponentTimer);
   clearTimeout(opponentTimer);
 }
   
