@@ -4,7 +4,7 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 [The deployed website can be found here.](https://monkphin.github.io/PokeBattle/)
 
-//Insert mockups
+<img src="docs/mockup.png">
 
 # Contents 
 
@@ -188,7 +188,6 @@ Icons were provided by [FontAwesome](https://fontawsome.com)
 
 A rough map of how the game should play was created with LucidChart to help show and drive how the game should function. This helped derive the core javascript functions that would be needed in order for the game to work. 
 
-
 <details>
 <summary>Gameplay Flow Map</summary>
 <img src="docs/flow-map.png">
@@ -207,8 +206,12 @@ The game page is only accessible via the 'play game' button, once the player has
 ## Index page
 The sites home page, or index page, provides the basic rules of the game, as well as an option for the player to enter their name and proceed through to the game itself. The page features the sites logo, a hero image, the game instructions with a form at the end and also a footer containing social media links. This page responds to keyboard input, specifically the tab and enter keys, so has some degree of accessability built in. Its deign is mobile first and is fully responsive. 
 
- Outer pipes  Cell padding 
-No sorting
+<details>
+<summary>Index Page</summary>
+<img src="docs/index-page-mobile.png">
+<img src="docs/index-page-desktop.png">
+</details>
+
 |    | Story point                                                                                                                                                                                                         | How                                                                                                                                                                                                                    |
 | -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                                       | The index page is designed to be fully responsive rendering in a manner that is appropriate for the device it is being browsed on. This has been tested on multiple virtualised and physical devices to confirm this.  |
@@ -229,6 +232,13 @@ Examples of responses the game will provide to the player include the initial we
 
 Much like the rest of the site, its been designed with mobile first in mind and is responsive to varying screen sizes. However, this is the only page that uses bootstrap, which longer term I would like to migrate it away from using to match the rest of the site and hopefully simplify the CSS. 
 
+<details>
+<summary>Index Page</summary>
+<img src="docs/game-page-mobile.png">
+<img src="docs/game-page-desktop.png">
+</details>
+
+
 |    | Story point                                                                                                                                                                                                         | How                                                                                                                                                                                                                    |
 | -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                                       | The index page is designed to be fully responsive rendering in a manner that is appropriate for the device it is being browsed on. This has been tested on multiple virtualised and physical devices to confirm this.  |
@@ -247,6 +257,12 @@ Much like the rest of the site, its been designed with mobile first in mind and 
 ## 404 Page
 The 404 page is a relatively simple, static HTML page. It features the logo, a heading, an image, some text with a link and the footer. The objective of the 404 page is to provide a themed page which fits the look and feel of the rest of the site incase a visitor manages to access a none existent page which they can use to return to the home page. This was derived from the same layout used on the index page and shares a lot in common with its design and CSS styling, to the point of using the same classes in several cases to avoid duplication. Since it's design is based on the homepage, the logo and footer are present as is a centrally located div which displays any text or images. With the only missing feature being the hero image. Much like the rest of the site, its been designed with mobile first in mind and is fully responsive.
 
+<details>
+<summary>Index Page</summary>
+<img src="docs/404-page-mobile.png">
+<img src="docs/404-page-desktop.png">
+</details>
+
 |    | Story Point                                                                                                                                                                                   | How                                                                                                                |
 | -- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                 | The site is fully responsive, with images, text and logoss adjust to the size of the screen in use.                |
@@ -258,6 +274,11 @@ The 404 page is a relatively simple, static HTML page. It features the logo, a h
 ## Logo
 The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. Its fully responsive and will adapt to the size of the browser window the site is loaded in. THe logo is consistently presented on every page of the site. 
 
+<details>
+<summary>Index Page</summary>
+<img src="docs/logo.png">
+</details>
+
 |    | Story Point                                                                                                                                                 | How                                                                                                                   |
 | -- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                               | The logo is a single image that is sized by percentage, allowing it to be able to display on devices of varying size. |
@@ -266,6 +287,11 @@ The header exists predominantly to show the sites logo. However it is clickable 
 
 ## Hero Image
 The hero image is displayed on the index page only. It provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
+
+<details>
+<summary>Index Page</summary>
+<img src="docs/hero-image.png">
+</details>
 
 |    | Story Point                                                                                                                                                 | How                                                                                                   |
 | -- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -281,6 +307,11 @@ The players name is stored in sessionStorage by some initial calls in the javasc
 ### handleSubmit
 HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function preventDefault to prevent default behaviour on the form, it then, via an if statement, captures the players name and applies a trim to it - removing whitespace. If however the name is submitted as just whitespace or the player tries to bypass entering their name and instead just hits the play game button it will trigger an alert to the player advising to enter their name. 
 
+<details>
+<summary>Index Page</summary>
+<img src="docs/instruction.png">
+</details>
+
 |    | Story Point                                                                                                                                                 | How                                                                                                                  |
 | -- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                               | The container for the instructions is styled to allow it to be flexible in terms of sizing.                          |
@@ -290,6 +321,11 @@ HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function 
 
 ## Footer
 The footer provides links to the the site owners socials, in this case Facebook, Github, Twitter and LinkedIn. The footer is present on all pages of he site.  
+
+<details>
+<summary>Index Page</summary>
+<img src="docs/footer.png">
+</details>
 
 |    | Story Point                                                                                                                                                                                   | How                                                                                            |
 | -- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -323,6 +359,11 @@ Finally cardRender also calls on listCreator, which is responsible for displayin
 ### handleInteraction
 This child functions purpose is to check if its the players turn. If this is true it allows the player to interact with the card. It will also, once the player has made their choice show the opponent cards stats to the player. 
 
+<details>
+<summary>Index Page</summary>
+<img src="docs/card-area.png">
+</details>
+
 |    | Story Point                                                                                                                                                                                                                                                                           | How                                                                                                                                                                                                                                                                  |
 | -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                                                                                                         | Much like the rest of the site, the card area is designed to be responsive to varying screen sizes and resolutions. It will shift its content around as needed to ensure that the cards remain usable and visible.                                                   |
@@ -343,6 +384,11 @@ This function has a single real purpose, which is to display the static text in 
 
 ### updateDeckCount
 This simple function exists purely to render the current count of cards in each players hand. It does this by adding the length to the player-deck-size and opponent-deck-size elements. 
+
+<details>
+<summary>Index Page</summary>
+<img src="docs/card-counter.png">
+</details>
 
 |    | Story Point                                                                                                                                         | How                                                                                                                            |
 | -- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -365,6 +411,11 @@ the outComeHandler function is directly responsible for showing the results of r
 
 ### endGame
 The final function that is used in the showing of data in the message area is the endGame function. This uses a the retrievePlayerName and presentData functions to call on the name of the player before sending the correct output to the presentData function to be packaged into the needed HTML elements. It also present the new game button, which resets and restarts the game state. 
+
+<details>
+<summary>Index Page</summary>
+<img src="docs/message-area.png">
+</details>
 
 |    | Story Point                                                                                                                                                                                                         | How                                                                                                                                                                                              |
 | -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -922,6 +973,7 @@ A limited set of tests has been created to demonstrate what this may have looked
 Storing and retrieving the playerName, which while not essential to game play does demonstrate simple functionality and the buildCard function which is more key to the game itself. 
 
 <img src="docs/jest.png">
+<img src="docs/jshint.png">
 
 # Version control and Deployment
 
