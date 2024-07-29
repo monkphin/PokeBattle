@@ -9,29 +9,23 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 # Contents 
 
 - [User Experience](#user-experience)
-
-  - [Site Owner Goals](#siteowner-club-goals)
+  - [Site Owner Goals](#site-owners-goals)
   - [A Visitors Goals](#visitor-goals)
 
 - [User Stories](#user-stories)
-
-  - [Page Visitor](#site-visitor)
-  - [Mobile User](#mobile-user)
-  - [Page Owner](#site-owner)
+  - [Site Owner](#site-owner)
+  - [Sit Visitor](#site-visitor)
 
 - [Design](#design)
-
   - [Wireframes](#wireframes)
   - [Colour Palette](#colour-palette)
   - [Typography](#typography)
   - [Images](#images)
   - [Icons](#icons)
-  - [Gameplay](#gameplay)
+  - [Game Play](#game-play)
 
 - [Features](#features)
 
-  - [Header](#header)
-  - [Footer](#footer)
   - [Index Page](#Index-page)
   - [Game Page](#game-page)
   - [404 Page](#404-page)
@@ -50,8 +44,8 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
     - [cardRender](#cardrender)
     - [listCreator](#listcreator)
   - [Deck Count Area](#deck-count-area)
-    - [setPermElements](#setpermelements)
-    - [updateDeckCounts](#updatedeckcounts)
+    - [setPermElement](#setpermelement)
+    - [updateDeckCount](#updatedeckcount)
   - [Message Area](#message-area)
     - [displayPlayerName](#displayplayername)
     - [resolveRound](#resolveround)
@@ -60,23 +54,20 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
   - [Future Features](#future-features)
 
 - [Bugs and Issues](#bugs-and-issues)
-
   - [Resolved Bugs](#resolved-bugs )
   - [Unresolved Bugs](#unresolved-bugs )
 
 - [Technology](#technology)
-
   - [Languages](#languages)
   - [Frameworks and Programs](#frameworks-and-programs)
 
 - [Testing](#testing-and-validation)
-
   - [HTML Validation](#html-validation)
   - [CSS Validation](#css-validation)
-  - [Javascript Validation](#javascript-validation)
   - [Accessibility](#accessibility)
   - [User Testing](#user-testing)
   - [User Story Testing](#user-story-testing)
+  - [Javascript Testing](#javascript-testing)
   - [Performance](#performance)
   - [Device and Browser Testing](#device-and-browser-testing)
   - [Responsiveness](#responsiveness)
@@ -86,10 +77,6 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 - [Version Control and Deployment](#version-control-and-deployment)
   - [Repository Creation](#repo-creation)
   - [Cloning Locally](#cloning-locally)
-  - [Version Control](#version-control)
-    - [CLI](#CLI)
-    - [GitHub Website](#github-website)
-  - [Branching](#branching)
   - [Deployment](#deployment)
 
 - [Credits](#credits)
@@ -184,13 +171,13 @@ Images were sourced from a few locations - the pokemon themselves were from Poke
 
 Icons were provided by [FontAwesome](https://fontawsome.com)
 
-## Gameplay
+## Game Play
 
 A rough map of how the game should play was created with LucidChart to help show and drive how the game should function. This helped derive the core javascript functions that would be needed in order for the game to work. 
 
 <details>
-<summary>Gameplay Flow Map</summary>
-<img src="docs/flow-map.png">
+<summary>Game play Flow Map</summary>
+<img src="docs/game-flow.png">
 </details>
 
 # Features
@@ -233,7 +220,7 @@ Examples of responses the game will provide to the player include the initial we
 Much like the rest of the site, its been designed with mobile first in mind and is responsive to varying screen sizes. However, this is the only page that uses bootstrap, which longer term I would like to migrate it away from using to match the rest of the site and hopefully simplify the CSS. 
 
 <details>
-<summary>Index Page</summary>
+<summary>Game Page</summary>
 <img src="docs/game-page-mobile.png">
 <img src="docs/game-page-desktop.png">
 </details>
@@ -258,7 +245,7 @@ Much like the rest of the site, its been designed with mobile first in mind and 
 The 404 page is a relatively simple, static HTML page. It features the logo, a heading, an image, some text with a link and the footer. The objective of the 404 page is to provide a themed page which fits the look and feel of the rest of the site incase a visitor manages to access a none existent page which they can use to return to the home page. This was derived from the same layout used on the index page and shares a lot in common with its design and CSS styling, to the point of using the same classes in several cases to avoid duplication. Since it's design is based on the homepage, the logo and footer are present as is a centrally located div which displays any text or images. With the only missing feature being the hero image. Much like the rest of the site, its been designed with mobile first in mind and is fully responsive.
 
 <details>
-<summary>Index Page</summary>
+<summary>404 Page</summary>
 <img src="docs/404-page-mobile.png">
 <img src="docs/404-page-desktop.png">
 </details>
@@ -275,7 +262,7 @@ The 404 page is a relatively simple, static HTML page. It features the logo, a h
 The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. Its fully responsive and will adapt to the size of the browser window the site is loaded in. THe logo is consistently presented on every page of the site. 
 
 <details>
-<summary>Index Page</summary>
+<summary>Logo</summary>
 <img src="docs/logo.png">
 </details>
 
@@ -289,7 +276,7 @@ The header exists predominantly to show the sites logo. However it is clickable 
 The hero image is displayed on the index page only. It provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
 
 <details>
-<summary>Index Page</summary>
+<summary>Hero Image</summary>
 <img src="docs/hero-image.png">
 </details>
 
@@ -308,7 +295,7 @@ The players name is stored in sessionStorage by some initial calls in the javasc
 HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function preventDefault to prevent default behaviour on the form, it then, via an if statement, captures the players name and applies a trim to it - removing whitespace. If however the name is submitted as just whitespace or the player tries to bypass entering their name and instead just hits the play game button it will trigger an alert to the player advising to enter their name. 
 
 <details>
-<summary>Index Page</summary>
+<summary>Game Instructions</summary>
 <img src="docs/instruction.png">
 </details>
 
@@ -323,7 +310,7 @@ HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function 
 The footer provides links to the the site owners socials, in this case Facebook, Github, Twitter and LinkedIn. The footer is present on all pages of he site.  
 
 <details>
-<summary>Index Page</summary>
+<summary>Footer</summary>
 <img src="docs/footer.png">
 </details>
 
@@ -360,7 +347,7 @@ Finally cardRender also calls on listCreator, which is responsible for displayin
 This child functions purpose is to check if its the players turn. If this is true it allows the player to interact with the card. It will also, once the player has made their choice show the opponent cards stats to the player. 
 
 <details>
-<summary>Index Page</summary>
+<summary>Card Area</summary>
 <img src="docs/card-area.png">
 </details>
 
@@ -379,14 +366,14 @@ This child functions purpose is to check if its the players turn. If this is tru
 
 The deck area is designed purely to show the counts of each players deck so they can be aware of how the game is going. Much like with the card area, a function is called early in the javascript which helps set this up in the form of setPermElements. The actual dynamic card counts are displayed by the updateDeckCount function, which is called by the outcomeHandler function. Much like all other aspects of the site, this is fully responsive with the text adapting to suit the screen it is on. Since this includes nothing the player needs to interact with directly its not set up to be accessible via tabbing. The below functions are all utilised in some form to show the content in this area. 
 
-### setPermElements
+### setPermElement
 This function has a single real purpose, which is to display the static text in the card count area. It does this using the presentData helper function mentioned earlier. This is called by the same currentURL variable that kicks off all other starting functions. 
 
 ### updateDeckCount
 This simple function exists purely to render the current count of cards in each players hand. It does this by adding the length to the player-deck-size and opponent-deck-size elements. 
 
 <details>
-<summary>Index Page</summary>
+<summary>Deck Count Area</summary>
 <img src="docs/card-counter.png">
 </details>
 
@@ -413,7 +400,7 @@ the outComeHandler function is directly responsible for showing the results of r
 The final function that is used in the showing of data in the message area is the endGame function. This uses a the retrievePlayerName and presentData functions to call on the name of the player before sending the correct output to the presentData function to be packaged into the needed HTML elements. It also present the new game button, which resets and restarts the game state. 
 
 <details>
-<summary>Index Page</summary>
+<summary>Message Area</summary>
 <img src="docs/message-area.png">
 </details>
 
@@ -469,7 +456,7 @@ Finally, winLossCounter keeps track of how many rounds have been won, lost and d
 * Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games. 
 * The ability to have two players in the game, rather than a player and the computer. 
 * I'd like to add options to change the computer players difficulty. Currently it picks a random stat, rather than having any specific behaviour. Options to make it specifically pick lower stat options, or higher stat options would allow for difficulty level changes or setting the random picker to favour higher/lower numbers as needed would enable this. 
-* I'd like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names causing cards to not render. I believe this is possible via JQuery https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory
+* I'd like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names causing cards to not render. I believe this is possible via JQuery [Stack Overflow](https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory}
 * I'd like to show who's turn it is in the message area between other messages being shown. Sometimes if you weren't paying attention it may not always be obvious who's turn it currently is. This would help remediate that and allow for a slightly more distracted game, where the player could be doing other things beyond playing the game. This would also allow for improved functionality with a multiplayer, allowing for more asynchronous game play to occur. 
 
 # Bugs and issues
@@ -756,6 +743,15 @@ I had attempted to resolve this using preloads and other methods to try to local
 [JShint](https://jshint.com/) Was also used - this initially gave warnings for a few undefined variables, which were fixed. It also warns about features used in ES6. 
 [BeautifyTools](https://beautifytools.com/javascript-validator.php). Much like JSHint, this gave several warnings around syntax in use which is only available in ES6. 
 
+<details>
+<summary>JShint</summary>
+<img src="docs/jshint.png">
+</details>
+
+<details>
+<summary>Esprima</summary>
+<img src="docs/esprima-validator.png">
+</details>
 
 ## Device and Browser Testing
 
@@ -973,7 +969,7 @@ A limited set of tests has been created to demonstrate what this may have looked
 Storing and retrieving the playerName, which while not essential to game play does demonstrate simple functionality and the buildCard function which is more key to the game itself. 
 
 <img src="docs/jest.png">
-<img src="docs/jshint.png">
+
 
 # Version control and Deployment
 
