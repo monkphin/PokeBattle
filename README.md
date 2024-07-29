@@ -9,7 +9,7 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 # Contents 
 
 - [User Experience](#user-experience)
-  - [Site Owner Goals](#site-owners-goals)
+  - [Site Owner Goals](#site-owner-goals)
   - [A Visitors Goals](#visitor-goals)
 
 - [User Stories](#user-stories)
@@ -150,19 +150,28 @@ Wireframes were created with Balsamiq software to provide rough mockups for layo
 <summary>404</summary>
 <img src="docs/desktop-404.png">
 <img src="docs/mobile-404.png">
-
 </details>
 
 ## Colour Palette.
 
 The colours selected were chosen to be inline with the bright, bold colours in use by the Pokemon IP, keeping things relatively simple but allowing all the elements to clearly standout and be viewable, as well as text to be legible. 
 
-After some experimentation I settled on a simple range of colours between blue and white, since these seemed to be most pleasant without providing too much conflict with the varying colours of the cards. 
+After some experimentation I settled on a simple range of colours between blue (#111D8D) and white (#FFFFFF), since these seemed to be most pleasant without providing too much conflict with the varying colours of the cards. 
+
+<details>
+<summary>Colour Gradient</summary>
+<img src="docs/colour-gradient.png">
+</details>
 
 ## Typography.
 
 The font was picked due to being somewhat reflective of the Pokemon IP's font, while also remaining clear to read at varying font sizes and weights. 
 Based on the simple appearance of the cards and IP as a whole I elected to stick to a single font to ensure this simplicity was reflected throughout. 
+
+<details>
+<summary>Google Font</summary>
+<img src="docs/google-font.png">
+</details>
 
 ## Images
 Images were sourced from a few locations - the pokemon themselves were from PokemonDB, the logos from a PokemonGo fan site, the cards from a Pokemon card making website. Credits for these will be provided at the end of the readme. 
