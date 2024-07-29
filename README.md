@@ -15,9 +15,8 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 - [User Stories](#user-stories)
 
-  - [Page Visitor](#site-visitor)
-  - [Mobile User](#mobile-user)
-  - [Page Owner](#site-owner)
+  - [Site Owner](#site-owner)
+  - [Site Visitor](#site-visitor)
 
 - [Design](#design)
 
@@ -30,11 +29,31 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 - [Features](#features)
 
-  - [Header](#header)
-  - [Footer](#footer)
   - [Index Page](#Index-page)
   - [Game Page](#game-page)
   - [404 Page](#404-page)
+  - [Logo](#logo)
+  - [Hero Image](#hero-image)
+  - [Instructions](#instructions)
+    - [sessionStorage](#sessionstorage)
+    - [handleSubmit](#handlesubmit) 
+  - [Footer](#footer)
+  - [Card Area](#card-area)
+    - [cardPicker](#cardpicker)
+    - [cardInit](#cardinit)
+    - [buildCard](#buildcard)
+    - [createDecks](#createdecks)
+    - [showCards](#showcards)
+    - [cardRender](#cardrender)
+    - [listCreator](#listcreator)
+  - [Deck Count Area](#deck-count-area)
+    - [setPermElements](#setpermelements)
+    - [updateDeckCounts](#updatedeckcounts)
+  - [Message Area](#message-area)
+    - [displayPlayerName](#displayplayername)
+    - [resolveRound](#resolveround)
+    - [outComeHandler](#outcomehandler)
+    - [endGame](#endgame)   
   - [Future Features](#future-features)
 
 - [Bugs and Issues](#bugs-and-issues)
@@ -51,22 +70,20 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
   - [HTML Validation](#html-validation)
   - [CSS Validation](#css-validation)
-  - [Javascript Validation](#javascript-validation)
   - [Accessibility](#accessibility)
   - [User Testing](#user-testing)
-  - [User Stories](#user-story-testing)
   - [Performance](#performance)
+  - [Javascript Testing](#javascript-testing)
   - [Device and Browser Testing](#device-and-browser-testing)
   - [Responsiveness](#responsiveness)
-
+  - [User Stories](#user-story-testing)
+  - [Automated Testing](#automated-testing)
+  - [User Stories](#user-story-testing)
 
 - [Version Control and Deployment](#version-control-and-deployment)
   - [Repository Creation](#repo-creation)
   - [Cloning Locally](#cloning-locally)
   - [Version Control](#version-control)
-    - [CLI](#CLI)
-    - [GitHub Website](#github-website)
-  - [Branching](#branching)
   - [Deployment](#deployment)
 
 - [Credits](#credits)
@@ -93,7 +110,6 @@ PokeBattle is an online Top Trumps like game created to allow fans of the Pokemo
 
 # User Stories
 
-## Site Owner
 ## Site Owner
 1. As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device. 
 2. As the site owner, I want players to need to enter their name so that the game can respond more personally to them. 
@@ -125,7 +141,7 @@ Wireframes were created with Balsamiq software to provide rough mockups for layo
 
 <details>
 <summary>Index page</summary>
-<img src="docs/desktop=indexpage.png">
+<img src="docs/desktop-indexpage.png">
 <img src="docs/mobile-indexpage.png">
 </details>
 
@@ -302,7 +318,7 @@ Story points: 1, 2, 3, 7, 8, 9, 14, 18, 20
 
 3: A major issue was identified by a mix of player testing and when talking to my Mentor - effectively the player could enqueue multiple turns by repeatedly pressing the stat options, causing functions to be triggered before they were supposed to be and causing the UI to continue to cycle through the game on its own, producing unexpected results. This was resolved by calling to a new function 'disableStatItems' which would check for a boolean condition. WHen the boolean is true, it disables interactivity of the stat elements via CSS, disabling pointer events and changing the tabIndex to prevent the player from interacting with their stats and causing events to queue up and cycle through on their own. 
 
-## Unresolved bugs. 
+## Unresolved bugs 
 
 1: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify which of this will fix the issue. Or where the fix will be needed. Another alternative would be to remove the reliance on timers and move to a button to start each round. However this would remove some of the immediacy of the game. 
 
