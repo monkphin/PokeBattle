@@ -198,8 +198,8 @@ const shuffleCards = array => {
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
-  const playerDeck = shuffledDeck.splice(0, 2);
-  const opponentDeck = shuffledDeck.slice(0, 2);
+  const playerDeck = shuffledDeck.splice(0, 20);
+  const opponentDeck = shuffledDeck.slice(0, 20);
   
   return {playerDeck, opponentDeck};
 }
