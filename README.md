@@ -484,6 +484,8 @@ Finally, winLossCounter keeps track of how many rounds have been won, lost and d
 
 2: Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause. Though I believe this may be related to issue 2 above. 
 
+3: In some rare situations the end game message will self clear rather than staying in place for the player to interact with. I have only been able to replicate this when playing with intentionally smaller than normal hand sizes of 2 cards each and when the player wins both rounds. I have been unable to identify an exact cause of this and have been unable to replicate this when playing with the default 20 card hands. This will become a problem if I implement the ability to change hand sizes however. 
+
 # Technology.
 
 ## Languages
