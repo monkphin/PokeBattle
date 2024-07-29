@@ -10,13 +10,14 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 - [User Experience](#user-experience)
 
-  - [Site Owner Goals](#site-owner-goals)
+  - [Site Owner Goals](#siteowner-club-goals)
   - [A Visitors Goals](#visitor-goals)
 
 - [User Stories](#user-stories)
 
-  - [Site Owner](#site-owner)
-  - [Site Visitor](#site-visitor)
+  - [Page Visitor](#site-visitor)
+  - [Mobile User](#mobile-user)
+  - [Page Owner](#site-owner)
 
 - [Design](#design)
 
@@ -29,6 +30,8 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 - [Features](#features)
 
+  - [Header](#header)
+  - [Footer](#footer)
   - [Index Page](#Index-page)
   - [Game Page](#game-page)
   - [404 Page](#404-page)
@@ -53,7 +56,7 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
     - [displayPlayerName](#displayplayername)
     - [resolveRound](#resolveround)
     - [outComeHandler](#outcomehandler)
-    - [endGame](#endgame)   
+    - [endGame](#endgame)
   - [Future Features](#future-features)
 
 - [Bugs and Issues](#bugs-and-issues)
@@ -70,10 +73,11 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
   - [HTML Validation](#html-validation)
   - [CSS Validation](#css-validation)
+  - [Javascript Validation](#javascript-validation)
   - [Accessibility](#accessibility)
   - [User Testing](#user-testing)
+  - [User Stories](#user-story-testing)
   - [Performance](#performance)
-  - [Javascript Testing](#javascript-testing)
   - [Device and Browser Testing](#device-and-browser-testing)
   - [Responsiveness](#responsiveness)
   - [User Stories](#user-story-testing)
@@ -84,6 +88,9 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
   - [Repository Creation](#repo-creation)
   - [Cloning Locally](#cloning-locally)
   - [Version Control](#version-control)
+    - [CLI](#CLI)
+    - [GitHub Website](#github-website)
+  - [Branching](#branching)
   - [Deployment](#deployment)
 
 - [Credits](#credits)
@@ -131,6 +138,8 @@ PokeBattle is an online Top Trumps like game created to allow fans of the Pokemo
 16. As a site visitor, I want to be able to quickly find out how to play the game so that I can enjoy the game without having to look anything up. 
 17. As a site visitor I want to know how to can find the owner of the site so that I can find out if they have new features coming. 
 18. As a site visitor, I would like to see the outcome of each round, so I can better see how the round was won or lost. 
+19. As a person playing the game I would like to see the number of cards each player has les, so I can understand how much risk is involved in my turn. 
+20. As the player of the game I would like to see the final outcome of the game, so that I know how I performed. 
 
 # Design
 The design needed to be relatively simplistic, reflecting the nature of the game and IP in use. Ideally with minimal moving content, with the pertinent data, such as cards, output etc all being visible on a single screen. This meant using CSS query selectors to allow for the cards to be displayed side by side when shifting resolutions. Since on smaller screens any other card positioning would result in some data being pushed off the bottom. Overall the design has been kept deliberately clean and simple in order to not distract from the main content. With areas of note being called out in bounding boxes that sit above the background. Initial testing was done with drop shadows on these elements and the cards. However it was decided that the shadows detracted from the overall clean look and could lead to potential distraction due to the UI being a little too busy. 
@@ -199,7 +208,20 @@ The game page is only accessible via the 'play game' button, once the player has
 ## Index page
 The sites home page, or index page, provides the basic rules of the game, as well as an option for the player to enter their name and proceed through to the game itself. The page features the sites logo, a hero image, the game instructions with a form at the end and also a footer containing social media links. This page responds to keyboard input, specifically the tab and enter keys, so has some degree of accessability built in. Its deign is mobile first and is fully responsive. 
 
-Story points 1, 2, 3, 8, 10, 11, 14, 16, 17, 19
+ Outer pipes  Cell padding 
+No sorting
+|    | Story point                                                                                                                                                                                                         | How                                                                                                                                                                                                                    |
+| -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                                       | The index page is designed to be fully responsive rendering in a manner that is appropriate for the device it is being browsed on. This has been tested on multiple virtualised and physical devices to confirm this.  |
+| 2  | As the site owner, I want players to need to enter their name so that the game can respond more personally to them.                                                                                                 | Their is a form on the index page,w here a player can enter their name. This stores the name for use by parts of the game and its entry triggers the game page loading, taking players into the game itself.           |
+| 3  | As the site owner, I want some degree of accessability to be considered in the way the site works so that the site can be used by people who may have accessibility issues.                                         | The index page responds to tab based input, allowing users to navigate the website using their keyboards.                                                                                                              |
+| 8  | As the site owner, I want to ensure the game page cannot be accessed without having a name saved by the game so that the player is presented with the rules and I know they cannot bypass the page displaying them. | The form will not allow the player to proceed without entering a name. It also uses the trim function to ensure no empty spaces are accepted. In both cases it triggers an alert to tell the user to enter their name. |
+| 10 | As the site owner I want the player to be able to find my social media links so they can connect with me and follow for other projects I'm working on or for new game play and site features.                       | The footer of the page contains links to several social channels, including github, linkedin, facebook and twitter.                                                                                                    |
+| 11 | As a site visitor, I want the gameplay to be relatively simplistic, so I can enjoy the game without having to remember complex rules.                                                                               | How to play the game is outlined within a couple of paragraphs on the index page. It highlights that interaction is via selecting a higher value stat.                                                                 |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device.                                                         | The index page is responsive by design and was built with a mobile first approach. This has been tested on multiple resolutions and will adjust to different resolutions as needed.                                    |
+| 16 | As a site visitor, I want to be able to quickly find out how to play the game so that I can enjoy the game without having to look anything up.                                                                      | The index page includes a couple of paragraphs that outline how to play the game.                                                                                                                                      |
+| 17 | As a site visitor I want to know how to can find the owner of the site so that I can find out if they have new features coming.                                                                                     | The footer of the page contains links to its owners social networks.                                                                                                                                                   |
+
 
 ## Game Page
 The game page is where the real meat of the content is, with the majority of whats on display being dynamically generated by the Javascript which drives the game. It has 5 main areas that are visible to the player at all times depending on their screen resolution. The logo, the card area, the deck size area, the game message area and finally the footer. These five areas are statically coded to the page, along with some of the text in the deck size area. The cards, card names and card stats are all dynamically generated as are the deck size counts and the responses in the response area. 
@@ -208,23 +230,48 @@ Examples of responses the game will provide to the player include the initial we
 
 Much like the rest of the site, its been designed with mobile first in mind and is responsive to varying screen sizes. However, this is the only page that uses bootstrap, which longer term I would like to migrate it away from using to match the rest of the site and hopefully simplify the CSS. 
 
-Story points. 1, 3, 5, 8, 10, 11, 13, 14, 15, 17, 18, 19
+|    | Story point                                                                                                                                                                                                         | How                                                                                                                                                                                                                    |
+| -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                                       | The index page is designed to be fully responsive rendering in a manner that is appropriate for the device it is being browsed on. This has been tested on multiple virtualised and physical devices to confirm this.  |
+| 2  | As the site owner, I want players to need to enter their name so that the game can respond more personally to them.                                                                                                 | Their is a form on the index page,w here a player can enter their name. This stores the name for use by parts of the game and its entry triggers the game page loading, taking players into the game itself.           |
+| 3  | As the site owner, I want some degree of accessability to be considered in the way the site works so that the site can be used by people who may have accessibility issues.                                         | The index page responds to tab based input, allowing users to navigate the website using their keyboards.                                                                                                              |
+| 8  | As the site owner, I want to ensure the game page cannot be accessed without having a name saved by the game so that the player is presented with the rules and I know they cannot bypass the page displaying them. | The form will not allow the player to proceed without entering a name. It also uses the trim function to ensure no empty spaces are accepted. In both cases it triggers an alert to tell the user to enter their name. |
+| 10 | As the site owner I want the player to be able to find my social media links so they can connect with me and follow for other projects I'm working on or for new game play and site features.                       | The footer of the page contains links to several social channels, including github, linkedin, facebook and twitter.                                                                                                    |
+| 11 | As a site visitor, I want the gameplay to be relatively simplistic, so I can enjoy the game without having to remember complex rules.                                                                               | How to play the game is outlined within a couple of paragraphs on the index page. It highlights that interaction is via selecting a higher value stat.                                                                 |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device.                                                         | The index page is responsive by design and was built with a mobile first approach. This has been tested on multiple resolutions and will adjust to different resolutions as needed.                                    |
+| 16 | As a site visitor, I want to be able to quickly find out how to play the game so that I can enjoy the game without having to look anything up.                                                                      | The index page includes a couple of paragraphs that outline how to play the game.                                                                                                                                      |
+| 17 | As a site visitor I want to know how to can find the owner of the site so that I can find out if they have new features coming.                                                                                     | The footer of the page contains links to its owners social networks.                                                                                                                                                   |
+| 18 | As a site visitor, I would like to see the outcome of each round, so I can better see how the round was won or lost.                                                                                                | The message area on the game page shows the outcome of each round at the end of the round                                                                                                                              |
+| 19 | As a person playing the game I would like to see the number of cards each player has les, so I can understand how much risk is involved in my turn.                                                                 | The game page contains the deck count area, which shows the number of cards in each players hands.                                                                                                                     |
+| 20 | As the player of the game I would like to see the final outcome of the game, so that I know how I performed.                                                                                                        | The message area also shows the final outcome of the game as well as presenting options to play again or to go back to the index page.                                                                                 |
 
 ## 404 Page
 The 404 page is a relatively simple, static HTML page. It features the logo, a heading, an image, some text with a link and the footer. The objective of the 404 page is to provide a themed page which fits the look and feel of the rest of the site incase a visitor manages to access a none existent page which they can use to return to the home page. This was derived from the same layout used on the index page and shares a lot in common with its design and CSS styling, to the point of using the same classes in several cases to avoid duplication. Since it's design is based on the homepage, the logo and footer are present as is a centrally located div which displays any text or images. With the only missing feature being the hero image. Much like the rest of the site, its been designed with mobile first in mind and is fully responsive.
 
-Story points 1, 3, 10, 14, 17, 19. 
+|    | Story Point                                                                                                                                                                                   | How                                                                                                                |
+| -- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                 | The site is fully responsive, with images, text and logoss adjust to the size of the screen in use.                |
+| 3  | As the site owner, I want some degree of accessability to be considered in the way the site works so that the site can be used by people who may have accessibility issues.                   | The site responds to keyboard input via the tab and enter keys                                                     |
+| 10 | As the site owner I want the player to be able to find my social media links so they can connect with me and follow for other projects I'm working on or for new game play and site features. | Like all pages on the site, the footer is present on the 404 page which contains links to the site owners socials. |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device.                                   | The site iwas designed to be mobile first and is fully responsive to varying device sizes.                         |
+| 17 | As a site visitor I want to know how to can find the owner of the site so that I can find out if they have new features coming.                                                               | The footer contains links to the site owners social networks.                                                      |
 
 ## Logo
 The header exists predominantly to show the sites logo. However it is clickable and will return the player back to the index page should they feel the need to navigate away from the game page while remaining on the website. Its fully responsive and will adapt to the size of the browser window the site is loaded in. THe logo is consistently presented on every page of the site. 
 
-
-Story points 1, 14 15. 
+|    | Story Point                                                                                                                                                 | How                                                                                                                   |
+| -- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                               | The logo is a single image that is sized by percentage, allowing it to be able to display on devices of varying size. |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device. | The logo is a single image that is sized by percentage, allowing it to be able to display on devices of varying size. |
+| 15 | As a site visitor. I want to be able to go back to the home page, to allow me to exit the game without leaving the site.                                    | The logo functions as a link to the index page of the site.                                                           |
 
 ## Hero Image
 The hero image is displayed on the index page only. It provides a picture of two pokemon trainers about to battle, helping to give a sense of what is to come to the visitor where the game will see you face off against a computer controlled opponent. Its fully responsive and will adjust to meet the dimensions of the screen that is being used to browse the website. 
 
-Story point 1, 14
+|    | Story Point                                                                                                                                                 | How                                                                                                   |
+| -- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                               | The hero image is fully responsive and will shift in size depending on the size of the device in use. |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device. | The hero image is fully responsive and will shift in size depending on the size of the device in use. |
 
 ## Instructions
 These are provided to ensure that players know the basics of how the game will function. Advising on how the game round should flow, what the objective of the turn and game is, as well as how many cards the two players have. This also presents an opportunity for the player to enter their name, which is called on at the end of hte game to congratulate or commiserate with the with player. Like other aspects of the site this is fully responsive and will react to varying screen resolutions, adjusting as needed. 
@@ -235,12 +282,20 @@ The players name is stored in sessionStorage by some initial calls in the javasc
 ### handleSubmit
 HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function preventDefault to prevent default behaviour on the form, it then, via an if statement, captures the players name and applies a trim to it - removing whitespace. If however the name is submitted as just whitespace or the player tries to bypass entering their name and instead just hits the play game button it will trigger an alert to the player advising to enter their name. 
 
-Story point 1, 2, 14, 16
+|    | Story Point                                                                                                                                                 | How                                                                                                                  |
+| -- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                               | The container for the instructions is styled to allow it to be flexible in terms of sizing.                          |
+| 2  | As the site owner, I want players to need to enter their name so that the game can respond more personally to them.                                         | The intrusctions container also contains a form allowing the player to enter their name.                             |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device. | The instructions are styled in a way that lets them dynamically shift depending on the device and resolution in use. |
+| 16 | As a site visitor, I want to be able to quickly find out how to play the game so that I can enjoy the game without having to look anything up.              | The instructions contain a few paragraphs which quickly and simply explain how the game is played.                   |
 
 ## Footer
 The footer provides links to the the site owners socials, in this case Facebook, Github, Twitter and LinkedIn. The footer is present on all pages of he site.  
 
-Story points 10, 17
+|    | Story Point                                                                                                                                                                                   | How                                                                                            |
+| -- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 10 | As the site owner I want the player to be able to find my social media links so they can connect with me and follow for other projects I'm working on or for new game play and site features. | The footer contains links to 4 commonly used personal and professional social media platforms. |
+| 17 | As a site visitor I want to know how to can find the owner of the site so that I can find out if they have new features coming.                                                               | The footer contains links to 4 commonly used personal and professional social media platforms. |
 
 ## Card Area
 The card area of the game page is used to display the card images, the name of the card name and the card stats. Card creation is started early in the Javascript file when cardPicker is first called. This is fully responsive with all aspects of what is on show adapting to screen size shifts. For smaller screens the stats are shown in a 2 x 2 grid, rather than a vertical list. This is done for improved UI and UX, since initial tests with a vertical list as is used on larger screens showed issues with how much space was available to target for each stat item, which would result in stats being incorrectly tapped. The following functions are all used in some form or another to present data here. 
@@ -269,7 +324,16 @@ Finally cardRender also calls on listCreator, which is responsible for displayin
 ### handleInteraction
 This child functions purpose is to check if its the players turn. If this is true it allows the player to interact with the card. It will also, once the player has made their choice show the opponent cards stats to the player. 
 
-Story points 1, 3, 4, 5, 6, 13, 14, 15
+|    | Story Point                                                                                                                                                                                                                                                                           | How                                                                                                                                                                                                                                                                  |
+| -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                                                                                                         | Much like the rest of the site, the card area is designed to be responsive to varying screen sizes and resolutions. It will shift its content around as needed to ensure that the cards remain usable and visible.                                                   |
+| 3  | As the site owner, I want some degree of accessability to be considered in the way the site works so that the site can be used by people who may have accessibility issues.                                                                                                           | The interactive options on the cards are accessible via the tab key and can be actioned using the enter key.                                                                                                                                                         |
+| 4  | As the site owner, I want the game to use randomly derived stats, so that I can limit the amount of research needed to generate the card data, allow the data to be card theme agnostic and to ensure no two games are the same.                                                      | The stats that the cards display are randomly generated from the buildCard function when the cards are created at the start of the game.                                                                                                                             |
+| 5  | As the site owner I want the player stats to be shown to the player but not be able to see the opponents until after they have picked so they know which stats have which values to pick when playing but are unable to see the opponents stats so they do not know the best options. | The listCreator function builds the card stats in a way that ensures the opponent stats are hidden until the player clicks on their chosen stat, via the handleInteraction subfunction so the player can compare what they selected vs what the opponent card shows, |
+| 6  | As the site owner, I would like the decks to be randomly shuffled so that the player and computer can have different hands.                                                                                                                                                           | The createDecks function hands the array of created cards to the shuffleCards variable, which shuffled the deck using a fisher-yates algorithm.                                                                                                                      |
+| 13 | As a site visitor, I want to be able to pick and choose which card statistics I am comparing with the opponents card and these to be visible to me, so I can have some choice of outcome.                                                                                             | The handleInteraction subfunction function allows the player to interact with their card stats when its their turn. This also shows the opponent stats once the player has selected their stat.                                                                      |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device.                                                                                                                           | The site is designed with mobile first in mind. It features a design that adapts to the device and its screen resolution as needed.                                                                                                                                  |
+| 15 | As a site visitor. I want to be able to go back to the home page, to allow me to exit the game without leaving the site.                                                                                                                                                              | The site logo is also a clickable link that takes the player back to the sites home page. The endOfGame function displays two buttons, one allowing the player to play another game the other allowing them to go back to the home page.                             |
 
 ## Deck Count Area
 
@@ -281,7 +345,10 @@ This function has a single real purpose, which is to display the static text in 
 ### updateDeckCount
 This simple function exists purely to render the current count of cards in each players hand. It does this by adding the length to the player-deck-size and opponent-deck-size elements. 
 
-Story points 1, 20
+|    | Story Point                                                                                                                                         | How                                                                                                                            |
+| -- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                       | Like all other aspects of the site, the deck Count area is designed to be responsive and will adapt to different screen sizes. |
+| 19 | As a person playing the game I would like to see the number of cards each player has les, so I can understand how much risk is involved in my turn. | The deck count area specifically displays the number of cards in each players hand.                                            |
 
 ## Message Area
 The message area is the final part of the game page and is where the player is first greeted, outcomes of each round are displayed and finally the end of game statistics are shown. 
@@ -300,7 +367,17 @@ the outComeHandler function is directly responsible for showing the results of r
 ### endGame
 The final function that is used in the showing of data in the message area is the endGame function. This uses a the retrievePlayerName and presentData functions to call on the name of the player before sending the correct output to the presentData function to be packaged into the needed HTML elements. It also present the new game button, which resets and restarts the game state. 
 
-Story points: 1, 2, 3, 7, 8, 9, 14, 18, 20
+|    | Story Point                                                                                                                                                                                                         | How                                                                                                                                                                                              |
+| -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1  | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                                                                                       | The message area, like the rest of the site is designed to be fully responsive.                                                                                                                  |
+| 2  | As the site owner, I want players to need to enter their name so that the game can respond more personally to them.                                                                                                 | The message area uses the player name stored in sessionStorage to address some messages to the player using their name.                                                                          |
+| 3  | As the site owner, I want some degree of accessability to be considered in the way the site works so that the site can be used by people who may have accessibility issues.                                         | The buttons at the end of the game that are shown in the message area are interactable via the tab key and can be actioned with the enter key.                                                   |
+| 7  | As the site owner, I want to ensure that the cards are removed from the deck as each players hand is created and the player is made aware of hand sizes so that they may better experience the game.                | The outComeHandler function is responsible for moving cards between hands depending on round outcomes.                                                                                           |
+| 8  | As the site owner, I want to ensure the game page cannot be accessed without having a name saved by the game so that the player is presented with the rules and I know they cannot bypass the page displaying them. | The displayPlayerName function checks to see if their is a stored playerName in session storage. If one is not present, this redirects the browser to the index.htrml page.                      |
+| 9  | As the site owner, I want to ensure the game cannot be made to function in a way that causes issues with game play.                                                                                                 | disableStatItems ensures that the stat items cannot be interacted with when the player is not supposed to interact with these, preventing a a major cause of malfunction that was detected.      |
+| 14 | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device.                                                         | The message area is designed to ensure it renders correctly on all devices and is fully responseive with a mobile first design appraoch.                                                         |
+| 18 | As a site visitor, I would like to see the outcome of each round, so I can better see how the round was won or lost.                                                                                                | The message area displays if the round was won, lost or drawn. It shows the selected stat name and the values of both the player and opponent for that stat. It also confirms whos turn is next. |
+| 20 | As the player of the game I would like to see the final outcome of the game, so that I know how I performed.                                                                                                        | At the end of the game the message area shows a tally of rounds won, lost or drawn, as well as the total number of rounds taken.                                                                 |
 
 ## Other functions
 
@@ -328,7 +405,14 @@ This function is what drives the computer player. It uses a simple Math.floor(Ma
 ### winLossCounter
 Finally, winLossCounter keeps track of how many rounds have been won, lost and drawn and logs these in a variable so that the endGame function can display the results to the player.  
 
-Story points: 2, 8, 9, 12, 13
+|    | Story Point                                                                                                                                                                                                         |                                                                                                                                                                                   |
+| -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2  | As the site owner, I want players to need to enter their name so that the game can respond more personally to them.                                                                                                 | This is required in order to play the game. The players name is stored using the storePlayerName function and retrieved using the retrievePlayerName function                     |
+| 8  | As the site owner, I want to ensure the game page cannot be accessed without having a name saved by the game so that the player is presented with the rules and I know they cannot bypass the page displaying them. | The retrievePlayerName function checks to see if a playername is present and if it isnt will send the browser to the index page.                                                  |
+| 9  | As the site owner, I want to ensure the game cannot be made to function in a way that causes issues with game play.                                                                                                 | disableStatItems is designed to prevent the player interacting with the game when its not their turn. This prevents a major source of malfunction that was detected with testing. |
+| 12 | As a site visitor, I want to be able to play the game against a computer opponent, so I can play solo.                                                                                                              | the opponentTurn function allows the player to play a game against a computer player. This is currently using a random picker to choose which stat to play.                       |
+| 13 | As a site visitor, I want to be able to pick and choose which card statistics I am comparing with the opponents card and these to be visible to me, so I can have some choice of outcome.                           | The statSelection function allows the player to pick and choose the stats they're using in each turn.                                                                             |
+| 19 | As the player of the game I would like to see the final outcome of the game, so that I know how I performed.                                                                                                        | The winLossCounter keeps track of how many turns have been won, lost and drawn so these can be presented to the player at the end of the game.                                    |
 
 ## Future Features
 * Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games. 

@@ -320,6 +320,9 @@ button:active {
     margin-top: 0.5em;
 }
 
+button:focus {
+    outline: 2px solid #00f; /* Or any other visible color */
+  }
 /* Adjustments for larger screens */
 
 @media (min-width: 375px) {

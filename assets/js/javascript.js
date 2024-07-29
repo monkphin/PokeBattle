@@ -198,13 +198,13 @@ const shuffleCards = array => {
 function createDecks() {
   const allCards = cardInit();
   const shuffledDeck = shuffleCards(allCards);
-  const playerDeck = shuffledDeck.splice(0, 20);
-  const opponentDeck = shuffledDeck.slice(0, 20);
+  const playerDeck = shuffledDeck.splice(0, 2);
+  const opponentDeck = shuffledDeck.slice(0, 2);
   
   return {playerDeck, opponentDeck};
 }
   
-/**
+/**t
 *pulls the topmost card from each deck for presentation.
 */
 function cardPicker() {
@@ -493,9 +493,25 @@ function checkEndGame() {
  */
 function endGame(winner) {
   endOfGame = true;
+
+  // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave the idea to clear timers due to functions continuing after game end causing content to vanish.
+  clearTimeout(turnTimer);
+  clearTimeout(opponentTimer);
+
   let playerName = retrievePlayerName();
+  let goHomeButton = document.createElement('button');
   let newGameButton = document.createElement('button');
+
+  goHomeButton.textContent = 'Exit Game';
   newGameButton.textContent = 'Play again!';
+
+  goHomeButton.setAttribute('tabindex', '1');
+  newGameButton.setAttribute('tabindex', '1');
+
+  goHomeButton.addEventListener('click', function() {
+    window.location.assign('index.html');
+  });
+
   newGameButton.addEventListener('click', function() {
     outputMessage.innerHTML = '';
     deckSizeArea.innerHTML = '';
@@ -525,9 +541,7 @@ function endGame(winner) {
     outputMessage.appendChild(lossMessage);
   }
   outputMessage.appendChild(newGameButton);
-  // found this https://www.codecademy.com/resources/docs/javascript/window/clearTimeout which gave the idea to clear timers due to functions continuing after game end causing content to vanish.
-  clearTimeout(turnTimer);
-  clearTimeout(opponentTimer);
+  outputMessage.appendChild(goHomeButton);
 }
   
 /**
