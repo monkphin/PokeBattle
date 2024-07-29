@@ -528,13 +528,13 @@ function endGame(winner) {
   let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
   if (winner === 'Player') {
     const winTitle = presentData('h2', `Congratulations ${playerName}`);
-    const winMessage = presentData('p', `You won the game in ${totalRounds}. 
+    const winMessage = presentData('p', `You won the game in ${totalRounds} rounds!. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`);
     outputMessage.appendChild(winTitle);
     outputMessage.appendChild(winMessage);
   } else {
     const lossTitle = presentData('h2', `Commiserations ${playerName}`);
-    const lossMessage = presentData('p', `You lost the game in ${totalRounds}. 
+    const lossMessage = presentData('p', `You lost the game in ${totalRounds} rounds. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`);
     //Add button element to play again. 
     outputMessage.appendChild(lossTitle);
