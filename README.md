@@ -261,10 +261,13 @@ Once cardInit has completed iterating through the arrays to create all 48 cards,
 cardPicker then takes the topmost (array entry 0) card from the player and opponent deck arrays and presents them, along with if the card is the players or the opponents to the showCard function. ShowCards main purpose is to derive which players card we're referencing with an if statement, before handing this to cardRender, which is responsible for rendering the card onscreen. This function also relies on the presentData helper function in order to simplify rendering data. The presentData function is utilised by several other functions throughout the game to help minimise repetition of code for creating HTML elements. 
 
 ### cardRender
-CardRender 
+CardRender initially checks for the end of the game and returns out if this is true. Beyond this its purpose is relatively trivial, with its sole purpose being to bring all the various parts of the card together to present on screen to the player
 
 ### listCreator
-Finally cardRender also calls on listCreator, which is responsible for displaying and handling click event on the card stats via a  child function called handleInteraction. listCreator also ensures that the opponent stats remain hidden until a stat is picked. 
+Finally cardRender also calls on listCreator, which is responsible for displaying and handling click event on the card stats via a child function called handleInteraction. listCreator also ensures that the opponent stats remain hidden until a stat is picked. 
+
+### handleInteraction
+This child functions purpose is to check if its the players turn. If this is true it allows the player to interact with the card. It will also, once the player has made their choice show the opponent cards stats to the player. 
 
 Story points 1, 3, 4, 5, 6, 13, 14, 15
 
@@ -299,7 +302,33 @@ The final function that is used in the showing of data in the message area is th
 
 Story points: 1, 2, 3, 7, 8, 9, 14, 18, 20
 
+## Other functions
 
+### storePLayerName
+As per the name, this function exists to store the players name in sessionStorage
+
+### retrievePlayerName
+Much like storePlayerName, this function predominantly exists to retrieve the players name. However it also checks if the playerName exists as a stored entity. If it doesn't it loads the index page to prevent the player from directly accessing the game.html page without first entering their name or reading the rules. 
+
+### presentData
+PresentData is a helper function thats called on by a few other functions. Effectively it takes the arguments handed to it - HTML tag and contents and encapsulates them into 'element' it exists to make functions that need to present data to the HTML of the site a little simpler and less repetitive. 
+
+### disableStatItems
+DisableStatItems adds the disabled class, sets pointerEvents to none and moves the tabIndex to -1 to ensure items aren't able to be interacted with when they're not supposed to be. Its a default state is to assume these should be disabled unless told otherwise at which point it removes the disabled class, sets pointer events to auto and shifts the tabIndex to 1. 
+
+### statSelection
+StatSelection takes the players selected stat and sends it, the stat name and the equivalent stat value for the opponent card to the resolveRound function. 
+
+### checkEndGame
+This function performs a quick check to see if either hand size is 0. If so it allows the endGame function to trigger. 
+
+### opponentTurn
+This function is what drives the computer player. It uses a simple Math.floor(Math.random()) to randomly pick an option from the four possible stats. It then sends the resulting stat name and the appropriate opponent and player stats to the resolveRound function. 
+
+### winLossCounter
+Finally, winLossCounter keeps track of how many rounds have been won, lost and drawn and logs these in a variable so that the endGame function can display the results to the player.  
+
+Story points: 2, 8, 9, 12, 13
 
 ## Future Features
 * Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games. 
