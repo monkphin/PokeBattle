@@ -810,14 +810,14 @@ To deploy the site the following steps were used:
 # Credits 
 
 ## Images
-* PokeBattler Logo taken from https://www.pokebattler.com/
-* Pokemon images taken from https://pokemondb.net/pokedex/national
-* Card backgrounds taken from https://pokecardmaker.net/creator
-* Sad Pikachu taken from https://www.deviantart.com/jujumays/art/A-Very-Sad-Pikachu-929558432
+* PokeBattler Logo taken from [pokebattler](https://www.pokebattler.com/)
+* Pokemon images taken from [PokemonDB](https://pokemondb.net/pokedex/national)
+* Card backgrounds taken from [PokeCard Maker](https://pokecardmaker.net/creator)
+* Sad Pikachu taken from [Deviant Art](https://www.deviantart.com/jujumays/art/A-Very-Sad-Pikachu-929558432)
 
 ##Javascript code blocks or suggestions
-* Information on localStorage vs sessionStorage https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page
-* Array shuffling to shuffle the deck of cards before splitting between the players. https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj
-* Using timers to add delays. https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
-* Clearing timers to ensure functions that are called after a timer completes are not called. https://www.codecademy.com/resources/docs/javascript/window/clearTimeout
-* Code to iterate through an array to pick a random option https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object 
+* Information on localStorage vs sessionStorage [StackOverflow](https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page)
+* Array shuffling to shuffle the deck of cards before splitting between the players. [Dev.to](https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj)
+* Using timers to add delays. [StackOverflow](https://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript)
+* Clearing timers to ensure functions that are called after a timer completes are not called. [Codecademy](https://www.codecademy.com/resources/docs/javascript/window/clearTimeout)
+* Code to iterate through an array to pick a random option [StackOverflow](https://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object)
