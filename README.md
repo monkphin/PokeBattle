@@ -76,11 +76,10 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
   - [Javascript Validation](#javascript-validation)
   - [Accessibility](#accessibility)
   - [User Testing](#user-testing)
-  - [User Stories](#user-story-testing)
+  - [User Story Testing](#user-story-testing)
   - [Performance](#performance)
   - [Device and Browser Testing](#device-and-browser-testing)
   - [Responsiveness](#responsiveness)
-  - [User Stories](#user-story-testing)
   - [Automated Testing](#automated-testing)
   - [User Stories](#user-story-testing)
 
@@ -575,7 +574,8 @@ Testing and discussions with my mentor also highlighted a few issues with the Ja
 
 Beyond this, I also manually tested the site, running through multiple games and testing all aspects of functionality, from form entry through to game play while keeping an eye on the console for any possible errors that may be logged. 
 
-## User Stories
+## User Story Testing
+
 1	As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.
 14	As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device.
 | Feature            | Action                                                                                                                                                                                                | Expected Result                                                                                                                                                                                                                                                                                                                             | Actual Result     |
