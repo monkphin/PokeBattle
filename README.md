@@ -769,7 +769,7 @@ Since I chose to work in Visual Studio Code, the contents of the newly created r
 1. In VSCode, I opened the Terminal window, by visiting the 'Terminal' menu in VSCode and selecting 'New Terminal'
 2. Within this terminal window, I made sure I was in the correct folder for where I wanted to store my work, if this was not correct I would have used the bash command cd to navigate to the correct folder. In this case, ~/Code, which is a folder called 'Code' in my logged-in user Home Folder.
 3. In a web browser, I navigated to the GitHub repository for the project and clicked on the green '<> Code' button, this presented me with several options for cloning. I selected the 'HTTPS' option and copied the URL in the text field.
-4. In Visual Studio Code’s terminal, I typed git clone https://github.com/monkphin/nlaw.git and pressed enter, which cloned the repo to my local machine as shown by the below output.
+4. In Visual Studio Code’s terminal, I typed git clone https://github.com/monkphin/PokeBattle.git and pressed enter, which cloned the repo to my local machine as shown by the below output.
  
     ```
     darren@localhost MINGW64 ~/Code (main)
