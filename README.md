@@ -10,7 +10,7 @@ A toptrumps like webapp created for the second milestrone projects for Code Inst
 
 - [User Experience](#user-experience)
 
-  - [Site Owner Goals](#siteowner-club-goals)
+  - [Site Owner Goals](#site-owner-goals)
   - [A Visitors Goals](#visitor-goals)
 
 - [User Stories](#user-stories)
