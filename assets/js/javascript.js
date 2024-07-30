@@ -53,7 +53,7 @@ function setPermElements() {
   playerDeckSize.id = 'player-deck-size';
   playerDeckSize.className = 'col-sm-3 player-deck-num';
   deckSizeArea.appendChild(playerDeckSize);
-  
+
   const opponentCardCount = presentData('div', 'Opponent deck size: ');
   opponentCardCount.className = 'col-sm-3 opponent-deck-text';
   deckSizeArea.appendChild(opponentCardCount);
@@ -63,8 +63,8 @@ function setPermElements() {
   deckSizeArea.appendChild(opponentDeckSize);
 }
 
-//-----------------------------------------Player Information 
-  
+//-----------------------------------------Player Information
+
 /**
  * Handles form submission for index.html, storing the players name via the 
  * storePlayerName function before redirecting to the game page. 
@@ -75,14 +75,14 @@ function handleSubmit(e) {
   e.preventDefault();
   let name = document.getElementById('player-name').value;
   //check to ensure name has been entered
-  if(name.trim()) {
+  if (name.trim()) {
     storePlayerName(name);
     window.location.assign('game.html');
   } else {
     alert('Please enter your name before continuing');
   }
 }
-    
+
 /**
  * Stores the players name using sessionStorage  
  * Found issues with localStorage when using Github pages. So moved to sessionStorage
@@ -91,9 +91,9 @@ function handleSubmit(e) {
 function storePlayerName(name) {
   sessionStorage.setItem('playerName', name);
 }
-    
+
 /**
- * Retrieves players name from sessionStorage. If player access the gamepage directly, it redirects to index to ensure a name is entered. 
+ * Retrieves players name from sessionStorage. If player access the game page directly, it redirects to index to ensure a name is entered. 
  * @returns {string} - Player name. 
  */
 function retrievePlayerName() {
@@ -103,20 +103,23 @@ function retrievePlayerName() {
   }
   return playerName;
 }
-    
+
 /** 
  * Throws a welcome message to game.html page when loaded
  */
 function displayPlayerName() {
   let playerName = retrievePlayerName();
-  const welcomePlayer = presentData('h2',`Welcome to Pokebattle ${playerName}`);
+  const welcomePlayer = presentData(
+    'h2',
+    `Welcome to Pokebattle ${playerName}`
+  );
   outputMessage.appendChild(welcomePlayer);
   const friendlyMessage = presentData('p', 'Good luck with your game!');
   outputMessage.appendChild(friendlyMessage);
 }
-   
-//-----------------------------------------Deck Constructor 
-  
+
+//-----------------------------------------Deck Constructor
+
 /**
  * Creates card data as an object with a  name, image, and randomised stats.  
  * @param {string} name - card name 
@@ -129,10 +132,10 @@ function buildCard(name, image) {
     image: image,
     stats: {
       attack: Math.ceil(Math.random() * 10),
-      defense: Math.ceil(Math.random() * 10),
+      defence: Math.ceil(Math.random() * 10),
       special: Math.ceil(Math.random() * 10),
-      speed: Math.ceil(Math.random() * 10),
-    },
+      speed: Math.ceil(Math.random() * 10)
+    }
   };
 }
 
@@ -142,30 +145,110 @@ function buildCard(name, image) {
  */
 function cardInit() {
   const cardName = [
-    'Abra', 'Bellsprout', 'Bulbasaur', 'Caterpie', 'Charmander', 'Clefairy',
-    'Cubone', 'Diglett', 'Doduo', 'Drowzee', 'Ekans', 'Exeggcute',
-    'Farfetch\'d', 'Geodude', 'Ghastly', 'Grimer', 'Growlithe', 'Hitmonlee',
-    'Jigglypuff', 'Koffing', 'Krabby', 'Lickitung', 'Machop', 'Magnemite',
-    'Mankey', 'Meowth', 'Nidoran', 'Oddish', 'Onix', 'Paras',
-    'Pidgey', 'Pikachu', 'Poliwag', 'Ponyta', 'Psyduck', 'Rattata',
-    'Sandshrew', 'Seel', 'Shellder', 'Slowpoke', 'Spearow', 'Squirtle',
-    'Tentacool', 'Venonat', 'Voltorb', 'Vulpix', 'Weedle', 'Zubat',
+    'Abra',
+    'Bellsprout',
+    'Bulbasaur',
+    'Caterpie',
+    'Charmander',
+    'Clefairy',
+    'Cubone',
+    'Diglett',
+    'Doduo',
+    'Drowzee',
+    'Ekans',
+    'Exeggcute',
+    "Farfetch'd",
+    'Geodude',
+    'Ghastly',
+    'Grimer',
+    'Growlithe',
+    'Hitmonlee',
+    'Jigglypuff',
+    'Koffing',
+    'Krabby',
+    'Lickitung',
+    'Machop',
+    'Magnemite',
+    'Mankey',
+    'Meowth',
+    'Nidoran',
+    'Oddish',
+    'Onix',
+    'Paras',
+    'Pidgey',
+    'Pikachu',
+    'Poliwag',
+    'Ponyta',
+    'Psyduck',
+    'Rattata',
+    'Sandshrew',
+    'Seel',
+    'Shellder',
+    'Slowpoke',
+    'Spearow',
+    'Squirtle',
+    'Tentacool',
+    'Venonat',
+    'Voltorb',
+    'Vulpix',
+    'Weedle',
+    'Zubat'
   ];
 
   const cardImage = [
-    'assets/images/large_cards/abra.webp', 'assets/images/large_cards/bellsprout.webp', 'assets/images/large_cards/bulbasaur.webp', 'assets/images/large_cards/caterpie.webp', 'assets/images/large_cards/charmander.webp', 'assets/images/large_cards/clefairy.webp',
-    'assets/images/large_cards/cubone.webp', 'assets/images/large_cards/diglett.webp', 'assets/images/large_cards/doduo.webp', 'assets/images/large_cards/drowzee.webp', 'assets/images/large_cards/ekans.webp', 'assets/images/large_cards/exeggcute.webp',
-    'assets/images/large_cards/farfetchd.webp', 'assets/images/large_cards/geodude.webp', 'assets/images/large_cards/ghastly.webp', 'assets/images/large_cards/grimer.webp', 'assets/images/large_cards/growlithe.webp', 'assets/images/large_cards/hitmonlee.webp',
-    'assets/images/large_cards/jigglypuff.webp', 'assets/images/large_cards/koffing.webp', 'assets/images/large_cards/krabby.webp', 'assets/images/large_cards/lickitung.webp', 'assets/images/large_cards/machop.webp', 'assets/images/large_cards/magnemite.webp',
-    'assets/images/large_cards/mankey.webp', 'assets/images/large_cards/meowth.webp', 'assets/images/large_cards/nidoran.webp', 'assets/images/large_cards/oddish.webp', 'assets/images/large_cards/onix.webp', 'assets/images/large_cards/paras.webp',
-    'assets/images/large_cards/pidgey.webp', 'assets/images/large_cards/pikachu.webp', 'assets/images/large_cards/poliwag.webp', 'assets/images/large_cards/ponyta.webp', 'assets/images/large_cards/psyduck.webp', 'assets/images/large_cards/rattata.webp',
-    'assets/images/large_cards/sandshrew.webp', 'assets/images/large_cards/seel.webp', 'assets/images/large_cards/shellder.webp', 'assets/images/large_cards/slowpoke.webp', 'assets/images/large_cards/spearow.webp', 'assets/images/large_cards/squirtle.webp',
-    'assets/images/large_cards/tentacool.webp', 'assets/images/large_cards/venonat.webp', 'assets/images/large_cards/voltorb.webp', 'assets/images/large_cards/vulpix.webp', 'assets/images/large_cards/weedle.webp', 'assets/images/large_cards/zubat.webp',
-];  
+    'assets/images/large_cards/abra.webp',
+    'assets/images/large_cards/bellsprout.webp',
+    'assets/images/large_cards/bulbasaur.webp',
+    'assets/images/large_cards/caterpie.webp',
+    'assets/images/large_cards/charmander.webp',
+    'assets/images/large_cards/clefairy.webp',
+    'assets/images/large_cards/cubone.webp',
+    'assets/images/large_cards/diglett.webp',
+    'assets/images/large_cards/doduo.webp',
+    'assets/images/large_cards/drowzee.webp',
+    'assets/images/large_cards/ekans.webp',
+    'assets/images/large_cards/exeggcute.webp',
+    'assets/images/large_cards/farfetchd.webp',
+    'assets/images/large_cards/geodude.webp',
+    'assets/images/large_cards/ghastly.webp',
+    'assets/images/large_cards/grimer.webp',
+    'assets/images/large_cards/growlithe.webp',
+    'assets/images/large_cards/hitmonlee.webp',
+    'assets/images/large_cards/jigglypuff.webp',
+    'assets/images/large_cards/koffing.webp',
+    'assets/images/large_cards/krabby.webp',
+    'assets/images/large_cards/lickitung.webp',
+    'assets/images/large_cards/machop.webp',
+    'assets/images/large_cards/magnemite.webp',
+    'assets/images/large_cards/mankey.webp',
+    'assets/images/large_cards/meowth.webp',
+    'assets/images/large_cards/nidoran.webp',
+    'assets/images/large_cards/oddish.webp',
+    'assets/images/large_cards/onix.webp',
+    'assets/images/large_cards/paras.webp',
+    'assets/images/large_cards/pidgey.webp',
+    'assets/images/large_cards/pikachu.webp',
+    'assets/images/large_cards/poliwag.webp',
+    'assets/images/large_cards/ponyta.webp',
+    'assets/images/large_cards/psyduck.webp',
+    'assets/images/large_cards/rattata.webp',
+    'assets/images/large_cards/sandshrew.webp',
+    'assets/images/large_cards/seel.webp',
+    'assets/images/large_cards/shellder.webp',
+    'assets/images/large_cards/slowpoke.webp',
+    'assets/images/large_cards/spearow.webp',
+    'assets/images/large_cards/squirtle.webp',
+    'assets/images/large_cards/tentacool.webp',
+    'assets/images/large_cards/venonat.webp',
+    'assets/images/large_cards/voltorb.webp',
+    'assets/images/large_cards/vulpix.webp',
+    'assets/images/large_cards/weedle.webp',
+    'assets/images/large_cards/zubat.webp'
+  ];
 
   //for loop to pull each name/image combo from the two arrays
-  if(cardName.length === cardImage.length) { 
-    for(let i = 0; i < cardName.length; i++) {
+  if (cardName.length === cardImage.length) {
+    for (let i = 0; i < cardName.length; i++) {
       cards.push(buildCard(cardName[i], cardImage[i]));
     }
   } else {
@@ -173,7 +256,7 @@ function cardInit() {
   }
   return cards;
 }
-  
+
 /**
  * Shuffles the deck using a Fisher-Yates algorithm 
  * function taken from this website
@@ -190,7 +273,7 @@ const shuffleCards = array => {
   }
   return array;
 };
-  
+
 /**
  * Creates decks for both players from the previously generated card pool. 
  * @returns {Object} - Object containing the playerDeck and OpponentDeck
@@ -200,10 +283,10 @@ function createDecks() {
   const shuffledDeck = shuffleCards(allCards);
   const playerDeck = shuffledDeck.splice(0, 20);
   const opponentDeck = shuffledDeck.slice(0, 20);
-  
-  return {playerDeck, opponentDeck};
+
+  return { playerDeck, opponentDeck };
 }
-  
+
 /**t
 *pulls the topmost card from each deck for presentation.
 */
@@ -213,8 +296,8 @@ function cardPicker() {
   showCard(activeCard.opponentDeck[0], 'opponent');
   updateDeckCount();
 }
-  
-//-----------------------------------------Front End presentation 
+
+//-----------------------------------------Front End presentation
 
 /**
  * Reusable function to return a HTML element with content. 
@@ -228,20 +311,20 @@ function presentData(elementName, elementContent) {
   element.appendChild(content);
   return element;
 }
-  
+
 /** 
  * Present both players cards to HTML using the cardRender function 
  * @param {Object} card - the card to display
  * @param {string} player - which player the card is for. 
  */
 function showCard(card, player) {
-  if(player === 'player') {
+  if (player === 'player') {
     cardRender('player-card', card);
   } else {
     cardRender('opponent-card', card);
   }
 }
-  
+
 /**
  * Renders the cards image, name and stats. 
  * @param {string} elementId - the ID of the element we want to render the card in. 
@@ -273,7 +356,7 @@ function cardRender(elementId, card) {
     statsContainer.classList.add('hidden');
   }
 
-  const stats = ['attack', 'defense', 'special', 'speed'];
+  const stats = ['attack', 'defence', 'special', 'speed'];
   for (let i = 0; i < stats.length; i++) {
     const stat = stats[i];
     const listItem = listCreator(stat, card.stats[stat], elementId);
@@ -290,7 +373,7 @@ function cardRender(elementId, card) {
 }
 
 /**
- * Creates a bootstrap grid which serves to list the cardstats. Also attaches an event listener for user interaction.
+ * Creates a bootstrap grid which serves to list the card stats. Also attaches an event listener for user interaction.
  * @param {string} statName - the name of hte stat. 
  * @param {number} statValue - the value of the stat. 
  * @param {string} elementId - the ID of the element
@@ -299,11 +382,12 @@ function cardRender(elementId, card) {
 function listCreator(statName, statValue, elementId) {
   const cardListWrapper = document.createElement('div');
   cardListWrapper.className = 'row stat-item';
-  cardListWrapper.setAttribute('tabindex', playerTurn ? '0' : '-1');  // Set tabindex based on playerTurn
+  cardListWrapper.setAttribute('tabindex', playerTurn ? '0' : '-1'); // Set tabindex based on playerTurn
 
   const nameSpan = document.createElement('div');
   nameSpan.className = 'stat-name';
-  nameSpan.textContent = statName.charAt(0).toUpperCase() + statName.slice(1) + ':';
+  nameSpan.textContent =
+    statName.charAt(0).toUpperCase() + statName.slice(1) + ':';
 
   const valueSpan = document.createElement('div');
   valueSpan.className = 'stat-value';
@@ -387,7 +471,7 @@ function disableStatItems(disable) {
 }
 
 //-----------------------------------------Game Loops
-  
+
 /**
  * Handles the selection of the stat and sends to resolveRound to handle round resolution. 
  * @param {string} statName - The name of the selected stat.  
@@ -395,9 +479,9 @@ function disableStatItems(disable) {
  * @param {string} elementId - the ID of the element. 
  */
 function statSelection(statName, statValue, elementId) {
- let playerStatName = statName;
- let playerStatValue = statValue;
- let opponentStatValue = (activeCard.opponentDeck[0].stats[statName]);
+  let playerStatName = statName;
+  let playerStatValue = statValue;
+  let opponentStatValue = activeCard.opponentDeck[0].stats[statName];
   resolveRound(playerStatName, playerStatValue, opponentStatValue, elementId);
 }
 
@@ -410,7 +494,12 @@ function statSelection(statName, statValue, elementId) {
  * @param {number} opponentStatValue - the comparable opponent stat value
  * @param {string} elementId - the ID of the element. 
  */
-function resolveRound(playerStatName, playerStatValue, opponentStatValue, elementId) {
+function resolveRound(
+  playerStatName,
+  playerStatValue,
+  opponentStatValue,
+  elementId
+) {
   if (endOfGame) return;
 
   // clearing timers
@@ -418,29 +507,70 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
   clearTimeout(opponentTimer);
 
   if (playerStatValue > opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, null, 'Congratulations, you win this round!', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}.`, 'Take your next turn');
+    outcomeHandler(
+      activeCard.playerDeck,
+      activeCard.opponentDeck,
+      null,
+      'Congratulations, you win this round!',
+      `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}.`,
+      'Take your next turn'
+    );
     winLossCounter('player');
     playerTurn = true;
-  } else if (playerStatValue < opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'Unlucky, you lost the round', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}!`, 'Its the enemy trainers turn.');
+  } else if (
+    playerStatValue < opponentStatValue &&
+    elementId === 'player-card'
+  ) {
+    outcomeHandler(
+      activeCard.opponentDeck,
+      activeCard.playerDeck,
+      null,
+      'Unlucky, you lost the round',
+      `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}!`,
+      'Its the enemy trainers turn.'
+    );
     winLossCounter('opponent');
     playerTurn = false;
     opponentTimer = setTimeout(function() {
       opponentTurn();
     }, 2500);
-  } else if (playerStatValue === opponentStatValue && elementId === 'player-card') {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'It\'s a draw!', `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}!`, 'Take another turn..');
+  } else if (
+    playerStatValue === opponentStatValue &&
+    elementId === 'player-card'
+  ) {
+    outcomeHandler(
+      activeCard.playerDeck,
+      activeCard.opponentDeck,
+      'draw',
+      "It's a draw!",
+      `You selected ${playerStatName}, which has the value ${playerStatValue} vs the opponent value of ${opponentStatValue}!`,
+      'Take another turn..'
+    );
     winLossCounter('draw');
     playerTurn = true;
   } else if (playerStatValue === opponentStatValue) {
-    outcomeHandler(activeCard.playerDeck, activeCard.opponentDeck, 'draw', 'The enemy trainer drew!', `The enemy trainer selected ${playerStatName}, which has the value ${opponentStatValue} vs your value of ${playerStatValue}!`, 'They get another go.');
+    outcomeHandler(
+      activeCard.playerDeck,
+      activeCard.opponentDeck,
+      'draw',
+      'The enemy trainer drew!',
+      `The enemy trainer selected ${playerStatName}, which has the value ${opponentStatValue} vs your value of ${playerStatValue}!`,
+      'They get another go.'
+    );
     winLossCounter('draw');
     playerTurn = false;
     opponentTimer = setTimeout(function() {
       opponentTurn();
     }, 2500);
   } else if (playerStatValue < opponentStatValue) {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'The enemy trainer wins this round!', `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}!`, 'They get another turn.');
+    outcomeHandler(
+      activeCard.opponentDeck,
+      activeCard.playerDeck,
+      null,
+      'The enemy trainer wins this round!',
+      `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}!`,
+      'They get another turn.'
+    );
     winLossCounter('opponent');
     playerTurn = false;
     const showStats = document.querySelector('#opponent-card .card-stats');
@@ -451,7 +581,14 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
       opponentTurn();
     }, 2500);
   } else {
-    outcomeHandler(activeCard.opponentDeck, activeCard.playerDeck, null, 'The enemy trainer lost this round!', `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}!`, 'It\'s your turn');
+    outcomeHandler(
+      activeCard.opponentDeck,
+      activeCard.playerDeck,
+      null,
+      'The enemy trainer lost this round!',
+      `The enemy trainer selected ${playerStatName} which has the value ${opponentStatValue} vs your stat value of ${playerStatValue}!`,
+      "It's your turn"
+    );
     winLossCounter('player');
     playerTurn = true;
     const showStats = document.querySelector('#opponent-card .card-stats');
@@ -471,7 +608,7 @@ function resolveRound(playerStatName, playerStatValue, opponentStatValue, elemen
       setTimeout(function() {
         disableStatItems(false);
         outputMessage.innerHTML = ''; // Clear message after enabling interaction
-      }, 1000); 
+      }, 1000);
     }
   }, 2500);
 }
@@ -486,7 +623,7 @@ function checkEndGame() {
     endGame('Player');
   }
 }
-  
+
 /**
  * Ends the game and shows the final result. Along with number of turns won/lost/drawn
  * @param {string} winner - the winner of the game. 
@@ -528,22 +665,28 @@ function endGame(winner) {
   let totalRounds = numberOfDraws + numberOfLosses + numberOfWins;
   if (winner === 'Player') {
     const winTitle = presentData('h2', `Congratulations ${playerName}`);
-    const winMessage = presentData('p', `You won the game in ${totalRounds} rounds!. 
-    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`);
+    const winMessage = presentData(
+      'p',
+      `You won the game in ${totalRounds} rounds!. 
+    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`
+    );
     outputMessage.appendChild(winTitle);
     outputMessage.appendChild(winMessage);
   } else {
     const lossTitle = presentData('h2', `Commiserations ${playerName}`);
-    const lossMessage = presentData('p', `You lost the game in ${totalRounds} rounds. 
-    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`);
-    //Add button element to play again. 
+    const lossMessage = presentData(
+      'p',
+      `You lost the game in ${totalRounds} rounds. 
+    You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`
+    );
+    //Add button element to play again.
     outputMessage.appendChild(lossTitle);
     outputMessage.appendChild(lossMessage);
   }
   outputMessage.appendChild(newGameButton);
   outputMessage.appendChild(goHomeButton);
 }
-  
+
 /**
  * Handles the opponents turn by randomly picking a stat to resolve via resolveRound used the below
  * for guidance on this. 
@@ -551,7 +694,7 @@ function endGame(winner) {
  */
 function opponentTurn() {
   if (endOfGame) return;
-  const statNames = ['attack', 'defense', 'special', 'speed'];
+  const statNames = ['attack', 'defence', 'special', 'speed'];
   const randomStat = statNames[Math.floor(Math.random() * statNames.length)];
   const pickedStatValue = activeCard.opponentDeck[0].stats[randomStat];
   const playerStatValue = activeCard.playerDeck[0].stats[randomStat];
@@ -569,7 +712,14 @@ function opponentTurn() {
  * @param {string} message - the message to show the player based on the outcome. 
  
  */
-function outcomeHandler(winnerDeck, loserDeck, outcome, messageTitle, message, whosTurn) {
+function outcomeHandler(
+  winnerDeck,
+  loserDeck,
+  outcome,
+  messageTitle,
+  message,
+  whosTurn
+) {
   const winMessageTitle = presentData('h2', messageTitle);
   const messageBody = presentData('p', message);
   const turnMessage = presentData('p', whosTurn);
@@ -596,7 +746,7 @@ function outcomeHandler(winnerDeck, loserDeck, outcome, messageTitle, message, w
 function updateDeckCount() {
   const playerDeckSizeElement = document.getElementById('player-deck-size');
   const opponentDeckSizeElement = document.getElementById('opponent-deck-size');
-  
+
   playerDeckSizeElement.textContent = activeCard.playerDeck.length;
   opponentDeckSizeElement.textContent = activeCard.opponentDeck.length;
 }
@@ -614,7 +764,7 @@ function winLossCounter(winner) {
   } else {
     numberOfDraws++;
   }
- return numberOfWins, numberOfLosses, numberOfDraws;
+  return numberOfWins, numberOfLosses, numberOfDraws;
 }
 
 /**
@@ -623,5 +773,4 @@ function winLossCounter(winner) {
  * https://stackoverflow.com/questions/66349868/jest-unit-testing-module-export-error-in-browser-console
  */
 var module = module || {};
-module.exports = storePlayerName, retrievePlayerName, buildCard;
-
+(module.exports = storePlayerName), retrievePlayerName, buildCard;
