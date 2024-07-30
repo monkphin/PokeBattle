@@ -522,7 +522,7 @@ Finally, winLossCounter keeps track of how many rounds have been won, lost and d
 
 3: A major issue was identified by a mix of player testing and when talking to my Mentor - effectively the player could enqueue multiple turns by repeatedly pressing the stat options, causing functions to be triggered before they were supposed to be and causing the UI to continue to cycle through the game on its own, producing unexpected results. This was resolved by calling to a new function 'disableStatItems' which would check for a boolean condition. When the boolean is true, it disables interactivity of the stat elements via CSS, disabling pointer events and changing the tabIndex to prevent the player from interacting with their stats and causing events to queue up and cycle through on their own.
 
-4: Identified an odd rendering issue when testing on iOS based devices where the gradient cut off at the bottom of the page. To fix, I added an empty div at the top of the body of each HTML page, which had the css class of .background and a Z height of -1 to push it behind all other content. Without this I would persistently see a blue bar on iOS devices. 
+4: Identified an odd rendering issue when testing on iOS based devices where the gradient cut off at the bottom of the page and a blue bar was displayed instead. To fix, I added an empty div at the top of the body of each HTML page, which had the css class of .background and a Z height of -1 to push it behind all other content. Without this I would persistently see a blue bar on iOS devices. 
 
 <details>
 <summary>Odd rendering issue on iOS</summary>
