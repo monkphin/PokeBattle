@@ -617,10 +617,11 @@ function winLossCounter(winner) {
  return numberOfWins, numberOfLosses, numberOfDraws;
 }
 
+/**
+ * Module exports for JEST testing 
+ * These were generating console errors initially found this which seems to have resolved it 
+ * https://stackoverflow.com/questions/66349868/jest-unit-testing-module-export-error-in-browser-console
+ */
+var module = module || {};
+module.exports = storePlayerName, retrievePlayerName, buildCard;
 
-module.exports = {
-  storePlayerName,
-  retrievePlayerName,
-  buildCard,
-  // add other functions you need to test
-};
