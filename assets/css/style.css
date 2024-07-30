@@ -1,55 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* Global CSS */
-html, body {
-    height: 100%;
-    margin: 0;
-    overflow: auto;
-    background-image: linear-gradient(#111d8d, white);
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  background-image: linear-gradient(#111d8d, white);
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .container {
-    flex: 1;
+  flex: 1;
 }
 
 .disabled {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 body {
-    position: relative;
-    background: none; 
+  position: relative;
+  background: none;
 }
 
 button {
-    background-color: rgba(0, 86, 179, 0.8);
-    border: 2px solid black;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    border-radius: 16px;
+  background-color: rgba(0, 86, 179, 0.8);
+  border: 2px solid black;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  border-radius: 16px;
 }
 
 button:hover {
-    background-color: rgba(0, 123, 255, 0.8);
+  background-color: rgba(0, 123, 255, 0.8);
 }
 
 button:active {
-    background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .stat-item-focus {
@@ -57,470 +58,483 @@ button:active {
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .logo {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
 }
 
 .footer {
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    padding: 1em 0;
-    flex-shrink: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  padding: 1em 0;
+  flex-shrink: 0;
 }
 
 .footer-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.5em;
 }
 
 .footer-links li {
-    margin: 0 0.75em;
+  margin: 0 0.75em;
 }
 
 .footer-links .fa-logo {
-    color: rgb(0, 87, 179);
+  color: rgb(0, 87, 179);
 }
 
 .footer-links .fa-logo:hover {
-    color: rgba(0, 123, 255, 0.8);
+  color: rgba(0, 123, 255, 0.8);
 }
 
 .footer-links .fa-logo:active {
-    color: rgb(0, 58, 120);
+  color: rgb(0, 58, 120);
 }
 
 /* Index page CSS */
 .hero-image {
-    width: 95%;
-    max-width: 770px;
+  width: 95%;
+  max-width: 770px;
 }
 
 .instructions {
-    font-family: "Montserrat", sans-serif;
-    background: rgba(255, 255, 255, 0.8);
-    font-size: 0.75em;
-    width: 99%;
-    border: 2px solid #000;
-    border-radius: 10px;
-    font-weight: bold;
-    padding: 0.25em;
-    margin: 1em 0;
-    width: 95%;
+  font-family: "Montserrat", sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.75em;
+  width: 99%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 0.25em;
+  margin: 1em 0;
+  width: 95%;
 }
 
 .instructions-title {
-    text-align: center;
-    font-size: 1.5em;
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .name-request {
-    font-family: "Montserrat", sans-serif;
-    align-items: center;
-    text-align: center;
+  font-family: "Montserrat", sans-serif;
+  align-items: center;
+  text-align: center;
 }
 
 .name-form {
-    font-family: "Montserrat", sans-serif;
-    align-items: center;
-    text-align: center;
+  font-family: "Montserrat", sans-serif;
+  align-items: center;
+  text-align: center;
 }
 
 .name-form label,
 .name-form input {
-    margin: 5px;
-    margin-bottom: 10px;
+  margin: 5px;
+  margin-bottom: 10px;
 }
 
 .name-form input {
-    padding: 5px;
-    margin-right: 10px;
+  padding: 5px;
+  margin-right: 10px;
 }
 
 .name-form button {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: black;
-    border: none;
-    cursor: pointer;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: black;
+  border: none;
+  cursor: pointer;
 }
 
 /* 404 Page */
 
 .lost-img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 /* Game page CSS */
 .trainers-image {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 #card-area {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-#player-card, #opponent-card {
-    width: 50%;
+#player-card,
+#opponent-card {
+  width: 50%;
 }
 
 .card-container {
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: auto;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
 }
 
 .card {
-    width: 100%;
-    background: transparent;
-    border: none;
+  width: 100%;
+  background: transparent;
+  border: none;
 }
 
 .card-name {
-    font-family: "Montserrat", sans-serif;
-    position: absolute;
-    top: 0.4em;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.9em;
-    font-weight: bold;
-    text-align: center;
-    color: black;
-    z-index: 10;
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  top: 0.4em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  z-index: 10;
 }
 
 .card-image {
-    width: 100%;
-    height: auto;
-    border: 1px solid black;
-    border-radius: 5%;
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 5%;
 }
 
 .card-stats {
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    top: 7em;
-    width: 90%;
-    bottom: 5px;
-    left: 17%;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  top: 7em;
+  width: 90%;
+  bottom: 5px;
+  left: 17%;
 }
 
 .stat-item {
-    font-size: 0.9em;
-    border: 1px solid black;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 0.25em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s; 
+  font-size: 0.9em;
+  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 0.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .stat-item-hover {
-    background-color: rgba(0, 123, 255, 0.8);
-    color: white;
+  background-color: rgba(0, 123, 255, 0.8);
+  color: white;
 }
 
 .stat-item-active {
-    background-color: rgba(0, 86, 179, 0.8);
-    color: white;
+  background-color: rgba(0, 86, 179, 0.8);
+  color: white;
 }
 
-.stat-name, .stat-value {
-    font-size: 0.8em;
-    padding: 0;
+.stat-name,
+.stat-value {
+  font-size: 0.8em;
+  padding: 0;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 #deck-size-area {
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.8em;
-    background: rgba(255, 255, 255, 0.8);
-    width: 100%;
-    border: 2px solid #000;
-    border-radius: 10px;
-    margin-top: 10%;
-    margin-left: 0.15em;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+  background: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  margin-top: 10%;
+  margin-left: 0.15em;
 }
 
-.player-deck-text, .opponent-deck-text {
-    width: 30%;
-    padding: 1em;
-    font-weight: bold;
+.player-deck-text,
+.opponent-deck-text {
+  width: 30%;
+  padding: 1em;
+  font-weight: bold;
 }
 
 .opponent-deck-text {
-    padding-left: 5%;
+  padding-left: 5%;
 }
 
-.player-deck-num, .opponent-deck-num {
+.player-deck-num,
+.opponent-deck-num {
+  width: 20%;
+  font-size: 1.5em;
+  padding-top: 1em;
+  font-weight: bold;
+}
+
+#message-area {
+  font-family: "Montserrat", sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  top: 110%;
+  border: 2px solid #000;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.25em;
+  margin: 1em 0;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#stat-message {
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+
+button:focus {
+  outline: 2px solid #00f; /* Or any other visible color */
+}
+/* Adjustments for larger screens */
+
+@media (min-width: 375px) {
+  .card-name {
+    top: 0.5em;
+  }
+  .card-stats {
+    top: 7.5em;
+  }
+}
+
+@media (min-width: 390px) {
+  .card-name {
+    top: 0.6em;
+  }
+  .card-stats {
+    top: 8em;
+  }
+}
+
+@media (min-width: 400px) {
+  .card-name {
+    top: 0.7em;
+  }
+  .card-stats {
+    top: 8.5em;
+  }
+}
+
+@media (min-width: 430px) {
+  .card-stats {
+    top: 9.5em;
+  }
+}
+
+@media (min-width: 460px) {
+  .card-stats {
+    top: 10em;
+  }
+}
+
+@media (min-width: 500px) {
+  .card-stats {
+    top: 11em;
+  }
+}
+
+@media (min-width: 539px) {
+  #player-card,
+  #opponent-card {
+    width: 48%;
+  }
+  .card-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .card-stats {
+    top: 9.5em;
+    grid-template-columns: 1fr;
+    bottom: 15px;
+    width: 90%;
+  }
+
+  .stat-wrapper {
+    width: 75%;
+    left: 5%;
+  }
+
+  .stat-item {
+    font-size: 1em;
+  }
+
+  .stat-name,
+  .stat-value {
+    font-size: 1em;
+    width: 50%;
+  }
+  .player-deck-num,
+  .opponent-deck-num {
     width: 20%;
     font-size: 1.5em;
     padding-top: 1em;
     font-weight: bold;
-}
-
-#message-area {
-    font-family: "Montserrat", sans-serif;
-    background: rgba(255, 255, 255, 0.8);
-    top: 110%;
-    border: 2px solid #000;
-    border-radius: 10px;
-    font-weight: bold;
-    text-align: center;
-    padding: 0.25em;
-    margin: 1em 0;
-    height: 200px;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-}
-
-#stat-message {
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 0.5em;
-}
-
-button:focus {
-    outline: 2px solid #00f; /* Or any other visible color */
   }
-/* Adjustments for larger screens */
-
-@media (min-width: 375px) {
-    .card-name {
-        top: 0.5em;
-    }
-    .card-stats {
-        top: 7.5em;
-    }
-}
-
-@media (min-width: 390px) {
-    .card-name {
-        top: 0.6em;
-    }    
-    .card-stats {
-        top: 8em;
-    }
-}
-
-@media (min-width: 400px) {
-    .card-name {
-        top: 0.7em;
-    }
-    .card-stats {
-        top: 8.5em;
-    }
-}
-
-@media (min-width: 430px) {
-    .card-stats {
-        top: 9.5em;
-    }
-}
-
-@media (min-width: 460px) {
-    .card-stats {
-        top: 10em;
-    }
-}
-
-@media (min-width: 500px) {
-    .card-stats {
-        top: 11em;
-    }
-}
-
-@media (min-width: 539px) {
-    #player-card, #opponent-card {
-        width: 48%;
-    }
-    .card-container {
-        width: 100%;
-        height: auto;
-    }
-
-    .card {
-        width: 90%;
-    }
-
-    .card-stats {
-        top: 9.5em;
-        grid-template-columns: 1fr;
-        bottom: 15px;
-        width: 90%;
-    }
-
-    .stat-wrapper {
-        width: 75%;
-        left: 5%;
-    }
-
-    .stat-item {
-        font-size: 1em;
-    }
-
-    .stat-name, .stat-value {
-        font-size: 1em;
-        width: 50%;
-    }
-    .player-deck-num, .opponent-deck-num {
-        width: 20%;
-        font-size: 1.5em;
-        padding-top: 1em;
-        font-weight: bold;
-    }
 }
 
 @media (min-width: 560px) {
-    .card-stats {
-        top: 10em;
-    }
+  .card-stats {
+    top: 10em;
+  }
 }
 
 @media (min-width: 768px) {
-    .instructions {
-        font-size: 1em;
-        width: 750px;
-    }
-    .card-name {
-        top: 1.2em;
-    }
-    .card-stats {
-        top: 13em;
-        grid-template-columns: 1fr;
-        bottom: 15px;
-        width: 90%;
-    }
-    .stat-name, .stat-value {
-        font-size: 1em;
-        width: 50%;
-        padding: 0.5em;
-    }
-    .player-deck-num, .opponent-deck-num {
-        width: 20%;
-        font-size: 1.5em;
-        padding-top: 0.5em;
-        font-weight: bold;
-    }
+  .instructions {
+    font-size: 1em;
+    width: 750px;
+  }
+  .card-name {
+    top: 1.2em;
+  }
+  .card-stats {
+    top: 13em;
+    grid-template-columns: 1fr;
+    bottom: 15px;
+    width: 90%;
+  }
+  .stat-name,
+  .stat-value {
+    font-size: 1em;
+    width: 50%;
+    padding: 0.5em;
+  }
+  .player-deck-num,
+  .opponent-deck-num {
+    width: 20%;
+    font-size: 1.5em;
+    padding-top: 0.5em;
+    font-weight: bold;
+  }
 }
 
 @media (min-width: 990px) {
-    .card-name {
-        font-size: 1.5em;
-        top: 1em;
-    }
-    .card-stats {
-        top: 18em;
-        grid-template-columns: 1fr;
-        bottom: 15px;
-        width: 90%;
-    }
-    .stat-name, .stat-value {
-        font-size: 1em;
-        width: 50%;
-        padding: 0.5em;
-    }
-    #deck-size-area {
-        margin-top: 2%;
-        width: 90%;
-        margin-left: 5%;
-    }
-    #message-area {
-        width: 90%;
-        margin-left: 5%;
-    }
+  .card-name {
+    font-size: 1.5em;
+    top: 1em;
+  }
+  .card-stats {
+    top: 18em;
+    grid-template-columns: 1fr;
+    bottom: 15px;
+    width: 90%;
+  }
+  .stat-name,
+  .stat-value {
+    font-size: 1em;
+    width: 50%;
+    padding: 0.5em;
+  }
+  #deck-size-area {
+    margin-top: 2%;
+    width: 90%;
+    margin-left: 5%;
+  }
+  #message-area {
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
 @media (min-width: 1200px) {
-    .card-name {
-        font-size: 2em;
-        top: 0.75em;
-    }
-    .card-stats {
-        top: 22em;
-        grid-template-columns: 1fr;
-        bottom: 15px;
-        width: 90%;
-    }
-    .stat-name, .stat-value {
-        font-size: 1em;
-        width: 50%;
-        padding: 0.5em;
-    }
+  .card-name {
+    font-size: 2em;
+    top: 0.75em;
+  }
+  .card-stats {
+    top: 22em;
+    grid-template-columns: 1fr;
+    bottom: 15px;
+    width: 90%;
+  }
+  .stat-name,
+  .stat-value {
+    font-size: 1em;
+    width: 50%;
+    padding: 0.5em;
+  }
 }
 
 @media (min-width: 1280px) {
-    .card-name {
-        font-size: 2em;
-        top: 0.75em;
-    }
-    .card-stats {
-        top: 22em;
-        grid-template-columns: 1fr;
-        bottom: 15px;
-        width: 90%;
-    }
-    .stat-name, .stat-value {
-        font-size: 1em;
-        width: 50%;
-        padding: 0.5em;
-    }
+  .card-name {
+    font-size: 2em;
+    top: 0.75em;
+  }
+  .card-stats {
+    top: 22em;
+    grid-template-columns: 1fr;
+    bottom: 15px;
+    width: 90%;
+  }
+  .stat-name,
+  .stat-value {
+    font-size: 1em;
+    width: 50%;
+    padding: 0.5em;
+  }
 }
 
 @media (min-width: 1400px) {
-    .card-name {
-        font-size: 2em;
-        top: 1em;
-    }
-    .card-stats {
-        top: 25em;
-        grid-template-columns: 1fr;
-        bottom: 15px;
-        width: 90%;
-    }
-    .stat-name, .stat-value {
-        font-size: 1em;
-        width: 50%;
-        padding: 0.5em;
-    }
+  .card-name {
+    font-size: 2em;
+    top: 1em;
+  }
+  .card-stats {
+    top: 25em;
+    grid-template-columns: 1fr;
+    bottom: 15px;
+    width: 90%;
+  }
+  .stat-name,
+  .stat-value {
+    font-size: 1em;
+    width: 50%;
+    padding: 0.5em;
+  }
 }
