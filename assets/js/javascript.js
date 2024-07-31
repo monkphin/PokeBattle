@@ -381,7 +381,7 @@ function cardRender(elementId, card) {
 
 /**
  * Creates a bootstrap grid which serves to list the card stats. Also attaches an event listener for user interaction.
- * @param {string} statName - the name of hte stat. 
+ * @param {string} statName - the name of the stat. 
  * @param {number} statValue - the value of the stat. 
  * @param {string} elementId - the ID of the element
  * @returns {HTMLElement} - the created stat item. 
