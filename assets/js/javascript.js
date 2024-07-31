@@ -686,10 +686,10 @@ function endGame(winner) {
       `You lost the game in ${totalRounds} rounds. 
     You won ${numberOfWins} rounds, drew ${numberOfDraws} rounds and lost ${numberOfLosses}`
     );
-    //Add button element to play again.
     outputMessage.appendChild(lossTitle);
     outputMessage.appendChild(lossMessage);
   }
+  //Add button element to play again.
   outputMessage.appendChild(newGameButton);
   outputMessage.appendChild(goHomeButton);
 }
