@@ -320,7 +320,7 @@ These are provided to ensure that players know the basics of how the game will f
 This was a late addition, suggested by one of the other students on the course. While the standard alert was fine. It bothered me that it didn't fit the theme of the site and was part of the browser itself. This is called via the index.html page, trying to call via javascript presented console errors and prevented the handleSubmit function from working. This has had custom theming applied via CSS to ensure it fits the look and feel of the website. In order to override the default CSS that SweetAlerts uses, I have had to specify !important on each adjustment made. Much like all other aspects of the site, this is fully responsive and has been designed with mobile first, targetting a 330px minimum width. 
 
 <details>
-<summary>Game Instructions</summary>
+<summary>SweetAlert2 Pop up</summary>
 <img src="docs/sweet-alert.png">
 </details>
 
