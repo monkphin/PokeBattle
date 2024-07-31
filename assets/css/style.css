@@ -2,6 +2,7 @@
 
 /* Global CSS */
 
+/* Below .background class is needed to fix odd rendering issues on iOS devices where the background gradient wasn't being honoured properly.  */
 .background {
   position: fixed;
   top: 0;
@@ -9,7 +10,7 @@
   width: 100%;
   height: 100%;
   background-image: linear-gradient(#111d8d, white);
-  z-index: -1; 
+  z-index: -1;
 }
 
 html,
@@ -65,7 +66,7 @@ button:active {
 }
 
 .stat-item-focus {
-  outline: 2px solid #00f; 
+  outline: 2px solid #00f;
 }
 
 .header {
@@ -184,61 +185,61 @@ button:active {
 
 /* Override SweetAlert2 modal background color */
 .swal2-popup {
-  background-color: rgba(255, 255, 255, 0.9) !important; 
-  border: 2px solid #000 !important;  
-  border-radius: 10px !important;     
-  font-family: 'Montserrat', sans-serif !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 2px solid #000 !important;
+  border-radius: 10px !important;
+  font-family: "Montserrat", sans-serif !important;
   max-width: 90% !important;
 }
 
 /* Override SweetAlert2 title styles */
 .swal2-title {
-  color: black !important;     
-  font-family: 'Montserrat', sans-serif !important; 
-  font-size: 1.5em !important; 
+  color: black !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 1.5em !important;
   text-align: center !important;
   font-weight: bold !important;
 }
 
 /* Override SweetAlert2 content text styles */
 .swal2-content {
-  color: black !important;     
-  font-family: 'Montserrat', sans-serif !important; 
-  font-size: 0.75em !important;  
+  color: black !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 0.75em !important;
   text-align: center !important;
 }
 
 /* Override SweetAlert2 button styles */
 .swal2-styled.swal2-confirm {
-  background-color: rgba(0, 86, 179, 0.8) !important; 
-  color: black !important;              
-  border: 2px solid black !important;    
-  border-radius: 16px !important;       
-  padding: 5px 10px !important;          
-  font-size: 1em !important;             
+  background-color: rgba(0, 86, 179, 0.8) !important;
+  color: black !important;
+  border: 2px solid black !important;
+  border-radius: 16px !important;
+  padding: 5px 10px !important;
+  font-size: 1em !important;
   text-align: center !important;
   text-decoration: none !important;
   display: inline-block !important;
   margin: 4px 2px !important;
   cursor: pointer !important;
-} 
+}
 
 /* Override SweetAlert2 button hover and active states */
 .swal2-styled.swal2-confirm:hover {
-  background-color: rgba(0, 123, 255, 0.8) !important; 
+  background-color: rgba(0, 123, 255, 0.8) !important;
 }
 
 .swal2-styled.swal2-confirm:active {
-  background-color: rgba(255, 255, 255, 0.8) !important; 
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* Override SweetAlert2 icon styles */
 .swal2-icon {
-  border-color: #007bff !important; 
+  border-color: #007bff !important;
 }
 
 .swal2-icon.swal2-error .swal2-x-mark-line {
-  background-color: #dc3545 !important; 
+  background-color: #dc3545 !important;
 }
 
 /* 404 Page */
@@ -398,7 +399,7 @@ button:active {
 }
 
 button:focus {
-  outline: 2px solid #00f; /* Or any other visible color */
+  outline: 2px solid #00f;
 }
 /* Adjustments for larger screens */
 
