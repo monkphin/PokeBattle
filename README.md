@@ -315,15 +315,6 @@ The hero image is displayed on the index page only. It provides a picture of two
 
 These are provided to ensure that players know the basics of how the game will function. Advising on how the game round should flow, what the objective of the turn and game is, as well as how many cards the two players have. This also presents an opportunity for the player to enter their name, which is called on at the end of hte game to congratulate or commiserate with the with player. Like other aspects of the site this is fully responsive and will react to varying screen resolutions, adjusting as needed.
 
-## SweetAlert2
-
-This was a late addition, suggested by one of the other students on the course. While the standard alert was fine. It bothered me that it didn't fit the theme of the site and was part of the browser itself. This is called via the index.html page, trying to call via javascript presented console errors and prevented the handleSubmit function from working. This has had custom theming applied via CSS to ensure it fits the look and feel of the website. In order to override the default CSS that SweetAlerts uses, I have had to specify !important on each adjustment made. Much like all other aspects of the site, this is fully responsive and has been designed with mobile first, targetting a 330px minimum width. 
-
-<details>
-<summary>SweetAlert2 Pop up</summary>
-<img src="docs/sweet-alert.png">
-</details>
-
 ### sessionStorage
 
 The players name is stored in sessionStorage by some initial calls in the javascript which check it the DOM is loaded before using an if statement to check for the form. If the form is present on a submit event, it will sent the contents of the form to the handleSubmit function.
@@ -343,6 +334,21 @@ HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function 
 | 2   | As the site owner, I want players to need to enter their name so that the game can respond more personally to them.                                         | The instructions container also contains a form allowing the player to enter their name.                             |
 | 14  | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device. | The instructions are styled in a way that lets them dynamically shift depending on the device and resolution in use. |
 | 16  | As a site visitor, I want to be able to quickly find out how to play the game so that I can enjoy the game without having to look anything up.              | The instructions contain a few paragraphs which quickly and simply explain how the game is played.                   |
+
+## SweetAlert2
+
+This was a late addition, suggested by one of the other students on the course. While the standard alert was fine. It bothered me that it didn't fit the theme of the site and was part of the browser itself. This is called via the index.html page, trying to call via javascript presented console errors and prevented the handleSubmit function from working. This has had custom theming applied via CSS to ensure it fits the look and feel of the website. In order to override the default CSS that SweetAlerts uses, I have had to specify !important on each adjustment made. Much like all other aspects of the site, this is fully responsive and has been designed with mobile first, targetting a 330px minimum width. 
+
+<details>
+<summary>SweetAlert2 Pop up</summary>
+<img src="docs/sweet-alert.png">
+</details>
+
+|     | Story Point                                                                                                                                                 | How                                                                                                                  |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| 1   | As the site owner, I want the site to be responsive to allow users to access it and have the best experience from any device.                               | The container for the instructions is styled to allow it to be flexible in terms of sizing.                          |
+| 2   | As the site owner, I want players to need to enter their name so that the game can respond more personally to them.                                         | The instructions container also contains a form allowing the player to enter their name.                             |
+| 14  | As a site visitor, I would like the site to render well on any device I should choose to access it from. So I can play the game irrespective of the device. | The instructions are styled in a way that lets them dynamically shift depending on the device and resolution in use. |
 
 ## Footer
 
