@@ -69,17 +69,24 @@ function setPermElements() {
  * Handles form submission for index.html, storing the players name via the 
  * storePlayerName function before redirecting to the game page. 
  * This pops an alert if the player fails to enter their name. 
+ * which uses the SweetAlert2 library for the alert. 
+ * Library found here: https://sweetalert2.github.io/
+ * and had to be called from index.html to make work. 
  *  @param {Event} e - The form submit event.
  */
 function handleSubmit(e) {
   e.preventDefault();
   let name = document.getElementById('player-name').value;
-  //check to ensure name has been entered
   if (name.trim()) {
     storePlayerName(name);
     window.location.assign('game.html');
   } else {
-    alert('Please enter your name before continuing');
+    Swal.fire({
+      title: 'Ooops!',
+      icon: 'error',
+      text: 'Please enter your name before continuing',
+      confirmButtonText: 'OK',
+    });
   }
 }
 

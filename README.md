@@ -210,7 +210,7 @@ The website consists of 3 pages:
 - game page
 - 404 page
 
-The game page is only accessible via the 'play game' button, once the player has entered their name into the text field. If the player tries to bypass entering their name an alert is generated advising them to enter their name, similarly if they enter all spaces the same alert will be generated. The custom 404 page is present in case a visitor somehow manages to access a non-existent part of the website and offers methods to get back to the index page. Their is also an if statement to checks if the player name has been stored when accessing the game.html page. If this has not been stored, it redirects the player to the index.html page to ensure they enter their name and read how the play the game using window.location.assign(). This is in-case the game.html page is accessed directly via bookmarks or direct linking and ensures that players cannot just start the game without accessing the index page first.
+The game page is only accessible via the 'play game' button, once the player has entered their name into the text field. If the player tries to bypass entering their name an alert is generated advising them to enter their name, similarly if they enter all spaces the same alert will be generated. The custom 404 page is present in case a visitor somehow manages to access a non-existent part of the website and offers methods to get back to the index page. Their is also an if statement to checks if the player name has been stored when accessing the game.html page. If this has not been stored, it redirects the player to the index.html page to ensure they enter their name and read how the play the game using window.location.assign(). This is in-case the game.html page is accessed directly via bookmarks or direct linking and ensures that players cannot just start the game without accessing the index page first. All aspects of the website have been designed with mobile first in mind. Targeting a minimum width of 344px, since this is the pixel width of the Galaxy Z Fold 5, the smallest handheld that Chrome's device simulator supports. However, it can drop as low as 328px before significant rendering issues start to occur. 
 
 ## Index page
 
@@ -313,6 +313,15 @@ The hero image is displayed on the index page only. It provides a picture of two
 ## Instructions
 
 These are provided to ensure that players know the basics of how the game will function. Advising on how the game round should flow, what the objective of the turn and game is, as well as how many cards the two players have. This also presents an opportunity for the player to enter their name, which is called on at the end of hte game to congratulate or commiserate with the with player. Like other aspects of the site this is fully responsive and will react to varying screen resolutions, adjusting as needed.
+
+## SweetAlert2
+
+This was a late addition, suggested by one of the other students on the course. While the standard alert was fine. It bothered me that it didn't fit the theme of the site and was part of the browser itself. This is called via the index.html page, trying to call via javascript presented console errors and prevented the handleSubmit function from working. This has had custom theming applied via CSS to ensure it fits the look and feel of the website. In order to override the default CSS that SweetAlerts uses, I have had to specify !important on each adjustment made. Much like all other aspects of the site, this is fully responsive and has been designed with mobile first, targetting a 330px minimum width. 
+
+<details>
+<summary>Game Instructions</summary>
+<img src="docs/sweet-alert.png">
+</details>
 
 ### sessionStorage
 
