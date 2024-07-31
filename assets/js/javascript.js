@@ -776,7 +776,7 @@ function winLossCounter(winner) {
 
 /**
  * Module exports for JEST testing 
- * These were generating console errors initially found this which seems to have resolved it 
+ * These were generating console errors initially, I found this which seems to have resolved it 
  * https://stackoverflow.com/questions/66349868/jest-unit-testing-module-export-error-in-browser-console
  */
 var module = module || {};
