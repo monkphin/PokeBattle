@@ -37,6 +37,7 @@ A Top Trumps like webapp created for the second milestone projects for Code Inst
   - [Instructions](#instructions)
     - [sessionStorage](#sessionstorage)
     - [handleSubmit](#handlesubmit)
+  - [SweetAlert2](#sweetalert2)  
   - [Footer](#footer)
   - [Card Area](#card-area)
     - [cardPicker](#cardpicker)
