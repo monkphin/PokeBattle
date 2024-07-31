@@ -337,7 +337,7 @@ HandleSubmit serves a couple of purposes. Firstly, it uses the inbuilt function 
 
 ## SweetAlert2
 
-This was a late addition, suggested by one of the other students on the course. While the standard alert was fine. It bothered me that it didn't fit the theme of the site and was part of the browser itself. This is called via the index.html page, trying to call via javascript presented console errors and prevented the handleSubmit function from working. This has had custom theming applied via CSS to ensure it fits the look and feel of the website. In order to override the default CSS that SweetAlerts uses, I have had to specify !important on each adjustment made. Much like all other aspects of the site, this is fully responsive and has been designed with mobile first, targetting a 330px minimum width. 
+This was a late addition, suggested by one of the other students on the course. While the standard alert was fine. It bothered me that it didn't fit the theme of the site and was part of the browser itself. This is called via the index.html page, trying to call via javascript presented console errors and prevented the handleSubmit function from working. This has had custom theming applied via CSS to ensure it fits the look and feel of the website. In order to override the default CSS that SweetAlerts uses, I have had to specify !important on each adjustment made. Much like all other aspects of the site, this is fully responsive and has been designed with mobile first, targetting a 330px minimum width. Like other aspects of the site, it can be interacted with via tabbed input, though it seems that the 'OK' button is automatically selected on pop up, meaning the user just needs to press the enter key to dismiss it. Information and documentation on SweetAlert2 can be found [here](https://sweetalert2.github.io/#download)
 
 <details>
 <summary>SweetAlert2 Pop up</summary>
@@ -557,6 +557,10 @@ THe site is built with HTML, CSS and Javascript. It also calls on external CSS a
 - Bootstrap 5.3.3
 
   - Used for some layout and positioning on the game page.
+
+- SweetAlert2 
+
+  - Used for alert pop up instead of the browsers built in alerting.  
 
 - W3Schools
 
