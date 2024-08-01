@@ -55,6 +55,14 @@ A Top Trumps like webapp created for the second milestone projects for Code Inst
     - [resolveRound](#resolveround)
     - [outComeHandler](#outcomehandler)
     - [endGame](#endgame)
+  - [Other Functions](#other-functions)
+    - [storePlayerName](#storeplayername)
+    - [presentData](#presentdata)
+    - [disableStatItems](#disablestatitems)
+    - [statSelection](#statselection)
+    - [checkEndGame](#checkendgame)
+    - [opponentTurn](#opponentturn)
+    - [winLossCounter](#winlosscounter)
   - [Future Features](#future-features)
 
 - [Bugs and Issues](#bugs-and-issues)
@@ -79,7 +87,6 @@ A Top Trumps like webapp created for the second milestone projects for Code Inst
   - [Device and Browser Testing](#device-and-browser-testing)
   - [Responsiveness](#responsiveness)
   - [Automated Testing](#automated-testing)
-  - [User Stories](#user-story-testing)
 
 - [Version Control and Deployment](#version-control-and-deployment)
 
@@ -528,8 +535,8 @@ Finally, winLossCounter keeps track of how many rounds have been won, lost and d
 - Ideally the player should be able to select the number of cards in the hand, allowing for varying lengths of games.
 - The ability to have two players in the game, rather than a player and the computer.
 - I'd like to add options to change the computer players difficulty. Currently it picks a random stat, rather than having any specific behaviour. Options to make it specifically pick lower stat options, or higher stat options would allow for difficulty level changes or setting the random picker to favour higher/lower numbers as needed would enable this.
-- I'd like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names causing cards to not render. I believe this is possible via JQuery [Stack Overflow](https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory}
-- I'd like to show who's turn it is in the message area between other messages being shown. Sometimes if you weren't paying attention it may not always be obvious who's turn it currently is. This would help remediate that and allow for a slightly more distracted game, where the player could be doing other things beyond playing the game. This would also allow for improved functionality with a multiplayer, allowing for more asynchronous game play to occur.
+- I'd like to have the cardName and CardImage arrays inside the cardInit function auto populate from a folder - effectively meaning that more card options can be added without manually coding them, this should also limit the potential for typos on file names creating a risk of cards not rendering. I believe this is possible via JQuery [Stack Overflow](https://stackoverflow.com/questions/14442118/populate-array-with-file-list-in-online-directory}
+- I'd like to show who's turn it is in the message area between other messages being shown. Sometimes if you weren't paying attention it may not always be obvious who's turn it currently is. This would help remediate that and allow for a slightly more distracted game, where the player could be doing other things beyond playing the game. This would also allow for improved functionality with multiplayer, allowing for more asynchronous game play to occur.
 
 # Bugs and issues
 
@@ -537,17 +544,17 @@ Finally, winLossCounter keeps track of how many rounds have been won, lost and d
 
 1: I had to refactor HTML due to initially using a mix of flex-box and bootstrap to try to achieve the layout I was aiming for, this was causing significant issues with rendering on the index and 404 pages which were proving too complex to fix. Instead I simplified things and shifted to using plain CSS for the index and 404 pages The game page still currently uses bootstrap, though this is not causing significant issues beyond needing to heavily lean on media queries to ensure the stats are correctly positioned over the cards.
 
-2: Identified an issue where the results would clear nearly instantly after when the player wins if the prior round was the players turn and they drew. This was resolved by clearing timers at the start of the resolveRound function, preventing these from continuing and causing issues with called timers.
+2: Identified an issue where the end game results would clear nearly instantly after when the player wins if the prior round was the players turn and they drew. This was resolved by clearing timers at the start of the resolveRound function, preventing these from continuing and causing issues with called timers.
 
 3: A major issue was identified by a mix of player testing and when talking to my Mentor - effectively the player could enqueue multiple turns by repeatedly pressing the stat options, causing functions to be triggered before they were supposed to be and causing the UI to continue to cycle through the game on its own, producing unexpected results. This was resolved by calling to a new function 'disableStatItems' which would check for a boolean condition. When the boolean is true, it disables interactivity of the stat elements via CSS, disabling pointer events and changing the tabIndex to prevent the player from interacting with their stats and causing events to queue up and cycle through on their own.
 
 ## Unresolved bugs
 
-1: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify which of this will fix the issue. Or where the fix will be needed. Another alternative would be to remove the reliance on timers and move to a button to start each round however this would remove some of the immediacy of the game play. 
+1: The player can interact with their card a little sooner than is ideal after the opponent players turn. I believe this just needs a slight change to where disableStatItems is set to true, or perhaps a tweak to a timer. But I have as yet been unable to identify the best approach to fix the issue. Or where thin the code the fix will be needed. Another alternative would be to remove the reliance on timers and move to a button to start each round however this would remove some of the immediacy of the game play. 
 
-2: Tabbed navigation will sometimes allow the spamming of stat option presses in some situations, causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable sadly so I have been unable to identify the root cause.
+2: Tabbed navigation will sometimes allow the spamming of stat option presses in some situations causing functions to be triggered before they're supposed to be (Ie before the end of the current turn) This is rare and isn't easily replicable so I have been unable to identify the root cause.
 
-3: In some rare situations the end game message will self clear rather than staying in place for the player to interact with. I have only been able to replicate this when playing with intentionally smaller than normal hand sizes of 2 cards each and when the player wins both rounds. I have been unable to identify an exact cause of this and have been unable to replicate this when playing with the default 20 card hands. This will become a problem if I implement the ability to change hand sizes however.
+3: In some rare situations the end game message will self clear rather than staying in place for the player to interact with. I have only been able to replicate this when playing with intentionally smaller than normal hand sizes of 2 cards each and when the player wins both rounds. I have been unable to identify an exact cause of this and have been unable to replicate this when playing with the default 20 card hands. This will become a problem if I implement the ability to change hand sizes however, at which point it would become a high priority to fix the issue. 
 
 # Technology.
 
@@ -640,7 +647,7 @@ All pages passed with 0 errors.
 ## CSS Validation
 
 [W3Schools CSS Validator](https://jigsaw.w3.org/css-validator/)
-Some errors were present when checking the game.html. This is due to falling back on Bootstraps grid system to assist in layout and positioning for the cards and some items on the webpage. I am slowly refactoring the site to move away from using Bootstrap, however due to the volume of elements on the game page, this page still uses Bootstrap.
+Some errors are present when checking the game.html directly (not pictured). This is due to falling back on Bootstraps grid system to assist in layout and positioning for the cards and some items on the webpage and relate specifically to bootstrap. Testing my own CSS file directly shows no issues. I am slowly refactoring the site to move away from using Bootstrap, however due to the volume of elements on the game page, this page still uses Bootstrap.
 
 <details>
 <summary>Full site CSS</summary>
@@ -649,7 +656,7 @@ Some errors were present when checking the game.html. This is due to falling bac
 
 ## Accessibility
 
-[WAVE](https://wave.webaim.org) was used to check to ensure the site conforms to accessibility standards.
+[WAVE](https://wave.webaim.org) was used to check to ensure the site conforms to accessibility standards. Initially this highlighted a few issues. However these were resolved through code refinement and refactoring. 
 
 Issue #1: All pages initially showed an issue where wave testing was detecting the footer links as a possible heading.
 Reason: Footer links were originally created within a single P element with a large font size. Causing Wave to mistake them for a header.
