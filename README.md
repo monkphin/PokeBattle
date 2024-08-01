@@ -57,6 +57,7 @@ A Top Trumps like webapp created for the second milestone projects for Code Inst
     - [endGame](#endgame)
   - [Other Functions](#other-functions)
     - [storePlayerName](#storeplayername)
+    - [retrievePlayerName](#retrieveplayername)
     - [presentData](#presentdata)
     - [disableStatItems](#disablestatitems)
     - [statSelection](#statselection)
@@ -489,7 +490,7 @@ The final function that is used in the showing of data in the message area is th
 
 ## Other functions
 
-### storePLayerName
+### storePlayerName
 
 As per the name, this function exists to store the players name in sessionStorage
 
