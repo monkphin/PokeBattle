@@ -88,7 +88,10 @@ A Top Trumps like webapp created for the second milestone projects for Code Inst
   - [Deployment](#deployment)
 
 - [Credits](#credits)
-
+  
+  - [Images](#images)
+  - [Javascript](#javascript-code-blocks-or-suggestions)
+  
 # User Experience
 
 PokeBattle is an online Top Trumps like game created to allow fans of the Pokemon series and TopTrumps games to have a single player game that can be played online. Due to the nature of the game and the IP, the site needs to be relatively simplistic in its display as well as using a bright, simple colour palette.
