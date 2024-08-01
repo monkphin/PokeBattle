@@ -47,6 +47,7 @@ A Top Trumps like webapp created for the second milestone projects for Code Inst
     - [showCards](#showcards)
     - [cardRender](#cardrender)
     - [listCreator](#listcreator)
+    - [handleInteraction](#handleinteraction)    
   - [Deck Count Area](#deck-count-area)
     - [setPermElement](#setpermelement)
     - [updateDeckCount](#updatedeckcount)
