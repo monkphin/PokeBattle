@@ -16,7 +16,7 @@ A Top Trumps like webapp created for the second milestone projects for Code Inst
 - [User Stories](#user-stories)
 
   - [Site Owner](#site-owner)
-  - [Sit Visitor](#site-visitor)
+  - [Site Visitor](#site-visitor)
 
 - [Design](#design)
 
