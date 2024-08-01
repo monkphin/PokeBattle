@@ -1122,7 +1122,7 @@ To deploy the site the following steps were used:
 - Card backgrounds taken from [PokeCard Maker](https://pokecardmaker.net/creator)
 - Sad Pikachu taken from [Deviant Art](https://www.deviantart.com/jujumays/art/A-Very-Sad-Pikachu-929558432)
 
-## Javascript code blocks or suggestions
+## Javascript Code Blocks or Suggestions
 
 - Information on localStorage vs sessionStorage [StackOverflow](https://stackoverflow.com/questions/56508930/localstorage-breaks-github-page)
 - Array shuffling to shuffle the deck of cards before splitting between the players. [Dev.to](https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj)
