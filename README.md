@@ -787,7 +787,7 @@ endGame The endGame function is triggered at the end of the game and is responsi
 
 Loading times and performance was tested using Googles Lighthouse tool within Chrome's Developer Tools.
 
-Without trying to optimise, both the index page and 4040 page were scoring above 90 in all areas, with some scores reaching 100.
+Without trying to optimise, both the index page and 404 page were scoring above 90 in all areas, with some scores reaching 100.
 However the game page was a different story. Scoring as low as 68 over several tests for its performance. The main issue being highlighted by Lighthouse was the card images.
 On investigation these were overly large images - being 745 x 1040px, each clocking in around 400kb. Since at its largest the game page limits these images to 548 x 765px, i resized the images to match this and also lowered the image quality slightly which dropped the file size to 20kb per card.
 This pushed the lowest score to a much more acceptable 89/100.
@@ -848,6 +848,7 @@ In Addition, the following browsers have all been used in testing:
 ## Responsiveness
 
 Responsiveness testing was performed using Chrome's Developer Tools. Where the option to rotate the device was possible this was also tested. As well testing simulating devices that have folding screens.
+
 For brevity, the specifics of rotation/screen adjustment testing will only be called out where issues were seen. As it stands, no issues were observed.
 
 <details>
