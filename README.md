@@ -814,8 +814,8 @@ I had attempted to resolve this using preloads and other methods to try to local
 ## Javascript Testing
 
 [Esprima](https://esprima.org/demo/validate.html) was used to check and verify the javascript, this caught a few semicolons that were missed or weren't needed which were correct. After this it gave no further warnings.
-[JShint](https://jshint.com/) Was also used - this initially gave warnings for a few undefined variables, which were fixed. It also warns about features used in ES6.
-[BeautifyTools](https://beautifytools.com/javascript-validator.php). Much like JSHint, this gave several warnings around syntax in use which is only available in ES6.
+[JShint](https://jshint.com/) Was also used - this initially gave warnings for a few undefined variables, which were fixed. It also warns about features used in ES6 which are in use in the Javascript file, which the validator doesn't support. 
+[BeautifyTools](https://beautifytools.com/javascript-validator.php). Much like JSHint, this gave several warnings around syntax in use which is only available in ES6 that the validator doesn't support. 
 
 <details>
 <summary>JShint</summary>
